@@ -1,5 +1,24 @@
 # Tender Agent — Client Demo Dashboard Plan
 
+## Authorized follow-up: recall-first prompt update
+
+The user's subsequent request authorizes one focused update to the prior
+prompt-preservation scope: permissive, evidence-backed candidate extraction in
+both workers; precision-oriented reconciliation with explicit amendment
+precedence and unresolved review items; and downstream reporting of uncertainty.
+Keep the existing schemas, graph, parser, model configuration, and original
+`main.py` unchanged. Update prompt contract tests and run unit, integration, and
+lint checks. Stop after this phase for human verification. Deterministic tests
+verify prompt delivery and wiring, not real-provider recall improvements.
+
+Verification: 25 unit/integration tests passed; 2 opt-in parser/provider tests
+were skipped. Lint passes for the changed Python files. Repository-wide lint
+still reports existing issues in `agent.ipynb`, `export_tables.py`, and `main.py`.
+No live-provider recall evaluation was run. This follow-up awaits human review.
+
+The historical prompt-preservation instructions below describe the original
+dashboard effort; this follow-up supersedes them for these prompt changes only.
+
 Status: All three dashboard phases implemented and verified locally. Phase 3 is ready for final human verification. See `DASHBOARD_DEMO.md` for results, limitations, startup instructions, and the client presentation sequence. The original application plan remains deferred.
 
 ## Scope and protected files

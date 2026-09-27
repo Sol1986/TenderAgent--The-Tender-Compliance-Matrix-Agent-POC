@@ -1,6 +1,5 @@
-"""Regression coverage for the notebook logic and minimal adapter changes."""
+"""Regression coverage for the active import-safe agent and demo adapter."""
 
-import ast
 import hashlib
 import subprocess
 import sys
@@ -9,20 +8,50 @@ from typing import Any
 
 import pytest
 from langchain_core.documents import Document
-from langchain_text_splitters import MarkdownHeaderTextSplitter
 
-from main_copy import (
-    PreparationError,
-    TenderAgent,
+from main import (
+    InputDocument,
+    Requirement,
+    SolicitationDocument,
+    analyze_chunk,
+    analyze_table,
+    configure_model,
+    generate_report,
     prepare_document,
-    run_tender,
-    split_markdown,
+    reduce_findings,
+    run_single_document_analysis,
+    run_tender_analysis,
+    stable_document_id,
     validate_analysis,
 )
 
 
+def input_document(filename: str = "unused.pdf") -> InputDocument:
+    """Build one source record without requiring the file to exist."""
+    return InputDocument(
+        document=SolicitationDocument(
+            document_id=stable_document_id(filename),
+            filename=filename,
+        ),
+        source_path=Path(filename).resolve(),
+    )
+
+
+def table_input(table_data: str = "Minimum two certified personnel.") -> dict[str, Any]:
+    """Supply the complete trusted metadata required by a table worker."""
+    return {
+        "table_number": 1,
+        "table_id": "DOC-000000000001-T0001-B0001",
+        "table_data": table_data,
+        "document_id": "DOC-000000000001",
+        "document_name": "unused.pdf",
+        "row_start": 1,
+        "row_end": 1,
+    }
+
+
 def test_import_does_not_parse_or_construct_provider() -> None:
-    """Import without credentials must not load Docling or write tender artifacts."""
+    """Importing without credentials must not write artifacts or configure a model."""
     path = Path("tender.md")
     before = hashlib.sha256(path.read_bytes()).hexdigest()
     result = subprocess.run(
@@ -30,9 +59,8 @@ def test_import_does_not_parse_or_construct_provider() -> None:
             sys.executable,
             "-c",
             (
-                "import os,sys; os.environ.pop('OPENAI_API_KEY',None); import main_copy; "
-                "assert 'docling.document_converter' not in sys.modules; "
-                "assert not hasattr(main_copy,'llm')"
+                "import os; os.environ.pop('OPENAI_API_KEY', None); import main; "
+                "assert main.extractor is None; assert main.reducer_llm is None"
             ),
         ],
         capture_output=True,
@@ -43,123 +71,135 @@ def test_import_does_not_parse_or_construct_provider() -> None:
     assert hashlib.sha256(path.read_bytes()).hexdigest() == before
 
 
-def test_original_prompt_text_is_preserved() -> None:
-    """AST comparisons ensure the four existing prompt bodies were not rewritten."""
-
-    def prompts(filename: str) -> dict[str, str]:
-        tree = ast.parse(Path(filename).read_text(encoding="utf-8"))
-        return {
-            node.name: ast.dump(
-                next(
-                    n.value
-                    for n in ast.walk(node)
-                    if isinstance(n, ast.Assign)
-                    and any(
-                        isinstance(t, ast.Name) and t.id == "prompt" for t in n.targets
-                    )
+@pytest.mark.parametrize("worker", ["chunk", "table"])
+def test_workers_receive_recall_policy(fake_model: Any, worker: str) -> None:
+    """Check the real prompts for the deliberate recall-first extraction policy."""
+    evidence = "Award subject to clearance; minimum two certified personnel."
+    configure_model(fake_model)
+    if worker == "chunk":
+        analyze_chunk(
+            {
+                "chunk": Document(
+                    page_content=evidence,
+                    metadata={
+                        "section": "Award",
+                        "document_id": "DOC-000000000001",
+                        "document_name": "unused.pdf",
+                    },
                 )
-            )
-            for node in ast.walk(tree)
-            if isinstance(node, ast.FunctionDef)
-            and node.name
-            in {"analyze_chunk", "analyze_table", "reduce_findings", "generate_report"}
-        }
+            }
+        )
+    else:
+        analyze_table(table_input(evidence))
 
-    assert prompts("main_copy.py") == prompts("main.py")
-
-
-def test_heading_split_and_filters_are_unchanged(document: Any) -> None:
-    """Compare with the literal original splitting/filtering algorithm."""
-    markdown = "# Title\n## Tiny\nSign.\n" + document.export_to_markdown()
-    baseline = MarkdownHeaderTextSplitter(
-        headers_to_split_on=[("#", "title"), ("##", "section"), ("###", "subsection")],
-        strip_headers=False,
-    ).split_text(markdown)
-    expected = [
-        c
-        for c in baseline
-        if len(c.page_content.strip()) >= 50
-        and c.metadata.get("section") != "UNIT PRICE TABLE"
-    ]
-    actual, excluded, short = split_markdown(markdown)
-    assert [c.page_content for c in actual] == [c.page_content for c in expected]
-    assert excluded and short == 1
-    assert actual[0].metadata["section"] == "Submission"
+    schema, prompt = fake_model.calls[-1]
+    assert schema == "ChunkFindings"
+    assert evidence in prompt
+    assert "extract it as a candidate rather than omit it" in prompt
+    assert "NOT keyword matching" in prompt
+    assert "verbatim supporting evidence" in prompt
+    assert 'prefix requirement with "Review needed:"' in prompt
 
 
-def test_table_coverage_and_input_limits(document: Any) -> None:
-    """Never allow a filtered large table to disappear from both pipelines."""
-    prepared = prepare_document(document)
-    assert len(prepared.tables) == 1 and prepared.filtered_table == 1
+def test_reconciliation_and_report_keep_review_boundary(
+    fake_model: Any, outputs: dict[str, Any]
+) -> None:
+    """Ensure ambiguity and amendment instructions reach downstream model calls."""
+    finding = Requirement(
+        category="submission",
+        requirement="Review needed: conflicting submission deadlines.",
+        status="FOUND",
+        source_section="Addendum 2",
+        evidence="Closing September 30; revised closing October 2.",
+    )
+    configure_model(fake_model)
+    reduce_findings({"findings": [finding]})
+    prompt = fake_model.calls[-1][1]
+    assert finding.evidence in prompt and finding.source_section in prompt
+    assert "Merge only true duplicates" in prompt
+    assert "a later date alone" in prompt
+    assert "Uncertainty alone never justifies omission" in prompt
+    assert "Do not promote an uncertain candidate" in prompt
+
+    generate_report({"final_analysis": outputs["final_analysis"]})
+    report_prompt = fake_model.calls[-1][1]
+    assert 'Items prefixed "Review needed:" are unresolved candidates' in report_prompt
+    assert "You must NOT make the bid/no-bid decision" in report_prompt
+
+
+def test_preparation_retains_short_sections_and_structured_tables(
+    document: Any,
+) -> None:
+    """Current preparation keeps short obligations and all table coverage."""
+    document.markdown = "# Title\n## Tiny\nSign.\n" + document.export_to_markdown()
+    prepared = prepare_document(input_document(), parser=lambda _path: document)
+
+    assert any("Sign." in chunk.page_content for chunk in prepared.chunks)
+    assert any(
+        chunk.metadata.get("section") == "UNIT PRICE TABLE" for chunk in prepared.chunks
+    )
+    assert len(prepared.tables) == 1
     assert "Submit signed offer" in prepared.tables[0]["table_data"]
-    with pytest.raises(PreparationError, match="worker limit"):
-        prepare_document(document, max_workers=1)
-    with pytest.raises(PreparationError, match="input limit"):
-        prepare_document(document, max_input_characters=1)
-    document.tables = []
-    with pytest.raises(PreparationError, match="coverage"):
-        prepare_document(document)
+    assert all(
+        chunk.metadata["document_name"] == "unused.pdf" for chunk in prepared.chunks
+    )
 
 
 @pytest.mark.parametrize("text_count,table_count", [(2, 2), (2, 0), (0, 2)])
 def test_graph_joins_all_workers_once(
     fake_model: Any, text_count: int, table_count: int
 ) -> None:
-    """Use the real LangGraph topology and provider substitutes, including empty findings."""
-    events = []
-
-    def observe(kind: str, **fields: Any) -> None:
-        events.append((kind, fields))
-
+    """Run the real graph across text-only, table-only, and mixed inputs."""
     chunks = [
         Document(
-            page_content="Submit signed offer", metadata={"chunk_id": f"chunk-{i}"}
+            page_content="Submit signed offer",
+            metadata={
+                "chunk_id": f"chunk-{index}",
+                "document_id": "DOC-000000000001",
+                "document_name": "unused.pdf",
+            },
         )
-        for i in range(text_count)
+        for index in range(text_count)
     ]
     tables = [
-        {"table_number": i, "table_data": "IRRELEVANT"} for i in range(table_count)
+        table_input("IRRELEVANT") | {"table_number": index + 1}
+        for index in range(table_count)
     ]
-    result = (
-        TenderAgent(fake_model)
-        .build_graph(observe)
-        .invoke(
-            {"chunks": chunks, "tables": tables, "findings": []},
-            config={"max_concurrency": 2},
-        )
-    )
+
+    result = run_tender_analysis(chunks, tables, fake_model, max_concurrency=2)
+
     assert len(result["findings"]) == text_count
     assert [name for name, _ in fake_model.calls].count("TenderAnalysis") == 1
     assert [name for name, _ in fake_model.calls].count("DecisionSupportReport") == 1
-    reduction = next(
-        i
-        for i, (kind, data) in enumerate(events)
-        if kind == "stage.started" and data["stage"] == "reduce_findings"
-    )
-    assert (
-        sum(kind == "worker.completed" for kind, _ in events[:reduction])
-        == text_count + table_count
-    )
     assert result["final_analysis"].categories[0].requirements[0].evidence
 
 
-def test_run_pipeline_emits_real_preparation_and_outputs(
+def test_run_pipeline_emits_preparation_workers_and_outputs(
     fake_model: Any, document: Any
 ) -> None:
-    """Run the entire callable path with a supplied document and fresh model state."""
-    events = []
+    """Exercise the compatibility runner through the active main module."""
+    events: list[tuple[str, dict[str, Any]]] = []
 
     def observe(kind: str, **fields: Any) -> None:
         events.append((kind, fields))
 
-    result = run_tender(
-        Path("unused.pdf"), fake_model, observe, parser=lambda _: document
+    result = run_single_document_analysis(
+        Path("unused.pdf"), fake_model, observe, parser=lambda _path: document
+    )
+
+    prepared = next(data for kind, data in events if kind == "inputs.prepared")
+    reduction_index = next(
+        index
+        for index, (kind, data) in enumerate(events)
+        if kind == "stage.started" and data["stage"] == "reduce_findings"
     )
     assert result["decision_report"].executive_summary
-    assert any(
-        kind == "run.warning" and "surrounding prose" in data["summary"]
-        for kind, data in events
-    )
+    assert prepared["data"] == {
+        "total_chunks": 3,
+        "text_chunks": 2,
+        "tables": 1,
+    }
+    assert sum(kind == "worker.completed" for kind, _ in events[:reduction_index]) == 3
     assert [data["stage"] for kind, data in events if kind == "stage.started"][:2] == [
         "parse_document",
         "prepare_inputs",

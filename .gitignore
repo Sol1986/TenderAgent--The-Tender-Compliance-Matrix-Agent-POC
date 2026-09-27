@@ -12,6 +12,7 @@ wheels/
 # Local demo configuration, generated artifacts, and test caches
 .env
 .env.*
+!.env.example
 !.env.dashboard.example
 !dashboard/.env.example
 .uv-cache/
@@ -22,3 +23,5 @@ dashboard/node_modules/
 dashboard/.next/
 dashboard/playwright-report/
 dashboard/test-results/
+outputs/
+tender_package/*.pdf

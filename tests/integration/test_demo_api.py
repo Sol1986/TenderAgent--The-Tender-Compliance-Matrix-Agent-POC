@@ -10,7 +10,7 @@ from fastapi.testclient import TestClient
 
 from demo_api.app import create_app
 from demo_api.config import Settings
-from main_copy import run_tender
+from main import run_single_document_analysis
 
 
 def await_terminal(client: TestClient, run_id: str) -> dict[str, Any]:
@@ -24,7 +24,16 @@ def await_terminal(client: TestClient, run_id: str) -> dict[str, Any]:
     raise AssertionError("Run did not terminate")
 
 
-def test_start_returns_before_completion_and_replay(outputs: dict[str, Any]) -> None:
+def available_sample(tmp_path: Path) -> Path:
+    """Create a non-empty sample because the API checks availability before dispatch."""
+    sample = tmp_path / "sample.pdf"
+    sample.write_bytes(b"%PDF-test-placeholder")
+    return sample
+
+
+def test_start_returns_before_completion_and_replay(
+    outputs: dict[str, Any], tmp_path: Path
+) -> None:
     """A blocked worker proves the HTTP handler is independent of analysis."""
     entered, release = Event(), Event()
 
@@ -34,7 +43,7 @@ def test_start_returns_before_completion_and_replay(outputs: dict[str, Any]) -> 
             raise RuntimeError("Test did not release worker")
         return outputs
 
-    app = create_app(Settings(), pipeline)
+    app = create_app(Settings(sample_path=available_sample(tmp_path)), pipeline)
     with TestClient(app) as client:
         try:
             response = client.post(
@@ -84,15 +93,18 @@ def test_start_returns_before_completion_and_replay(outputs: dict[str, Any]) -> 
         )
 
 
-def test_graph_http_outputs_and_report_failure(fake_model: Any, document: Any) -> None:
+def test_graph_http_outputs_and_report_failure(
+    fake_model: Any, document: Any, tmp_path: Path
+) -> None:
     """Drive the actual graph through HTTP, then verify partial failure state."""
 
     def pipeline(observe: Any) -> dict[str, Any]:
-        return run_tender(
+        return run_single_document_analysis(
             Path("unused"), fake_model, observe, parser=lambda _: document
         )
 
-    with TestClient(create_app(Settings(), pipeline)) as client:
+    settings = Settings(sample_path=available_sample(tmp_path))
+    with TestClient(create_app(settings, pipeline)) as client:
         for fail in (False, True):
             fake_model.report_error = fail
             response = client.post(
@@ -104,9 +116,9 @@ def test_graph_http_outputs_and_report_failure(fake_model: Any, document: Any) -
             assert snapshot["status"] == ("failed" if fail else "completed")
             assert snapshot["output"]["tender_analysis"]
             assert bool(snapshot["output"]["decision_support_report"]) != fail
-            assert snapshot["metrics"]["raw_findings"] == 2
-            assert snapshot["metrics"]["completed_workers"] == 2
-            assert snapshot["warnings"][0]["code"] == "PROTOTYPE_FILTERS"
+            assert snapshot["metrics"]["raw_findings"] == 3
+            assert snapshot["metrics"]["completed_workers"] == 3
+            assert snapshot["warnings"] == []
             events = client.get(response.json()["events_url"]).text
             assert "DO_NOT_EXPOSE" not in events
             assert "worker.started" in events and "worker.completed" in events
@@ -170,7 +182,9 @@ def test_liveness_unknown_run_unavailable_sample_and_cors() -> None:
         ("malformed", "INVALID_ANALYSIS_RESPONSE"),
     ],
 )
-def test_safe_failures_and_released_capacity(failure: str, code: str) -> None:
+def test_safe_failures_and_released_capacity(
+    failure: str, code: str, tmp_path: Path
+) -> None:
     """Failed runs emit one safe terminal event and do not keep admission locked."""
 
     def pipeline(observe: Any) -> dict[str, Any]:
@@ -184,7 +198,8 @@ def test_safe_failures_and_released_capacity(failure: str, code: str) -> None:
             raise APIConnectionError(request=Request("POST", "https://example.invalid"))
         return {"final_analysis": {"categories": []}}
 
-    with TestClient(create_app(Settings(), pipeline)) as client:
+    settings = Settings(sample_path=available_sample(tmp_path))
+    with TestClient(create_app(settings, pipeline)) as client:
         for key in ("first", "second"):
             start = client.post(
                 "/api/runs",
@@ -199,9 +214,12 @@ def test_safe_failures_and_released_capacity(failure: str, code: str) -> None:
             assert "PRIVATE_DOCUMENT_PATH" not in events
 
 
-def test_restarted_server_cannot_restore_prior_run(outputs: dict[str, Any]) -> None:
+def test_restarted_server_cannot_restore_prior_run(
+    outputs: dict[str, Any], tmp_path: Path
+) -> None:
     """In-memory run IDs are explicitly lost when a new server instance starts."""
-    with TestClient(create_app(Settings(), lambda observe: outputs)) as first:
+    settings = Settings(sample_path=available_sample(tmp_path))
+    with TestClient(create_app(settings, lambda observe: outputs)) as first:
         start = first.post(
             "/api/runs",
             json={"input_id": "sample-tender"},
@@ -209,5 +227,5 @@ def test_restarted_server_cannot_restore_prior_run(outputs: dict[str, Any]) -> N
         )
         run_id = start.json()["run_id"]
         await_terminal(first, run_id)
-    with TestClient(create_app(Settings())) as restarted:
+    with TestClient(create_app(settings)) as restarted:
         assert restarted.get(f"/api/runs/{run_id}").status_code == 404

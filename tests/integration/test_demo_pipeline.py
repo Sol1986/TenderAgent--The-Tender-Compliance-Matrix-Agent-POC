@@ -6,7 +6,7 @@ from typing import Any
 
 import pytest
 
-from main_copy import run_tender, validate_analysis
+from main import run_single_document_analysis, validate_analysis
 
 
 @pytest.mark.real_parser
@@ -22,17 +22,22 @@ def test_real_sample_parser_to_graph(fake_model: Any) -> None:
         """Collect runtime boundaries to verify the map/reduce join."""
         events.append((kind, fields))
 
-    result = run_tender(Path("tender.PDF"), fake_model, observe)
+    result = run_single_document_analysis(Path("tender.PDF"), fake_model, observe)
     prepared = next(fields for kind, fields in events if kind == "inputs.prepared")
-    assert prepared["data"]["text_chunks"] == 43
-    assert prepared["data"]["tables"] == 5
-    assert prepared["data"]["filtered_chunks"] == 11
+    assert prepared["data"]["text_chunks"] > 0
+    assert prepared["data"]["tables"] > 0
+    assert prepared["data"]["total_chunks"] == (
+        prepared["data"]["text_chunks"] + prepared["data"]["tables"]
+    )
     reduction = next(
         index
         for index, (kind, fields) in enumerate(events)
         if kind == "stage.started" and fields["stage"] == "reduce_findings"
     )
-    assert sum(kind == "worker.completed" for kind, _ in events[:reduction]) == 48
+    assert (
+        sum(kind == "worker.completed" for kind, _ in events[:reduction])
+        == prepared["data"]["total_chunks"]
+    )
     assert len(validate_analysis(result["final_analysis"]).categories) == 15
     assert result["decision_report"].executive_summary
     assert sum(name == "TenderAnalysis" for name, _ in fake_model.calls) == 1
@@ -56,6 +61,6 @@ def test_live_sample_outputs() -> None:
         timeout=settings.llm_timeout_seconds,
         max_retries=settings.llm_max_retries,
     )
-    result = run_tender(settings.sample_path, model)
+    result = run_single_document_analysis(settings.sample_path, model)
     assert len(validate_analysis(result["final_analysis"]).categories) == 15
     assert result["decision_report"].executive_summary

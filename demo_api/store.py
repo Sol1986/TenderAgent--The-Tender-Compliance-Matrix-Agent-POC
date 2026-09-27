@@ -7,7 +7,7 @@ from time import monotonic
 from typing import Any
 from uuid import uuid4
 
-from main_copy import DecisionSupportReport, TenderAnalysis, validate_analysis
+from main import DecisionSupportReport, TenderAnalysis, validate_analysis
 
 from .config import Settings
 from .errors import DemoError

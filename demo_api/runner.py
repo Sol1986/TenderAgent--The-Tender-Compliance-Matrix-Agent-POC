@@ -7,7 +7,7 @@ from typing import Any
 
 from pydantic import ValidationError
 
-from main_copy import PreparationError, run_tender
+from main import run_single_document_analysis
 
 from .config import Settings
 from .models import ErrorInfo, RunSnapshot
@@ -36,7 +36,7 @@ class RunExecutor:
             timeout=self.settings.llm_timeout_seconds,
             max_retries=self.settings.llm_max_retries,
         )
-        return run_tender(
+        return run_single_document_analysis(
             self.settings.sample_path,
             model,
             observe,
@@ -77,7 +77,7 @@ class RunExecutor:
             active = next(
                 (stage.id for stage in stages if stage.status == "running"), None
             )
-            if isinstance(exc, PreparationError) or active in {
+            if active in {
                 "parse_document",
                 "prepare_inputs",
             }:

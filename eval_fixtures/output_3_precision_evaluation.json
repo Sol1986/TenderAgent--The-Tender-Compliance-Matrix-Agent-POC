@@ -1,0 +1,905 @@
+{
+  "gold_count": 47,
+  "prediction_count": 85,
+  "supported_count": 29,
+  "unsupported_count": 53,
+  "duplicate_count": 3,
+  "negative_control_violation_count": 23,
+  "precision": 0.3411764705882353,
+  "assessments": [
+    {
+      "prediction_id": "REQ-0001",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [
+        "N-005",
+        "N-008"
+      ],
+      "reason": "The tender does not establish that performance or labour/material payment bonds are required, and the unknown contents of GC9 and linked forms cannot be promoted into obligations."
+    },
+    {
+      "prediction_id": "REQ-0002",
+      "supported": true,
+      "gold_ids": [
+        "G-021"
+      ],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "It preserves the requirement to enclose bid security under GI09 and appropriately treats the form, amount, validity, and detailed conditions as unresolved external details."
+    },
+    {
+      "prediction_id": "REQ-0003",
+      "supported": true,
+      "gold_ids": [
+        "G-014",
+        "G-015",
+        "G-016"
+      ],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "It accurately combines the bidder certifications concerning covered offences with the conditional requirement to submit certified pardon or leniency documentation."
+    },
+    {
+      "prediction_id": "REQ-0004",
+      "supported": true,
+      "gold_ids": [
+        "G-045",
+        "G-046",
+        "G-047"
+      ],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "It accurately combines the corresponding Contractor certifications and conditional documentation requirement."
+    },
+    {
+      "prediction_id": "REQ-0005",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": true,
+      "duplicate_of": [
+        "REQ-0003",
+        "REQ-0034"
+      ],
+      "negative_control_ids": [],
+      "reason": "This generic direction to comply with SI11 repeats the more precisely stated bidder conduct and certification obligations in REQ-0003 and REQ-0034."
+    },
+    {
+      "prediction_id": "REQ-0006",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "No gold requirement establishes the asserted contract-change cost obligation or the unknown substantive contents of R2950D."
+    },
+    {
+      "prediction_id": "REQ-0007",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "The gold requirements do not establish the substantive payment obligations contained in external clause R2850D."
+    },
+    {
+      "prediction_id": "REQ-0008",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [
+        "N-008"
+      ],
+      "reason": "A GI06 heading alone does not establish a bidder obligation or the contents of the external provision."
+    },
+    {
+      "prediction_id": "REQ-0009",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [
+        "N-008"
+      ],
+      "reason": "A GI04 heading alone does not establish an operative GST/HST obligation."
+    },
+    {
+      "prediction_id": "REQ-0010",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [
+        "N-008"
+      ],
+      "reason": "A GI13 heading alone does not establish an operative bid-cost obligation."
+    },
+    {
+      "prediction_id": "REQ-0011",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [
+        "N-008"
+      ],
+      "reason": "A GI05 heading alone does not establish an operative Quebec Sales Tax obligation."
+    },
+    {
+      "prediction_id": "REQ-0012",
+      "supported": true,
+      "gold_ids": [
+        "G-026"
+      ],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "It preserves the express instruction to transfer the Unit Price Table total estimated amount to clause SA03."
+    },
+    {
+      "prediction_id": "REQ-0013",
+      "supported": true,
+      "gold_ids": [
+        "G-049"
+      ],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "It preserves the five-free-copy threshold and the Contractor's responsibility for obtaining and paying for excess copies."
+    },
+    {
+      "prediction_id": "REQ-0014",
+      "supported": true,
+      "gold_ids": [
+        "G-029"
+      ],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "It preserves the distinct rule prohibiting inclusion of work outside an item's scope in that item's unit price. Its GST/HST statement is consistent with, but overlaps, the pricing coverage in REQ-0017."
+    },
+    {
+      "prediction_id": "REQ-0015",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "This describes Canada's arithmetic-correction authority and a calculation rule, neither of which is represented as a gold obligation."
+    },
+    {
+      "prediction_id": "REQ-0016",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "It describes Canada's discretionary options when funding is insufficient rather than a bidder or Contractor obligation represented by the gold requirements."
+    },
+    {
+      "prediction_id": "REQ-0017",
+      "supported": true,
+      "gold_ids": [
+        "G-024",
+        "G-025"
+      ],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "It expressly requires completion of the pricing fields for items 1–13 and 14–51, preserving the two distinct Unit Price Table pricing obligations."
+    },
+    {
+      "prediction_id": "REQ-0018",
+      "supported": true,
+      "gold_ids": [
+        "G-028"
+      ],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "It accurately states that submitted prices must reasonably reflect the applicable work costs and notes the stated rejection consequence."
+    },
+    {
+      "prediction_id": "REQ-0019",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [
+        "N-006"
+      ],
+      "reason": "The row mainly converts Canada's rejection rights and Canada's ten-day notice process into a predicted requirement; these are not bidder obligations in the gold set."
+    },
+    {
+      "prediction_id": "REQ-0020",
+      "supported": true,
+      "gold_ids": [
+        "G-019"
+      ],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "It preserves the numerical BA03 total-bid-amount requirement and the exclusion of GST/HST."
+    },
+    {
+      "prediction_id": "REQ-0021",
+      "supported": true,
+      "gold_ids": [
+        "G-031"
+      ],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "It preserves the required insurance form and both timing conditions: before work and within 30 days after acceptance."
+    },
+    {
+      "prediction_id": "REQ-0022",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "The unknown substantive contents of external insurance clause R2900D are not established by the gold requirements."
+    },
+    {
+      "prediction_id": "REQ-0023",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "The generic instruction to comply with IT1 and SC02 does not preserve any specific insurance obligation, condition, form, limit, or timing requirement."
+    },
+    {
+      "prediction_id": "REQ-0024",
+      "supported": true,
+      "gold_ids": [
+        "G-035",
+        "G-036",
+        "G-037",
+        "G-038",
+        "G-039"
+      ],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "It accurately combines the IBC Form 2100 baseline, all three monetary limits, and the conditional hazard endorsements."
+    },
+    {
+      "prediction_id": "REQ-0025",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "The asserted incorporation and deletion of IT3 are not represented by a supplied gold requirement."
+    },
+    {
+      "prediction_id": "REQ-0026",
+      "supported": true,
+      "gold_ids": [
+        "G-042",
+        "G-043"
+      ],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "It preserves both the general insurance-maintenance period and the six-year Completed Operations extension."
+    },
+    {
+      "prediction_id": "REQ-0027",
+      "supported": true,
+      "gold_ids": [
+        "G-034"
+      ],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "It exactly preserves the Contractor's responsibility for payments up to the deductible."
+    },
+    {
+      "prediction_id": "REQ-0028",
+      "supported": true,
+      "gold_ids": [
+        "G-033"
+      ],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "It preserves the policy endorsement and minimum 30-day advance written-notice requirement."
+    },
+    {
+      "prediction_id": "REQ-0029",
+      "supported": true,
+      "gold_ids": [
+        "G-040",
+        "G-041"
+      ],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "It accurately combines the Contractor-insured requirement and Canada's additional-insured status for liability arising from the work."
+    },
+    {
+      "prediction_id": "REQ-0030",
+      "supported": true,
+      "gold_ids": [
+        "G-032"
+      ],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "It preserves Canada's-request condition and the requirement for originals or certified true copies of all maintained insurance contracts."
+    },
+    {
+      "prediction_id": "REQ-0031",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "This is an informational contract-language rule not represented by a gold bidder or Contractor obligation."
+    },
+    {
+      "prediction_id": "REQ-0032",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "No gold requirement establishes this general rule for amendments or variations."
+    },
+    {
+      "prediction_id": "REQ-0033",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [
+        "N-008"
+      ],
+      "reason": "A generic cover-page reference to Part 2 does not itself establish a distinct compliance obligation."
+    },
+    {
+      "prediction_id": "REQ-0034",
+      "supported": true,
+      "gold_ids": [
+        "G-009",
+        "G-010",
+        "G-011",
+        "G-012",
+        "G-013"
+      ],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "It accurately combines the bidder Code of Conduct duty, response standards, intent-to-perform requirement, and the two prohibited-activity rules."
+    },
+    {
+      "prediction_id": "REQ-0035",
+      "supported": true,
+      "gold_ids": [
+        "G-003"
+      ],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "It preserves the acknowledgement and agreement created by bid submission and identifies the covered bid documents and amendments."
+    },
+    {
+      "prediction_id": "REQ-0036",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "This statement concerns Canada's retained legal rights and is not a bidder obligation represented by the gold requirements."
+    },
+    {
+      "prediction_id": "REQ-0037",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [
+        "N-008"
+      ],
+      "reason": "The GI15 heading does not establish the substantive contents or a distinct compliance obligation."
+    },
+    {
+      "prediction_id": "REQ-0038",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "The gold requirements do not establish the unknown substantive obligations in external clause R2810D."
+    },
+    {
+      "prediction_id": "REQ-0039",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "The gold requirements do not establish the unknown substantive obligations in external clause R2820D."
+    },
+    {
+      "prediction_id": "REQ-0040",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "The gold requirements do not establish the unknown substantive obligations in external clause R2860D."
+    },
+    {
+      "prediction_id": "REQ-0041",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "The gold requirements do not establish the unknown substantive obligations in external clause R2870D."
+    },
+    {
+      "prediction_id": "REQ-0042",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "The gold requirements do not establish the unknown substantive obligations in external clause R2880D."
+    },
+    {
+      "prediction_id": "REQ-0043",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [
+        "N-008"
+      ],
+      "reason": "The GI18 heading alone does not establish a specific conflict-of-interest obligation."
+    },
+    {
+      "prediction_id": "REQ-0044",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [
+        "N-008"
+      ],
+      "reason": "The GI14 heading alone does not establish a Procurement Business Number obligation."
+    },
+    {
+      "prediction_id": "REQ-0045",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [
+        "N-008"
+      ],
+      "reason": "The GI03 heading alone does not establish identity or legal-capacity submission requirements."
+    },
+    {
+      "prediction_id": "REQ-0046",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": true,
+      "duplicate_of": [
+        "REQ-0035"
+      ],
+      "negative_control_ids": [],
+      "reason": "The bidder's agreement to be bound by incorporated General Instructions is already more completely represented by REQ-0035."
+    },
+    {
+      "prediction_id": "REQ-0047",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "The vague 'See Herein' text does not identify a material obligation that can be matched to a gold requirement."
+    },
+    {
+      "prediction_id": "REQ-0048",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "The generic label 'Supplementary Conditions' does not establish a distinct material obligation or unknown external contents."
+    },
+    {
+      "prediction_id": "REQ-0049",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [
+        "N-008"
+      ],
+      "reason": "This is retrieval information for incorporated clauses, not a bidder or Contractor obligation represented by the gold requirements."
+    },
+    {
+      "prediction_id": "REQ-0050",
+      "supported": true,
+      "gold_ids": [
+        "G-048"
+      ],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "It preserves the continuing requirement that the Contractor and affiliates remain free of covered charges and convictions, including the possible default-termination consequence."
+    },
+    {
+      "prediction_id": "REQ-0051",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "The GI12-to-SI12 replacement statement is not itself a bidder obligation represented by the gold requirements."
+    },
+    {
+      "prediction_id": "REQ-0052",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "This describes how a contract amendment may be incorporated and is not a gold bidder or Contractor obligation."
+    },
+    {
+      "prediction_id": "REQ-0053",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "A generic direction to review BA03 does not preserve the material amount, form, or performance obligations stated in the relevant gold requirements."
+    },
+    {
+      "prediction_id": "REQ-0054",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "This is an informational statement about contract formation and composition, not a compliance obligation represented by the gold set."
+    },
+    {
+      "prediction_id": "REQ-0055",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [
+        "N-008"
+      ],
+      "reason": "A sanctions website listing does not establish which sanctions apply or create a solicitation-specific obligation."
+    },
+    {
+      "prediction_id": "REQ-0056",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [
+        "N-008"
+      ],
+      "reason": "The GI07 heading does not establish that floating-plant requirements apply or state their unknown contents."
+    },
+    {
+      "prediction_id": "REQ-0057",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "No gold requirement establishes the substantive external fair-wage, labour-hour, or wage-schedule obligations asserted here."
+    },
+    {
+      "prediction_id": "REQ-0058",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [
+        "N-008"
+      ],
+      "reason": "A GI17 heading and website form listing do not establish that the bidder or Contractor must complete form 2913."
+    },
+    {
+      "prediction_id": "REQ-0059",
+      "supported": true,
+      "gold_ids": [
+        "G-022"
+      ],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "It preserves the offer to perform and complete the identified construction work in accordance with the bid documents and stated pricing framework."
+    },
+    {
+      "prediction_id": "REQ-0060",
+      "supported": true,
+      "gold_ids": [
+        "G-044"
+      ],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "It accurately states the Contractor's continuing duty to comply with the Code and the additional SC03 terms."
+    },
+    {
+      "prediction_id": "REQ-0061",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [
+        "N-008"
+      ],
+      "reason": "The GI08 heading alone does not establish a specific subcontractor or supplier listing obligation."
+    },
+    {
+      "prediction_id": "REQ-0062",
+      "supported": true,
+      "gold_ids": [
+        "G-017"
+      ],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "It preserves the requirement to submit a duly completed Bid and Acceptance Form with its applicable appendices."
+    },
+    {
+      "prediction_id": "REQ-0063",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "The gold requirements do not establish separate mandatory completion obligations for all listed bidder-identification and contact fields."
+    },
+    {
+      "prediction_id": "REQ-0064",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "The statement correctly says no security clearance requirement applies, but it is not an affirmative obligation represented by a gold requirement."
+    },
+    {
+      "prediction_id": "REQ-0065",
+      "supported": true,
+      "gold_ids": [
+        "G-020"
+      ],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "It preserves all required BA08 elements: authorized signer's printed or typed name, title, signature, and date."
+    },
+    {
+      "prediction_id": "REQ-0066",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "This describes the status of a page when signed by Canada and does not impose a bidder or Contractor obligation."
+    },
+    {
+      "prediction_id": "REQ-0067",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "It correctly reports that no site visit occurs, but it is not an affirmative compliance obligation represented by the gold requirements."
+    },
+    {
+      "prediction_id": "REQ-0068",
+      "supported": true,
+      "gold_ids": [
+        "G-004",
+        "G-005"
+      ],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "It preserves the conditional written-enquiry requirement and the exclusive direction of all solicitation communications to the named Contracting Officer. It states the seven-day period as advisory rather than mandatory."
+    },
+    {
+      "prediction_id": "REQ-0069",
+      "supported": true,
+      "gold_ids": [
+        "G-006"
+      ],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "It preserves the permitted letter or facsimile revision methods, the GI11 qualification, the revision fax number, and the pre-closing context."
+    },
+    {
+      "prediction_id": "REQ-0070",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [
+        "N-008"
+      ],
+      "reason": "The GI10 heading alone does not establish the substantive bid-submission requirements."
+    },
+    {
+      "prediction_id": "REQ-0071",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [
+        "N-008"
+      ],
+      "reason": "The GI02 heading alone does not establish the substantive bid-completion requirements."
+    },
+    {
+      "prediction_id": "REQ-0072",
+      "supported": true,
+      "gold_ids": [
+        "G-001",
+        "G-002"
+      ],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "It preserves the designated Montreal office, exact closing deadline, and prohibition on initial fax or email bids while appropriately flagging rather than resolving the conflicting cover-page fax label."
+    },
+    {
+      "prediction_id": "REQ-0073",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [
+        "N-008"
+      ],
+      "reason": "A generic Buy and Sell website listing does not create a duty to review the site or establish solicitation-specific submission requirements."
+    },
+    {
+      "prediction_id": "REQ-0074",
+      "supported": true,
+      "gold_ids": [
+        "G-008"
+      ],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "It preserves the condition that, if a bidder accepts Canada's proposed validity extension, that acceptance must be communicated in writing."
+    },
+    {
+      "prediction_id": "REQ-0075",
+      "supported": true,
+      "gold_ids": [
+        "G-007"
+      ],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "It preserves the 30-day period after solicitation closing during which the bid may not be withdrawn."
+    },
+    {
+      "prediction_id": "REQ-0076",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [
+        "N-008"
+      ],
+      "reason": "A form field label does not by itself establish that the bidder must complete it or what delivery terms must be supplied."
+    },
+    {
+      "prediction_id": "REQ-0077",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "The substantive obligations of external clause R2830D are not represented by the gold requirements."
+    },
+    {
+      "prediction_id": "REQ-0078",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "The substantive obligations of external clause R2840D are not represented by the gold requirements."
+    },
+    {
+      "prediction_id": "REQ-0079",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [
+        "N-008"
+      ],
+      "reason": "The supplied GI16 heading and incidental reference do not establish the asserted approval procedure or its unknown requirements."
+    },
+    {
+      "prediction_id": "REQ-0080",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [
+        "N-008"
+      ],
+      "reason": "The generic SI08 heading omits the material five-copy threshold and payment condition in the actual gold obligation."
+    },
+    {
+      "prediction_id": "REQ-0081",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "This is informational project-destination text and does not state a bidder or Contractor action."
+    },
+    {
+      "prediction_id": "REQ-0082",
+      "supported": true,
+      "gold_ids": [
+        "G-023"
+      ],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "It exactly preserves the seven-week completion period beginning on notification of acceptance."
+    },
+    {
+      "prediction_id": "REQ-0083",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [],
+      "reason": "This merely describes the project and does not state the obligation to perform and complete the work in accordance with the bid documents."
+    },
+    {
+      "prediction_id": "REQ-0084",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": false,
+      "duplicate_of": [],
+      "negative_control_ids": [
+        "N-008"
+      ],
+      "reason": "The ambiguous table fragments do not establish a delivery obligation, and the prediction invents a duty to review and determine one."
+    },
+    {
+      "prediction_id": "REQ-0085",
+      "supported": false,
+      "gold_ids": [],
+      "duplicate": true,
+      "duplicate_of": [
+        "REQ-0059"
+      ],
+      "negative_control_ids": [],
+      "reason": "Compliance with the incorporated drawings and specifications is already captured more completely by REQ-0059's supported work-performance obligation."
+    }
+  ]
+}

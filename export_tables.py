@@ -28,7 +28,6 @@ import time
 from pathlib import Path
 
 import pandas as pd
-
 from docling.datamodel.settings import DEFAULT_PAGE_RANGE
 from docling.document_converter import DocumentConverter
 

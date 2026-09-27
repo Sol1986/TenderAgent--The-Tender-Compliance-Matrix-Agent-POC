@@ -4,7 +4,7 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from main_copy import DecisionSupportReport, TenderAnalysis
+from main import DecisionSupportReport, TenderAnalysis
 
 RunStatus = Literal["queued", "running", "completed", "failed"]
 TaskStatus = Literal["pending", "running", "completed", "failed", "skipped"]

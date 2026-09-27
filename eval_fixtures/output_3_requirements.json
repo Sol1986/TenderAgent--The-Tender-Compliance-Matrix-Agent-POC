@@ -1,0 +1,4675 @@
+{
+  "requirements": [
+    {
+      "requirement_id": "REQ-0001",
+      "requirement": "Comply with GC9, Contract Security, R2890D dated 2011-05-16. Determine the required type, amount, acceptable bonding company, and applicability of the Labour and Material Payment Bond form PWGSC-TPSGC 506 and Performance Bond form PWGSC-TPSGC 505 from the referenced provisions.",
+      "category": "bonding_security",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0001",
+        "CAND-0005",
+        "CAND-0006",
+        "CAND-0007",
+        "CAND-0008"
+      ],
+      "active_candidate_ids": [
+        "CAND-0001",
+        "CAND-0005",
+        "CAND-0006",
+        "CAND-0007",
+        "CAND-0008"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "CONTRACT DOCUMENTS (CD), item 5(d)",
+          "text": "GC9 | Contract Security | R2890D | (2011-05-16);"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI10 WEB SITES",
+          "text": "Treasury Board Appendix L, Acceptable Bonding Companies  \nhttp://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=14494&amp;section=text#appL"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 2, rows 1-11",
+          "text": "GC9 | Contract Security | R2890D | (2011-05-16);"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI10 WEB SITES",
+          "text": "Labour and Material Payment Bond (form PWGWSC-TPSGC 506)  \nhttp://www.tpsgc-pwgsc.gc.ca/app-acq/forms/documents/506.pdf"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI10 WEB SITES",
+          "text": "Performance Bond (form PWGSC-TPSGC 505)  \nhttp://www.tpsgc-pwgsc.gc.ca/app-acq/forms/documents/505.pdf"
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0001",
+          "right_candidate_id": "CAND-0005",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The bonding-company reference adds a potential condition concerning acceptable sureties."
+        },
+        {
+          "left_candidate_id": "CAND-0001",
+          "right_candidate_id": "CAND-0006",
+          "relationship": "SAME_REQUIREMENT",
+          "reason": "Both identify the same GC9/R2890D contract-security clause."
+        },
+        {
+          "left_candidate_id": "CAND-0001",
+          "right_candidate_id": "CAND-0007",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The payment-bond form may implement contract security if required."
+        },
+        {
+          "left_candidate_id": "CAND-0001",
+          "right_candidate_id": "CAND-0008",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The performance-bond form may implement contract security if required."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": true,
+      "ambiguity_reason": "The referenced provisions are needed to determine whether these bond forms apply and to determine security type and amount.",
+      "contradiction_detected": false,
+      "requires_human_review": true,
+      "review_reason": "Review GC9/R2890D and the cited forms and bonding-company rules."
+    },
+    {
+      "requirement_id": "REQ-0002",
+      "requirement": "The Bidder must enclose bid security with its bid in accordance with BA07 and GI09 of R2710T. Determine the required form, amount, validity, and submission conditions from GI09, including whether Bid Bond form PWGSC-TPSGC 504 is required.",
+      "category": "bonding_security",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0002",
+        "CAND-0003",
+        "CAND-0004",
+        "CAND-0009"
+      ],
+      "active_candidate_ids": [
+        "CAND-0002",
+        "CAND-0003",
+        "CAND-0004",
+        "CAND-0009"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "GI09 Bid Security Requirements",
+          "text": "GI09 Bid Security Requirements"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI10 WEB SITES",
+          "text": "Bid Bond (form PWGSC-TPSGC 504) http://www.tpsgc-pwgsc.gc.ca/app-acq/forms/documents/504.pdf"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "BA07 Bid Security",
+          "text": "BA07 Bid Security"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "BA07 BID SECURITY",
+          "text": "The Bidder is enclosing bid security with its bid in accordance with GI09 - Bid Security Requirements of R2710T - General Instructions to Bidders."
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0009",
+          "right_candidate_id": "CAND-0002",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The express enclosure requirement invokes the GI09 requirements identified separately."
+        },
+        {
+          "left_candidate_id": "CAND-0009",
+          "right_candidate_id": "CAND-0003",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The cited bid-bond form may be the form required under GI09."
+        },
+        {
+          "left_candidate_id": "CAND-0009",
+          "right_candidate_id": "CAND-0004",
+          "relationship": "SUPPLEMENTS",
+          "reason": "BA07 and its unresolved details concern the same bid-security duty."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": true,
+      "ambiguity_reason": "The operative requirement to enclose security is supplied, but its form, amount, validity, and detailed conditions are external.",
+      "contradiction_detected": false,
+      "requires_human_review": true,
+      "review_reason": "Review BA07, GI09, and form 504 before submission."
+    },
+    {
+      "requirement_id": "REQ-0003",
+      "requirement": "By submitting a bid, the Bidder certifies, subject to the stated pardon and leniency exceptions, that it and its parents, subsidiaries, and affiliates have no specified convictions or outstanding charges concerning prohibited contingency fees, anti-competitive procurement activities, or the listed Criminal Code and Financial Administration Act offences. Affiliate status is determined using the stated control test. If an applicable entity pleaded guilty, certified pardon or leniency documentation must accompany the bid, and all certification information must be true.",
+      "category": "certifications",
+      "extraction_status": "FOUND",
+      "candidate_ids": [
+        "CAND-0010",
+        "CAND-0011",
+        "CAND-0127",
+        "CAND-0135",
+        "CAND-0163"
+      ],
+      "active_candidate_ids": [
+        "CAND-0010",
+        "CAND-0011",
+        "CAND-0127",
+        "CAND-0135",
+        "CAND-0163"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI11 CODE OF CONDUCT AND CERTIFICATIONS, subsection 2",
+          "text": "By submitting a bid, the Bidder certifies that except for those offences where a criminal pardon has been obtained or leniency granted, neither the Bidder nor any of the Bidder's parent, subsidiaries or other affiliates has ever been convicted of a criminal offence in respect of the activities stated in (a) or (b) above or is the subject of outstanding criminal charges in respect of such activities filed subsequent to September 1, 2010."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI11 CODE OF CONDUCT AND CERTIFICATIONS, subsection 3",
+          "text": "By submitting a bid, the Bidder certifies that except for those offences where a criminal pardon has been obtained, neither the Bidder nor any of the Bidder's parent, subsidiaries or other affiliates has ever been convicted or is the subject of outstanding criminal charges in respect of an offence under any of the following provisions: section 121 ( Frauds on the government and Contractor subscribing to election fund ), section 124 ( Selling or Purchasing Office ), section 380 ( Fraud committed against Her Majesty ) or section 418 ( Selling defective stores to Her Majesty ) of the Criminal Code of Canada, or under paragraph 80(1)(d) ( False entry, certificate or return ), subsection 80(2) ( Fraud against Her Majesty ) or section 154.01 ( Fraud against Her Majesty ) of the Financial Administration Act ."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI11 CODE OF CONDUCT AND CERTIFICATIONS, subsection 4",
+          "text": "For the purpose of this section, business concerns, organizations or individuals are Bidder's affiliates if, directly or indirectly, 1) either one controls or has the power to control the other, or 2) a third party has the power to control both. Indicia of control, include, but are not limited to, interlocking management or ownership, identity of interests among family members, shared facilities and equipment, common use of employees, or a business entity created following the charges or convictions contemplated in this section which has the same or similar management, ownership, or principal employees as the Bidder that is charged or convicted, as the case may be."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI11 CODE OF CONDUCT AND CERTIFICATIONS, subsection 6",
+          "text": "In circumstances where a bidder or any of the Bidder's parent, subsidiaries or other affiliates has pled guilty of an offence contemplated in subsections 1 and 3, the Bidder must provide with its bid, a certified copy of confirming documentation from the Competition Bureau of Canada indicating that leniency has been granted, or a certified copy of confirming documentation from the National Parole Board indicating that a criminal pardon has been obtained, in relation to such offences."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI11 CODE OF CONDUCT AND CERTIFICATIONS, subsection 5",
+          "text": "The Contracting Authority will declare non-responsive any bid in respect of which the information contained in the certifications contemplated above is determined to be untrue in any respect by the Contracting Authority."
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0010",
+          "right_candidate_id": "CAND-0011",
+          "relationship": "SUPPLEMENTS",
+          "reason": "They state complementary offence categories covered by the bidder certifications."
+        },
+        {
+          "left_candidate_id": "CAND-0010",
+          "right_candidate_id": "CAND-0127",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The affiliate-control definition establishes the scope of the certification."
+        },
+        {
+          "left_candidate_id": "CAND-0010",
+          "right_candidate_id": "CAND-0135",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The documentation duty implements the pardon and leniency exceptions."
+        },
+        {
+          "left_candidate_id": "CAND-0010",
+          "right_candidate_id": "CAND-0163",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The truthfulness requirement applies to these certifications."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0004",
+      "requirement": "Under SC03, the Contractor must certify, subject to the stated pardon and leniency exceptions, that it and its parents, subsidiaries, and affiliates have no specified convictions or outstanding charges concerning prohibited contingency fees, anti-competitive procurement activities, or the listed Criminal Code and Financial Administration Act offences. Affiliate status is determined using the stated control test, and certified pardon or leniency documentation must be provided where applicable.",
+      "category": "certifications",
+      "extraction_status": "FOUND",
+      "candidate_ids": [
+        "CAND-0012",
+        "CAND-0013",
+        "CAND-0014",
+        "CAND-0091",
+        "CAND-0142"
+      ],
+      "active_candidate_ids": [
+        "CAND-0012",
+        "CAND-0013",
+        "CAND-0014",
+        "CAND-0091",
+        "CAND-0142"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SC03 Code of Conduct and Certifications",
+          "text": "SC03 Code of Conduct and Certifications"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SC03 CODE OF CONDUCT AND CERTIFICATIONS, subsection 2",
+          "text": "The Contractor certifies that except for those offences where a criminal pardon has been obtained or leniency granted, neither the Contractor nor any of the Contractor's parent, subsidiaries or other affiliates has ever been convicted or is the subject of outstanding criminal charges subsequent to September 1, 2010  in respect of any of the following:\n3. (a) payment of a contingency fee to a person to whom the Lobbying Act (1985, c. 44 (4th Supp.)) applies;\n4. (b) corruption, collusion, bid-rigging or any other anti-competitive activity in the procurement process."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SC03 CODE OF CONDUCT AND CERTIFICATIONS, subsection 3",
+          "text": "The Contractor certifies that except for those offences where a criminal pardon has been obtained, neither the Contractor nor any of the Contractor's parent, subsidiaries or other affiliates has ever been convicted or is the subject of outstanding criminal charges in respect of any of the following:\n6. (a) section 121 ( Frauds on the government and Contractor subscribing to election fund ), section 124 ( Selling or Purchasing Office ), section 380 ( Fraud committed against Her Majesty ) or section 418 ( Selling defective stores to Her Majesty ) of the Criminal Code of Canada, or\n7. (b) paragraph 80(1)(d) ( False entry, certificate or return ), subsection 80(2) ( Fraud against Her Majesty ) or section 154.01 ( Fraud against Her Majesty ) of the Financial Administration Act ."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SC03 CODE OF CONDUCT AND CERTIFICATIONS, subsection 4",
+          "text": "For the purpose of this section, business concerns, organizations or individuals are Contractor's affiliates if, directly or indirectly:\n2. (a) either one controls or has the power to control the other, or\n3. (b) a third party has the power to control both.  \nIndicia of control, include, but are not limited to, interlocking management or ownership, identity of interests among family members, shared facilities and equipment, common use of employees, or a business entity created following the charges or convictions contemplated in this section which has the same or similar management, ownership, or principal employees as the Contractor that is charged or convicted, as the case may be."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SC03 CODE OF CONDUCT AND CERTIFICATIONS, subsection 5",
+          "text": "In circumstances pursuant to subsections 2 and 3, where the Contractor or any of the Contractor's parent, subsidiaries or other affiliates has obtained a criminal pardon or is granted leniency in relation to such offences, the Contractor must provide a certified copy of confirming documentation from the National Parole Board or the Competition Bureau of Canada."
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0012",
+          "right_candidate_id": "CAND-0013",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The SC03 reference is partly detailed by the anti-competitive-activity certification."
+        },
+        {
+          "left_candidate_id": "CAND-0012",
+          "right_candidate_id": "CAND-0014",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The SC03 reference is partly detailed by the statutory-offence certification."
+        },
+        {
+          "left_candidate_id": "CAND-0013",
+          "right_candidate_id": "CAND-0091",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The affiliate definition establishes the certification's organizational scope."
+        },
+        {
+          "left_candidate_id": "CAND-0013",
+          "right_candidate_id": "CAND-0142",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The documentation duty implements the pardon and leniency exceptions."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0005",
+      "requirement": "R2710T GI01, Code of Conduct for Procurement, is deleted and replaced by the Code of Conduct and Certifications provisions in SI11; comply with the replacement SI11 provisions.",
+      "category": "certifications",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0015",
+        "CAND-0016",
+        "CAND-0108"
+      ],
+      "active_candidate_ids": [
+        "CAND-0015",
+        "CAND-0016",
+        "CAND-0108"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "IMPORTANT NOTICE TO BIDDERS",
+          "text": "GENERAL INSTRUCTIONS TO BIDDERS CLAUSE R2710T SECTION GI01 'CODE OF CONDUCT FOR PROCUREMENT' IS DELETED AND REPLACED BY 'CODE OF CONDUCT AND CERTIFICATIONS' INCLUDED IN THIS DOCUMENT."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI11 Code of Conduct and Certifications",
+          "text": "SI11 Code of Conduct and Certifications"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "GI01 Code of Conduct for Procurement",
+          "text": "GI01 Code of Conduct for Procurement Replaced, see SI11"
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0015",
+          "right_candidate_id": "CAND-0016",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The SI11 reference identifies where the replacement requirements must be reviewed."
+        },
+        {
+          "left_candidate_id": "CAND-0015",
+          "right_candidate_id": "CAND-0108",
+          "relationship": "SAME_REQUIREMENT",
+          "reason": "Both state that GI01 is replaced by SI11."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": true,
+      "review_reason": "The replacement relationship should be retained and SI11 applied instead of GI01."
+    },
+    {
+      "requirement_id": "REQ-0006",
+      "requirement": "Allowable costs for contract changes under GC6.4.1 are governed by incorporated clause R2950D dated 2007-05-25.",
+      "category": "financial",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0017"
+      ],
+      "active_candidate_ids": [
+        "CAND-0017"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "Referenced contract documents",
+          "text": "Allowable Costs for Contract Changes Under GC6.4.1 R2950D (2007-05-25);"
+        }
+      ],
+      "relationships": [],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0007",
+      "requirement": "Comply with GC5, Terms of Payment, R2850D dated 2010-01-11, as incorporated into the contract documents.",
+      "category": "financial",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0018",
+        "CAND-0033"
+      ],
+      "active_candidate_ids": [
+        "CAND-0018",
+        "CAND-0033"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "CONTRACT DOCUMENTS (CD), item 5(d)",
+          "text": "GC5 | Terms of Payment | R2850D | (2010-01-11);"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 2, rows 1-11",
+          "text": "GC5 | Terms of Payment | R2850D | (2010-01-11);"
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0018",
+          "right_candidate_id": "CAND-0033",
+          "relationship": "SAME_REQUIREMENT",
+          "reason": "Both identify the same GC5/R2850D payment clause."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0008",
+      "requirement": "Comply with the capital development and redevelopment charge provisions in GI06.",
+      "category": "financial",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0019"
+      ],
+      "active_candidate_ids": [
+        "CAND-0019"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "GI06 Capital Development and Redevelopment Charges",
+          "text": "GI06 Capital Development and Redevelopment Charges"
+        }
+      ],
+      "relationships": [],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0009",
+      "requirement": "Comply with the GST/HST provisions in GI04.",
+      "category": "financial",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0020"
+      ],
+      "active_candidate_ids": [
+        "CAND-0020"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "GI04 Goods and Services Tax/Harmonized Sales Tax",
+          "text": "GI04 Goods and Services Tax/Harmonized Sales Tax"
+        }
+      ],
+      "relationships": [],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0010",
+      "requirement": "Comply with the bid-cost provisions in GI13.",
+      "category": "financial",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0021"
+      ],
+      "active_candidate_ids": [
+        "CAND-0021"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "GI13 Bid Costs",
+          "text": "GI13 Bid Costs"
+        }
+      ],
+      "relationships": [],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0011",
+      "requirement": "Comply with the Quebec Sales Tax provisions in GI05.",
+      "category": "financial",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0022"
+      ],
+      "active_candidate_ids": [
+        "CAND-0022"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "GI05 Quebec Sales Tax",
+          "text": "GI05 Quebec Sales Tax"
+        }
+      ],
+      "relationships": [],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0012",
+      "requirement": "Transfer the TOTAL ESTIMATED AMOUNT from the Unit Price Table to clause SA03 and comply with any associated SA03 requirement.",
+      "category": "submission",
+      "extraction_status": "FOUND",
+      "candidate_ids": [
+        "CAND-0023",
+        "CAND-0185",
+        "CAND-0186"
+      ],
+      "active_candidate_ids": [
+        "CAND-0023",
+        "CAND-0185",
+        "CAND-0186"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 5, rows 1-15",
+          "text": "“TOTAL ESTIMATED AMOUNT Transfer this amount to the clause SA03”"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "UNIT PRICE TABLE",
+          "text": "TOTAL ESTIMATED AMOUNT Transfer this amount to the clause SA03"
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0185",
+          "right_candidate_id": "CAND-0023",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The SA03 reference identifies the receiving clause for the transferred amount."
+        },
+        {
+          "left_candidate_id": "CAND-0185",
+          "right_candidate_id": "CAND-0186",
+          "relationship": "SAME_REQUIREMENT",
+          "reason": "Both state the same transfer instruction."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0013",
+      "requirement": "If more than five additional construction-document copies are required, the successful Contractor must obtain and pay for the excess copies.",
+      "category": "financial",
+      "extraction_status": "FOUND",
+      "candidate_ids": [
+        "CAND-0024"
+      ],
+      "active_candidate_ids": [
+        "CAND-0024"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI08 CONSTRUCTION DOCUMENTS",
+          "text": "Additional copies, up to a maximum of five (5), will be provided free of charge upon request by the contractor. Obtaining more copies shall be the responsibility of the contractor including costs."
+        }
+      ],
+      "relationships": [],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0014",
+      "requirement": "Unit prices and estimated total prices must exclude GST/HST, and each unit price must exclude amounts for work not included in that unit-price item.",
+      "category": "financial",
+      "extraction_status": "FOUND",
+      "candidate_ids": [
+        "CAND-0025",
+        "CAND-0040"
+      ],
+      "active_candidate_ids": [
+        "CAND-0025",
+        "CAND-0040"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "UNIT PRICE TABLE",
+          "text": "Estimated Total Price, excluding GST/HST"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "UNIT PRICE TABLE",
+          "text": "The Price per Unit shall not include any amounts for Work that is not included in that unit price Item."
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0025",
+          "right_candidate_id": "CAND-0040",
+          "relationship": "SUPPLEMENTS",
+          "reason": "Both prescribe what amounts must be excluded from unit-price entries."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0015",
+      "requirement": "Unit prices govern calculation of the Total Extended Amount, and Canada may correct arithmetic errors in Appendix 1.",
+      "category": "financial",
+      "extraction_status": "FOUND",
+      "candidate_ids": [
+        "CAND-0026"
+      ],
+      "active_candidate_ids": [
+        "CAND-0026"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "APPENDIX 1 - COMBINED PRICE FORM, item 1",
+          "text": "The prices per unit shall govern in establishing the Total Extended Amount. Any arithmetical errors in this Appendix will be corrected by Canada."
+        }
+      ],
+      "relationships": [],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0016",
+      "requirement": "If the lowest compliant bid exceeds available funding, Canada may cancel the solicitation, obtain additional funding and award to the lowest compliant Bidder, or negotiate with that Bidder a reduction in price and/or scope not exceeding 15%. If no satisfactory negotiated agreement is reached, Canada must cancel or obtain additional funding and award to that Bidder.",
+      "category": "financial",
+      "extraction_status": "FOUND",
+      "candidate_ids": [
+        "CAND-0027",
+        "CAND-0032",
+        "CAND-0034",
+        "CAND-0093",
+        "CAND-0101"
+      ],
+      "active_candidate_ids": [
+        "CAND-0027",
+        "CAND-0032",
+        "CAND-0034",
+        "CAND-0093",
+        "CAND-0101"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "discretion may",
+          "text": "b) obtain additional funding and award the Contract to the Bidder submitting the lowest compliant bid; and/or"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI06 INSUFFICIENT FUNDING",
+          "text": "In the event that the lowest compliant bid exceeds the amount of funding allocated for the Work, Canada in its sole"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "discretion may",
+          "text": "c) negotiate a reduction in the bid price and/or scope of work of not more than 15% with the Bidder submitting the lowest compliant bid."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "discretion may",
+          "text": "Should an agreement satisfactory to Canada not be reached, Canada shall exercise option (a) or (b)."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "discretion may",
+          "text": "a) cancel the solicitation; or"
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0032",
+          "right_candidate_id": "CAND-0027",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The additional-funding option supplies part of the incomplete funding provision."
+        },
+        {
+          "left_candidate_id": "CAND-0032",
+          "right_candidate_id": "CAND-0034",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The negotiation option supplies another part of the funding provision."
+        },
+        {
+          "left_candidate_id": "CAND-0032",
+          "right_candidate_id": "CAND-0101",
+          "relationship": "SUPPLEMENTS",
+          "reason": "Cancellation is another option under the same insufficient-funding provision."
+        },
+        {
+          "left_candidate_id": "CAND-0034",
+          "right_candidate_id": "CAND-0093",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The latter states the consequence if the contemplated negotiation fails."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0017",
+      "requirement": "Complete the Unit Price Table: provide estimated total prices for items 1–13 and unit and estimated total prices for items 14–51, using the stated units and estimated quantities. The priced work includes items 1–13 for traffic/signals, site trailer and protection, clearing/earthwork, excavation and disposal, surplus pulverized material, retaining-wall dismantling, catch-basin excavation, concrete-pad repair, backfill/levelling, pavement marking, street-light power, tank pumping, and controlled tank backfill; items 14–36 for the listed removal, pavement, concrete, sidewalk, stair, catch-basin, and storm-sewer work at the stated estimated quantities; and items 37–51 comprising 5 LM of Ø250 mm culvert, 75 m² stone on geotextile, 150 m² retaining wall, 25 additional retaining-wall blocks, 25 traffic signs, replacement of 12 street lights, replacement of one street light and concrete base, installation of 11 street lights and bases, 4,200 m² strips of sod, 140 m² topsoil, four protective posts, capping four pipes, 125 m³ formwork and concrete, 200 m³ demolition and excavation, and 500 m² tank-slab fragmentation. Work included in each item is as described in its cited specification sections.",
+      "category": "financial",
+      "extraction_status": "FOUND",
+      "candidate_ids": [
+        "CAND-0028",
+        "CAND-0029",
+        "CAND-0030",
+        "CAND-0031",
+        "CAND-0035",
+        "CAND-0036",
+        "CAND-0191",
+        "CAND-0192",
+        "CAND-0193",
+        "CAND-0194",
+        "CAND-0195",
+        "CAND-0196",
+        "CAND-0201",
+        "CAND-0202",
+        "CAND-0203",
+        "CAND-0204",
+        "CAND-0205",
+        "CAND-0206",
+        "CAND-0207",
+        "CAND-0208",
+        "CAND-0209",
+        "CAND-0210",
+        "CAND-0211",
+        "CAND-0212",
+        "CAND-0213",
+        "CAND-0214",
+        "CAND-0215",
+        "CAND-0220",
+        "CAND-0221",
+        "CAND-0222",
+        "CAND-0223",
+        "CAND-0224",
+        "CAND-0225",
+        "CAND-0226",
+        "CAND-0227",
+        "CAND-0228",
+        "CAND-0229",
+        "CAND-0230",
+        "CAND-0231",
+        "CAND-0232",
+        "CAND-0233",
+        "CAND-0237"
+      ],
+      "active_candidate_ids": [
+        "CAND-0028",
+        "CAND-0029",
+        "CAND-0030",
+        "CAND-0031",
+        "CAND-0035",
+        "CAND-0036",
+        "CAND-0191",
+        "CAND-0192",
+        "CAND-0193",
+        "CAND-0194",
+        "CAND-0195",
+        "CAND-0196",
+        "CAND-0201",
+        "CAND-0202",
+        "CAND-0203",
+        "CAND-0204",
+        "CAND-0205",
+        "CAND-0206",
+        "CAND-0207",
+        "CAND-0208",
+        "CAND-0209",
+        "CAND-0210",
+        "CAND-0211",
+        "CAND-0212",
+        "CAND-0213",
+        "CAND-0214",
+        "CAND-0215",
+        "CAND-0220",
+        "CAND-0221",
+        "CAND-0222",
+        "CAND-0223",
+        "CAND-0224",
+        "CAND-0225",
+        "CAND-0226",
+        "CAND-0227",
+        "CAND-0228",
+        "CAND-0229",
+        "CAND-0230",
+        "CAND-0231",
+        "CAND-0232",
+        "CAND-0233",
+        "CAND-0237"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 3, rows 1-13",
+          "text": "Table headers: “Item”; “Class of Labor, Tool or Material”; “Unit of mesureme nt”; “Estimated Quantity”; “Estimated Total Price, excluding GST/HST”. For Items 1 through 13, the unit is shown as “All-inclus ive” (Item 5: “All-inclus ive l”), the estimated quantity is “1”, and the price field is “$___________”."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 5, rows 1-15",
+          "text": "Rows 37-51 each contain stated units and quantities followed by “$_______” and “$___________” pricing fields."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "UNIT PRICE TABLE",
+          "text": "|   Item | Specification Reference             | Class of Labor, Tool or Material                                                | Unit of mesureme nt   |   Estimated Quantity | Estimated Total Price, excluding GST/HST   |\n... |      1 | 01 35 00.06 | Traffic and traffic signals | All-inclus ive | 1 | $___________ |\n...\n|   Item | Speci-fication Reference   | Class of labor, plant or materials | Unit of Measure ment | Estimated Quantity | Unit Price Excluding GST/HST | Estimated total price excluding GST/HST |\n... |     14 | 01 74 21 02 41 13 | Removal and disposal of concrete curbs | LM | 505 | $_______ | $___________ |"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 4, rows 1-23",
+          "text": "The table columns are “Unit of Measure ment,” “Estimated Quantity,” “Unit Price Excluding GST/HST,” and “Estimated total price excluding GST/HST.” For every item 14 through 36, the two price cells contain “$_______” and “$___________” respectively."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "Issuing Office - Bureau de distribution",
+          "text": "Voir Unit Price/Prix unitaire FOB/FAM\nPlant/Usine                  | XXXXXXXXXX\n... Destination                                 |                              | $"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 1, rows 1-10",
+          "text": "\"Voir Unit Price/Prix unitaire FOB/FAM\" | \"Plant/Usine\" | \"XXXXXXXXXX\" and \"$\""
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 5, rows 1-15",
+          "text": "Rows 48-51 reference “02 41 15” for “Existing pipes to be capped,” “Formwork and concrete under the existing building structure,” “Demolition and excavation of the upper slab, a part of the walls and columns of the tanks,” and “Fragmentation of the lower slab of the tanks.”"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 5, rows 1-15",
+          "text": "“46 | 32 91 19.13 | Topsoil | M 2 | 140”"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 5, rows 1-15",
+          "text": "“37 | 33 41 00 | Ø250 mm culvert | LM | 5”"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 5, rows 1-15",
+          "text": "Rows 42-44 reference “26 05 00 26 05 20 26 05 21 26 05 22 26 50 00” for “Replace street light,” “Replace street light and concrete base,” and “Install street light and concrete base.”"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 5, rows 1-15",
+          "text": "“45 | 32 91 19.13 32 92 23 | Strips of sod | M 2 | 4,200”"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "UNIT PRICE TABLE",
+          "text": "Work included in each item is as described in the referenced specification section."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 5, rows 1-15",
+          "text": "“48 | 02 41 15 | Existing pipes to be capped | Unit | 4 | $_______ | $___________”"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 5, rows 1-15",
+          "text": "“44 | 26 05 00 26 05 20 26 05 21 26 05 22 26 50 00 | Install street light and concrete base | Unit | 11 | $_______ | $___________”"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 5, rows 1-15",
+          "text": "“50 | 02 41 15 | Demolition and excavation of the upper slab, a part of the walls and columns of the tanks | M 3 | 200 | $_______ | $___________”"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 5, rows 1-15",
+          "text": "“51 | 02 41 15 | Fragmentation of the lower slab of the tanks | M 2 | 500 | $_______ | $___________”"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 5, rows 1-15",
+          "text": "“49 | 02 41 15 | Formwork and concrete under the existing building structure | M 3 | 125 | $_______ | $___________”"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 5, rows 1-15",
+          "text": "“46 | 32 91 19.13 | Topsoil | M 2 | 140 | $_______ | $___________”"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 5, rows 1-15",
+          "text": "“39 | | Retaining wall | M 2 | 150 | $_______ | $___________”"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 5, rows 1-15",
+          "text": "“40 | | Additional block for retaining wall | Unit | 25 | $_______ | $___________”"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 5, rows 1-15",
+          "text": "“41 | | Traffic sign | Unit | 25 | $_______ | $___________”"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 5, rows 1-15",
+          "text": "“47 | | Protective post | Unit | 4 | $_______ | $___________”"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 5, rows 1-15",
+          "text": "“45 | 32 91 19.13 32 92 23 | Strips of sod | M 2 | 4,200 | $_______ | $___________”"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 5, rows 1-15",
+          "text": "“37 | 33 41 00 | Ø250 mm culvert | LM | 5 | $_______ | $___________”"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 5, rows 1-15",
+          "text": "“38 | | Stone on geotextile | M 2 | 75 | $_______ | $___________”"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 5, rows 1-15",
+          "text": "“43 | 26 05 00 26 05 20 26 05 21 26 05 22 26 50 00 | Replace street light and concrete base | Unit | 1 | $_______ | $___________”"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 5, rows 1-15",
+          "text": "“42 | 26 05 00 26 05 20 26 05 21 26 05 22 26 50 00 | Replace street light | Unit | 12 | $_______ | $___________”"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 4, rows 1-23",
+          "text": "Items and estimated quantities are: “Removal and disposal of concrete curbs” — LM — 505; “Removal and disposal of concrete sidewalk” — M 2 — 150; “Removal and disposal of interlocking pavement stones” — M 2 — 160; “Removal and disposal of concrete slab and stairs” — M 2 — 95; “Removal and disposal of paved surface” — M 2 — 5200; “Pavement structure made of MG 112 crushed stone” — M 2 — 3500; “Pavement structure made of MG 20 crushed stone” — MT — 3900; “Pre-paving preparation and adjustments” — M 2 — 7,300; “Adjustment of structures” — Unit — 13; “Replacement of frame and cover” — Unit — 5; “ESG-10 plant mixture with PG58-28 binder” — MT — 425; “ESG-10 plant mixture with 100% crushed PG58-28 binder” — MT — 915; “Bituminous binder” — M 2 — 3,400; “Concrete curb” — LM — 875; “Cement slab sidewalk” — M 2 . — 200; “Sidewalk with monolithic curb” — LM — 40; “Interlocking pavement stone sidewalk” — M 2 — 145; “Cement slab” — M 2 — 80; “Cement stairway including hand railing” — M 2 — 25; “Replace Ø600 mm catch basin” — Unit — 1; “Replace Ø900 mm catch basin” — Unit — 1; “Ø450 mm catch basin” — Unit — 1; “Ø200 mm storm sewer pipe” — LM — 25."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 3, rows 1-13",
+          "text": "Item 13 | Specification Reference “31 24 13” | “Controlled backfill for works on the tanks” | “All-inclus ive” | Estimated Quantity “1” | “$___________”"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 3, rows 1-13",
+          "text": "Item 6 | Specification Reference “01 74 21 02 41 13” | “Dismantling of retaining walls and recovery of blocks” | “All-inclus ive” | Estimated Quantity “1” | “$___________”"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 3, rows 1-13",
+          "text": "Item 5 | Specification Reference “01 74 21 02 41 13.14” | “Disposal of surplus pulverized material” | “All-inclus ive l” | Estimated Quantity “1” | “$___________”"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 3, rows 1-13",
+          "text": "Item 7 | Specification Reference “01 74 21 31 23 33.01” | “Excavation of catch basin and piping” | “All-inclus ive” | Estimated Quantity “1” | “$___________”"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 3, rows 1-13",
+          "text": "Item 4 | Specification Reference “01 74 21” | “Excavation of the existing site and disposal of surplus excavated material” | “All-inclus ive” | Estimated Quantity “1” | “$___________”"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 3, rows 1-13",
+          "text": "Item 3 | Specification Reference “31 00 00.01 31 11 00” | “Grubbing, clearing, pruning, removal of topsoil and earthworks” | “All-inclus ive” | Estimated Quantity “1” | “$___________”"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 3, rows 1-13",
+          "text": "Item 2 | Specification Reference “01 52 00” | “Installation of a construction site trailer and protection of the existing site” | “All-inclus ive” | Estimated Quantity “1” | “$___________”"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 3, rows 1-13",
+          "text": "Item 10 | Specification Reference “32 17 23” | “Pavement marking” | “All-inclus ive” | Estimated Quantity “1” | “$___________”"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 3, rows 1-13",
+          "text": "Item 11 | Specification Reference “26 05 00 26 05 20 26 05 21 26 05 22” | “Power supply and hook-up of new street lights” | “All-inclus ive” | Estimated Quantity “1” | “$___________”"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 3, rows 1-13",
+          "text": "Item 12 | Specification Reference “02 41 15” | “Pumping water tank” | “All-inclus ive” | Estimated Quantity “1” | “$___________”"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 3, rows 1-13",
+          "text": "Item 8 | Specification Reference “01 74 21 32 16 15” | “Repair of concrete pad” | “All-inclus ive” | Estimated Quantity “1” | “$___________”"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 3, rows 1-13",
+          "text": "Item 9 | Specification Reference “31 24 13” | “Supplementary backfill and levelling” | “All-inclus ive” | Estimated Quantity “1” | “$___________”"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 3, rows 1-13",
+          "text": "Item 1 | Specification Reference “01 35 00.06” | “Traffic and traffic signals” | “All-inclus ive” | Estimated Quantity “1” | “$___________”"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 4, rows 1-23",
+          "text": "The “Speci-fication Reference” column maps the work to: items 14-17 — “01 74 21 02 41 13”; item 18 — “01 74 21”; item 19 — “32 11 16.01”; items 20-21 — “32 11 23”; item 22 — “32 11 23 33 05 13”; item 23 — “33 05 13”; items 24-26 — “32 12 16”; items 27-29 and 31-32 — “32 16 15”; item 30 — “G2030”; items 33-35 — “33 05 13”; and item 36 — “33 41 00”."
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0030",
+          "right_candidate_id": "CAND-0028",
+          "relationship": "SUPPLEMENTS",
+          "reason": "CAND-0028 details pricing fields for items 1–13."
+        },
+        {
+          "left_candidate_id": "CAND-0030",
+          "right_candidate_id": "CAND-0029",
+          "relationship": "SUPPLEMENTS",
+          "reason": "CAND-0029 details pricing fields for items 37–51."
+        },
+        {
+          "left_candidate_id": "CAND-0030",
+          "right_candidate_id": "CAND-0031",
+          "relationship": "SUPPLEMENTS",
+          "reason": "CAND-0031 details pricing fields for items 14–36."
+        },
+        {
+          "left_candidate_id": "CAND-0030",
+          "right_candidate_id": "CAND-0035",
+          "relationship": "SUPPLEMENTS",
+          "reason": "It identifies an additional unit-price field."
+        },
+        {
+          "left_candidate_id": "CAND-0030",
+          "right_candidate_id": "CAND-0196",
+          "relationship": "SUPPLEMENTS",
+          "reason": "It defines each item's work by its specification reference."
+        },
+        {
+          "left_candidate_id": "CAND-0030",
+          "right_candidate_id": "CAND-0201",
+          "relationship": "SUPPLEMENTS",
+          "reason": "It details item 48."
+        },
+        {
+          "left_candidate_id": "CAND-0030",
+          "right_candidate_id": "CAND-0202",
+          "relationship": "SUPPLEMENTS",
+          "reason": "It details item 44."
+        },
+        {
+          "left_candidate_id": "CAND-0030",
+          "right_candidate_id": "CAND-0203",
+          "relationship": "SUPPLEMENTS",
+          "reason": "It details item 50."
+        },
+        {
+          "left_candidate_id": "CAND-0030",
+          "right_candidate_id": "CAND-0204",
+          "relationship": "SUPPLEMENTS",
+          "reason": "It details item 51."
+        },
+        {
+          "left_candidate_id": "CAND-0030",
+          "right_candidate_id": "CAND-0205",
+          "relationship": "SUPPLEMENTS",
+          "reason": "It details item 49."
+        },
+        {
+          "left_candidate_id": "CAND-0030",
+          "right_candidate_id": "CAND-0206",
+          "relationship": "SUPPLEMENTS",
+          "reason": "It details item 46."
+        },
+        {
+          "left_candidate_id": "CAND-0030",
+          "right_candidate_id": "CAND-0207",
+          "relationship": "SUPPLEMENTS",
+          "reason": "It details item 39."
+        },
+        {
+          "left_candidate_id": "CAND-0030",
+          "right_candidate_id": "CAND-0208",
+          "relationship": "SUPPLEMENTS",
+          "reason": "It details item 40."
+        },
+        {
+          "left_candidate_id": "CAND-0030",
+          "right_candidate_id": "CAND-0209",
+          "relationship": "SUPPLEMENTS",
+          "reason": "It details item 41."
+        },
+        {
+          "left_candidate_id": "CAND-0030",
+          "right_candidate_id": "CAND-0210",
+          "relationship": "SUPPLEMENTS",
+          "reason": "It details item 47."
+        },
+        {
+          "left_candidate_id": "CAND-0030",
+          "right_candidate_id": "CAND-0211",
+          "relationship": "SUPPLEMENTS",
+          "reason": "It details item 45."
+        },
+        {
+          "left_candidate_id": "CAND-0030",
+          "right_candidate_id": "CAND-0212",
+          "relationship": "SUPPLEMENTS",
+          "reason": "It details item 37."
+        },
+        {
+          "left_candidate_id": "CAND-0030",
+          "right_candidate_id": "CAND-0213",
+          "relationship": "SUPPLEMENTS",
+          "reason": "It details item 38."
+        },
+        {
+          "left_candidate_id": "CAND-0030",
+          "right_candidate_id": "CAND-0214",
+          "relationship": "SUPPLEMENTS",
+          "reason": "It details item 43."
+        },
+        {
+          "left_candidate_id": "CAND-0030",
+          "right_candidate_id": "CAND-0215",
+          "relationship": "SUPPLEMENTS",
+          "reason": "It details item 42."
+        },
+        {
+          "left_candidate_id": "CAND-0030",
+          "right_candidate_id": "CAND-0220",
+          "relationship": "SUPPLEMENTS",
+          "reason": "It preserves the item 14–36 scope and estimated quantities."
+        },
+        {
+          "left_candidate_id": "CAND-0030",
+          "right_candidate_id": "CAND-0221",
+          "relationship": "SUPPLEMENTS",
+          "reason": "It identifies item 13 and its specification."
+        },
+        {
+          "left_candidate_id": "CAND-0030",
+          "right_candidate_id": "CAND-0222",
+          "relationship": "SUPPLEMENTS",
+          "reason": "It identifies item 6 and its specifications."
+        },
+        {
+          "left_candidate_id": "CAND-0030",
+          "right_candidate_id": "CAND-0223",
+          "relationship": "SUPPLEMENTS",
+          "reason": "It identifies item 5 and its specifications."
+        },
+        {
+          "left_candidate_id": "CAND-0030",
+          "right_candidate_id": "CAND-0224",
+          "relationship": "SUPPLEMENTS",
+          "reason": "It identifies item 7 and its specifications."
+        },
+        {
+          "left_candidate_id": "CAND-0030",
+          "right_candidate_id": "CAND-0225",
+          "relationship": "SUPPLEMENTS",
+          "reason": "It identifies item 4 and its specification."
+        },
+        {
+          "left_candidate_id": "CAND-0030",
+          "right_candidate_id": "CAND-0226",
+          "relationship": "SUPPLEMENTS",
+          "reason": "It identifies item 3 and its specifications."
+        },
+        {
+          "left_candidate_id": "CAND-0030",
+          "right_candidate_id": "CAND-0227",
+          "relationship": "SUPPLEMENTS",
+          "reason": "It identifies item 2 and its specification."
+        },
+        {
+          "left_candidate_id": "CAND-0030",
+          "right_candidate_id": "CAND-0228",
+          "relationship": "SUPPLEMENTS",
+          "reason": "It identifies item 10 and its specification."
+        },
+        {
+          "left_candidate_id": "CAND-0030",
+          "right_candidate_id": "CAND-0229",
+          "relationship": "SUPPLEMENTS",
+          "reason": "It identifies item 11 and its specifications."
+        },
+        {
+          "left_candidate_id": "CAND-0030",
+          "right_candidate_id": "CAND-0230",
+          "relationship": "SUPPLEMENTS",
+          "reason": "It identifies item 12 and its specification."
+        },
+        {
+          "left_candidate_id": "CAND-0030",
+          "right_candidate_id": "CAND-0231",
+          "relationship": "SUPPLEMENTS",
+          "reason": "It identifies item 8 and its specifications."
+        },
+        {
+          "left_candidate_id": "CAND-0030",
+          "right_candidate_id": "CAND-0232",
+          "relationship": "SUPPLEMENTS",
+          "reason": "It identifies item 9 and its specification."
+        },
+        {
+          "left_candidate_id": "CAND-0030",
+          "right_candidate_id": "CAND-0233",
+          "relationship": "SUPPLEMENTS",
+          "reason": "It identifies item 1 and its specification."
+        },
+        {
+          "left_candidate_id": "CAND-0030",
+          "right_candidate_id": "CAND-0237",
+          "relationship": "SUPPLEMENTS",
+          "reason": "It identifies the technical specifications for items 14–36."
+        },
+        {
+          "left_candidate_id": "CAND-0035",
+          "right_candidate_id": "CAND-0036",
+          "relationship": "SAME_REQUIREMENT",
+          "reason": "Both describe the same apparent FOB/FAM unit-price field."
+        },
+        {
+          "left_candidate_id": "CAND-0201",
+          "right_candidate_id": "CAND-0191",
+          "relationship": "SUPPLEMENTS",
+          "reason": "Section 02 41 15 applies to the four tank-related items."
+        },
+        {
+          "left_candidate_id": "CAND-0206",
+          "right_candidate_id": "CAND-0192",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The specification reference defines topsoil requirements."
+        },
+        {
+          "left_candidate_id": "CAND-0212",
+          "right_candidate_id": "CAND-0193",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The specification reference defines the culvert requirements."
+        },
+        {
+          "left_candidate_id": "CAND-0202",
+          "right_candidate_id": "CAND-0194",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The cited specifications apply to the street-light items."
+        },
+        {
+          "left_candidate_id": "CAND-0211",
+          "right_candidate_id": "CAND-0195",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The specification references define sod requirements."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": true,
+      "ambiguity_reason": "The blank fields imply completion, but some extracts do not independently state whether every field is mandatory; quantities are expressly estimated, and the FOB/FAM field's applicability is unclear.",
+      "contradiction_detected": false,
+      "requires_human_review": true,
+      "review_reason": "Confirm all mandatory pricing fields and review the cited specifications for exact performance requirements."
+    },
+    {
+      "requirement_id": "REQ-0018",
+      "requirement": "Submitted prices must reasonably reflect the cost of the work to which each price applies; otherwise Canada may reject the bid.",
+      "category": "financial",
+      "extraction_status": "FOUND",
+      "candidate_ids": [
+        "CAND-0037"
+      ],
+      "active_candidate_ids": [
+        "CAND-0037"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "APPENDIX 1 - COMBINED PRICE FORM, item 2",
+          "text": "Canada may reject the bid if any of the prices submitted do not reasonably reflect the cost of performing the part of the work to which that price applies."
+        }
+      ],
+      "relationships": [],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0019",
+      "requirement": "The bid is subject to SI12 rejection provisions. Canada may reject it for bidder bankruptcy or extended inoperability; applicable Vendor Performance Corrective Measures affecting the Bidder, employees, or subcontractors; unsuitable or improper past conduct; sufficiently poor prior performance; prior suspension or termination for default; satisfactory evidence of fraud, bribery, fraudulent misrepresentation, or discrimination-law violations; or where multiple bids prejudice fairness, distort evaluation, or fail to provide expected market results or good value. Multiple bids may receive additional scrutiny. Before a final rejection under subsection 1(f), the Bidder must be notified and allowed ten days to make representations.",
+      "category": "legal_regulatory",
+      "extraction_status": "FOUND",
+      "candidate_ids": [
+        "CAND-0038",
+        "CAND-0065",
+        "CAND-0066",
+        "CAND-0073",
+        "CAND-0074",
+        "CAND-0094",
+        "CAND-0112",
+        "CAND-0117",
+        "CAND-0118",
+        "CAND-0119",
+        "CAND-0120",
+        "CAND-0162"
+      ],
+      "active_candidate_ids": [
+        "CAND-0038",
+        "CAND-0065",
+        "CAND-0066",
+        "CAND-0073",
+        "CAND-0074",
+        "CAND-0094",
+        "CAND-0112",
+        "CAND-0117",
+        "CAND-0118",
+        "CAND-0119",
+        "CAND-0120",
+        "CAND-0162"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI12 REJECTION OF BID",
+          "text": "- (c) the Bidder is bankrupt or where, for whatever reason, its activities are rendered inoperable for an extended period;"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI12 REJECTION OF BID",
+          "text": "- (b) an employee, or subcontractor included as part of the bid, is subject to a Vendor Performance Corrective Measure, under the Vendor Performance Corrective Measure Policy, which would render that employee or subcontractor ineligible to bid on the requirement, or the portion of the requirement the employee or subcontractor is to perform;"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI12 REJECTION OF BID",
+          "text": "Canada may reject a bid where any of the following circumstances is present: - (a) the Bidder is subject to a Vendor Performance Corrective Measure, under the Vendor Performance Corrective Measure Policy, which renders the Bidder ineligible to bid on the requirement;"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI12 REJECTION OF BID",
+          "text": "Canada reserves the right to: 2. (i) reject any or all of the bids submitted by a single bidder or joint venture if their inclusion in the evaluation has the effect of prejudicing the integrity and fairness of the process, or;"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI12 REJECTION OF BID",
+          "text": "(ii) reject any or all of the bids submitted by a single bidder or joint venture if their inclusion in the procurement process would distort the solicitation evaluation, and would cause a result that would not reasonably have been expected under prevailing market conditions and/or would not provide good value to Canada."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI12 REJECTION OF BID",
+          "text": "3. Canada reserves the right to apply additional scrutiny, in particular, when multiple bids are received in response to a bid solicitation from a single bidder or a joint venture."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI12 Rejection of Bid",
+          "text": "SI12 Rejection of Bid"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI12 REJECTION OF BID",
+          "text": "- (e) evidence satisfactory to Canada that based on past conduct or behavior, the Bidder, a sub-contractor or a person who is to perform the Work is unsuitable or has conducted himself/herself improperly;"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI12 REJECTION OF BID",
+          "text": "(ii) Canada determines that the Bidder's performance on other contracts, including the efficiency and workmanship as well as the extent to which the Bidder performed the Work in accordance with contractual clauses and conditions, is sufficiently poor to jeopardize the successful completion of the requirement being bid on."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI12 REJECTION OF BID",
+          "text": "- (f) with respect to current or prior transactions with the Government of Canada: - (i) Canada has exercised its contractual remedies of suspension or termination for default with respect to a contract with the Bidder, any of its employees or any subcontractor included as part of the bid;"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI12 REJECTION OF BID",
+          "text": "- (d) evidence, satisfactory to Canada, of fraud, bribery, fraudulent misrepresentation or failure to comply with any law protecting individuals against any manner of discrimination, has been received with respect to the Bidder, any of its employees or any subcontractor included as part of the bid;"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI12 REJECTION OF BID",
+          "text": "2. Where Canada intends to reject a bid pursuant to a provision of subsection 1. (f), the Contracting Authority will so inform the Bidder and provide the Bidder ten (10) days within which to make representations, before making a final decision on the bid rejection."
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0112",
+          "right_candidate_id": "CAND-0038",
+          "relationship": "SUPPLEMENTS",
+          "reason": "This is one specified SI12 rejection ground."
+        },
+        {
+          "left_candidate_id": "CAND-0112",
+          "right_candidate_id": "CAND-0065",
+          "relationship": "SUPPLEMENTS",
+          "reason": "This adds the employee or subcontractor corrective-measure ground."
+        },
+        {
+          "left_candidate_id": "CAND-0112",
+          "right_candidate_id": "CAND-0066",
+          "relationship": "SUPPLEMENTS",
+          "reason": "This adds the bidder corrective-measure ground."
+        },
+        {
+          "left_candidate_id": "CAND-0112",
+          "right_candidate_id": "CAND-0073",
+          "relationship": "SUPPLEMENTS",
+          "reason": "This adds the integrity-and-fairness ground."
+        },
+        {
+          "left_candidate_id": "CAND-0112",
+          "right_candidate_id": "CAND-0074",
+          "relationship": "SUPPLEMENTS",
+          "reason": "This adds the distortion and value ground."
+        },
+        {
+          "left_candidate_id": "CAND-0112",
+          "right_candidate_id": "CAND-0094",
+          "relationship": "SUPPLEMENTS",
+          "reason": "This adds the multiple-bid scrutiny provision."
+        },
+        {
+          "left_candidate_id": "CAND-0112",
+          "right_candidate_id": "CAND-0117",
+          "relationship": "SUPPLEMENTS",
+          "reason": "This adds the past-conduct ground."
+        },
+        {
+          "left_candidate_id": "CAND-0112",
+          "right_candidate_id": "CAND-0118",
+          "relationship": "SUPPLEMENTS",
+          "reason": "This adds the poor-performance ground."
+        },
+        {
+          "left_candidate_id": "CAND-0112",
+          "right_candidate_id": "CAND-0119",
+          "relationship": "SUPPLEMENTS",
+          "reason": "This adds the prior-default-remedy ground."
+        },
+        {
+          "left_candidate_id": "CAND-0112",
+          "right_candidate_id": "CAND-0120",
+          "relationship": "SUPPLEMENTS",
+          "reason": "This adds fraud, bribery, misrepresentation, and discrimination grounds."
+        },
+        {
+          "left_candidate_id": "CAND-0119",
+          "right_candidate_id": "CAND-0162",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The ten-day representation process applies before rejection under subsection 1(f)."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0020",
+      "requirement": "State the total bid amount from Appendix 1, excluding GST/HST, as an amount in numbers in BA03.",
+      "category": "financial",
+      "extraction_status": "FOUND",
+      "candidate_ids": [
+        "CAND-0039"
+      ],
+      "active_candidate_ids": [
+        "CAND-0039"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "BA03 THE OFFER",
+          "text": "for the TOTAL BID AMOUNT INDICATED IN APPENDIX 1 . $ _________________________excluding GST/HST. (amount in numbers)"
+        }
+      ],
+      "relationships": [],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0021",
+      "requirement": "Before starting work and within 30 days after bid acceptance, the Contractor must deposit with Canada a Certificate of Insurance using PWGSC-TPSGC form 357.",
+      "category": "insurance",
+      "extraction_status": "FOUND",
+      "candidate_ids": [
+        "CAND-0041",
+        "CAND-0054",
+        "CAND-0141"
+      ],
+      "active_candidate_ids": [
+        "CAND-0041",
+        "CAND-0054",
+        "CAND-0141"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "IT1.1 Proof of Insurance, item 1",
+          "text": "Before commencement of the Work, and within thirty (30) days after acceptance of its bid, the Contractor shall deposit with Canada a Certificate of Insurance (form PWGSC-TPSGC 357), available on Public Works and Government Services Canada Web site."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI10 WEB SITES",
+          "text": "Certificate of Insurance (form PWGSC-TPSGC 357)  \nhttp://www.tpsgc-pwgsc.gc.ca/app-acq/forms/documents/357.pdf"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "IT1.1 Proof of Insurance, item 1",
+          "text": "Certificate of Insurance (form PWGSC-TPSGC 357), available on Public Works and Government Services Canada Web site."
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0041",
+          "right_candidate_id": "CAND-0054",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The website reference identifies the required certificate form."
+        },
+        {
+          "left_candidate_id": "CAND-0041",
+          "right_candidate_id": "CAND-0141",
+          "relationship": "SAME_REQUIREMENT",
+          "reason": "Both identify form 357 as the required insurance certificate."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0022",
+      "requirement": "Comply with GC10, Insurance, R2900D dated 2008-05-12.",
+      "category": "insurance",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0042",
+        "CAND-0056"
+      ],
+      "active_candidate_ids": [
+        "CAND-0042",
+        "CAND-0056"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "CONTRACT DOCUMENTS (CD), item 5(d)",
+          "text": "GC10 Insurance | GC10 Insurance | R2900D | (2008-05-12);"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 2, rows 1-11",
+          "text": "GC10 Insurance | GC10 Insurance | R2900D | (2008-05-12);"
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0042",
+          "right_candidate_id": "CAND-0056",
+          "relationship": "SAME_REQUIREMENT",
+          "reason": "Both identify the same GC10/R2900D insurance clause."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0023",
+      "requirement": "Comply with the general insurance terms in IT1 dated 2008-12-12 and SC02.",
+      "category": "insurance",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0043",
+        "CAND-0050"
+      ],
+      "active_candidate_ids": [
+        "CAND-0043",
+        "CAND-0050"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SC02 INSURANCE TERMS",
+          "text": "SC02 INSURANCE TERMS\nIT1 (2008-12-12) General"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SC02 Insurance Terms",
+          "text": "SC02 Insurance Terms"
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0043",
+          "right_candidate_id": "CAND-0050",
+          "relationship": "SAME_REQUIREMENT",
+          "reason": "Both refer to the SC02 general insurance terms."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0024",
+      "requirement": "Maintain commercial general liability coverage under IT2 that is no less than IBC Form 2100, with at least $5,000,000 per occurrence, a $5,000,000 Products/Completed Operations aggregate, and, if applicable, a $10,000,000 annual general aggregate. If the Work is subject to blasting, pile driving or caisson work, underpinning, or removal or weakening of support, the policy must include or be endorsed for those hazards.",
+      "category": "insurance",
+      "extraction_status": "FOUND",
+      "candidate_ids": [
+        "CAND-0044",
+        "CAND-0045",
+        "CAND-0046",
+        "CAND-0047",
+        "CAND-0048",
+        "CAND-0049",
+        "CAND-0055",
+        "CAND-0061",
+        "CAND-0062"
+      ],
+      "active_candidate_ids": [
+        "CAND-0044",
+        "CAND-0045",
+        "CAND-0046",
+        "CAND-0047",
+        "CAND-0048",
+        "CAND-0049",
+        "CAND-0055",
+        "CAND-0061",
+        "CAND-0062"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "IT2.1 Scope of Policy, clause 2(d)",
+          "text": "The policy shall either include or be endorsed to include coverage for the following exposures or hazards if the Work is subject thereto: - d.Removal or weakening of support of any building or land whether such support be natural or otherwise if the work is performed by the insured contractor."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "IT2.1 Scope of Policy, clause 1(c)",
+          "text": "c.a General Aggregate Limit of not be less than $10,000,000 per policy year, if the policy is subject to such a limit."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "IT2.1 Scope of Policy, clause 2(a)",
+          "text": "The policy shall either include or be endorsed to include coverage for the following exposures or hazards if the Work is subject thereto: - a.Blasting."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "IT2.1 Scope of Policy, clause 2(b)",
+          "text": "The policy shall either include or be endorsed to include coverage for the following exposures or hazards if the Work is subject thereto: - b.Pile driving and caisson work."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "IT2.1 Scope of Policy, clause 2(c)",
+          "text": "The policy shall either include or be endorsed to include coverage for the following exposures or hazards if the Work is subject thereto: - c.Underpinning."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "IT2.1 Scope of Policy, clause 1",
+          "text": "The insurance coverage provided shall not be less than that provided by IBC Form 2100, as amended from time to time"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "IT2 (2008-05-12) Commercial General Liability",
+          "text": "IT2 (2008-05-12) Commercial General Liability"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "IT2.1 Scope of Policy, clause 1(b)",
+          "text": "b.a Products/Completed Operations Aggregate Limit of not less than $5,000,000"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "IT2.1 Scope of Policy, clause 1(a)",
+          "text": "shall have: a.an Each Occurrence Limit of not less than $5,000,000"
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0055",
+          "right_candidate_id": "CAND-0044",
+          "relationship": "SUPPLEMENTS",
+          "reason": "This supplies conditional support-removal coverage."
+        },
+        {
+          "left_candidate_id": "CAND-0055",
+          "right_candidate_id": "CAND-0045",
+          "relationship": "SUPPLEMENTS",
+          "reason": "This supplies the conditional general aggregate."
+        },
+        {
+          "left_candidate_id": "CAND-0055",
+          "right_candidate_id": "CAND-0046",
+          "relationship": "SUPPLEMENTS",
+          "reason": "This supplies the conditional blasting coverage."
+        },
+        {
+          "left_candidate_id": "CAND-0055",
+          "right_candidate_id": "CAND-0047",
+          "relationship": "SUPPLEMENTS",
+          "reason": "This supplies conditional pile-driving and caisson coverage."
+        },
+        {
+          "left_candidate_id": "CAND-0055",
+          "right_candidate_id": "CAND-0048",
+          "relationship": "SUPPLEMENTS",
+          "reason": "This supplies conditional underpinning coverage."
+        },
+        {
+          "left_candidate_id": "CAND-0055",
+          "right_candidate_id": "CAND-0049",
+          "relationship": "SUPPLEMENTS",
+          "reason": "IBC Form 2100 supplies the referenced baseline for IT2 coverage."
+        },
+        {
+          "left_candidate_id": "CAND-0055",
+          "right_candidate_id": "CAND-0061",
+          "relationship": "SUPPLEMENTS",
+          "reason": "This supplies the completed-operations aggregate."
+        },
+        {
+          "left_candidate_id": "CAND-0055",
+          "right_candidate_id": "CAND-0062",
+          "relationship": "SUPPLEMENTS",
+          "reason": "This supplies the per-occurrence limit."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": true,
+      "ambiguity_reason": "Applicability of the hazard-specific endorsements depends on the Work.",
+      "contradiction_detected": false,
+      "requires_human_review": true,
+      "review_reason": "Determine which listed hazards are present in the Work."
+    },
+    {
+      "requirement_id": "REQ-0025",
+      "requirement": "Insurance Terms R2910D dated 2008-12-12 are incorporated as amended: article IT3 is deleted, and the Supplementary Conditions and SC02 insurance terms apply instead.",
+      "category": "insurance",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0051",
+        "CAND-0060"
+      ],
+      "active_candidate_ids": [
+        "CAND-0051",
+        "CAND-0060"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "Insurance Terms R2910D* (2008-12-12)",
+          "text": "Insurance Terms R2910D* (2008-12-12); *Delete article IT3 and go to SC02 - INSURANCE TERMS above"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "INSURANCE TERMS",
+          "text": "The Insurance Terms for this solicitation are amended. Refer to the Supplementary Conditions."
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0051",
+          "right_candidate_id": "CAND-0060",
+          "relationship": "SAME_REQUIREMENT",
+          "reason": "Both state that the incorporated insurance terms are amended by supplementary conditions."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": true,
+      "review_reason": "Retain and apply the express amendment deleting IT3."
+    },
+    {
+      "requirement_id": "REQ-0026",
+      "requirement": "Maintain the required insurance from contract award until the Certificate of Completion unless otherwise directed or stipulated, and maintain Completed Operations Liability for at least six years after the Certificate of Substantial Performance.",
+      "category": "insurance",
+      "extraction_status": "FOUND",
+      "candidate_ids": [
+        "CAND-0052",
+        "CAND-0053"
+      ],
+      "active_candidate_ids": [
+        "CAND-0052",
+        "CAND-0053"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "IT2.3 Period of Insurance",
+          "text": "except that the coverage for Completed Operations Liability shall, in any event, be maintained for a period of at least six (6) years beyond the date of the Certificate of Substantial Performance."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "IT2.3 Period of Insurance",
+          "text": "Unless otherwise directed in writing by Canada, or, otherwise stipulated elsewhere herein, the policy required herein shall be in force and be maintained from the date of contract award until the day of issue of the Certificate of Completion"
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0053",
+          "right_candidate_id": "CAND-0052",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The completed-operations period extends one component beyond the general policy period."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0027",
+      "requirement": "The Contractor must bear payments up to the deductible amount made in satisfaction of a claim.",
+      "category": "insurance",
+      "extraction_status": "FOUND",
+      "candidate_ids": [
+        "CAND-0057"
+      ],
+      "active_candidate_ids": [
+        "CAND-0057"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "IT1.2 Payment of Deductible",
+          "text": "The payment of monies up to the deductible amount made in satisfaction of a claim shall be borne by the Contractor."
+        }
+      ],
+      "relationships": [],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0028",
+      "requirement": "Insurance policies must give Canada at least 30 days' advance written notice of cancellation or reduction in coverage.",
+      "category": "insurance",
+      "extraction_status": "FOUND",
+      "candidate_ids": [
+        "CAND-0058"
+      ],
+      "active_candidate_ids": [
+        "CAND-0058"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "IT1.1 Proof of Insurance, item 3",
+          "text": "The insurance policies shall be endorsed to provide Canada with not less than thirty (30) days notice in writing in advance of a cancellation of insurance or any reduction in coverage."
+        }
+      ],
+      "relationships": [],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0029",
+      "requirement": "The policy must insure the Contractor and include Her Majesty the Queen in right of Canada, represented by the Minister of Public Works and Government Services Canada, as an additional insured for liability arising from the Contractor's work operations.",
+      "category": "insurance",
+      "extraction_status": "FOUND",
+      "candidate_ids": [
+        "CAND-0059"
+      ],
+      "active_candidate_ids": [
+        "CAND-0059"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "IT2.2 Insured",
+          "text": "The policy shall insure the Contractor and shall include Her Majesty the Queen in right of Canada, represented by the Minister of Public Works and Government Services Canada as an additional Insured, with respect to liability arising out of the operations of the contractor with regard to the work."
+        }
+      ],
+      "relationships": [],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0030",
+      "requirement": "Upon Canada's request, provide originals or certified true copies of all insurance contracts maintained under the applicable provisions.",
+      "category": "insurance",
+      "extraction_status": "FOUND",
+      "candidate_ids": [
+        "CAND-0063"
+      ],
+      "active_candidate_ids": [
+        "CAND-0063"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "IT1.1 Proof of Insurance, item 2",
+          "text": "Upon request by Canada, the Contractor shall provide originals or certified true copies of all contracts of insurance maintained by the Contractor pursuant to the provisions contained herein."
+        }
+      ],
+      "relationships": [],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0031",
+      "requirement": "The language used in the submitted Bid and Acceptance Form determines the language of the contract documents.",
+      "category": "language",
+      "extraction_status": "FOUND",
+      "candidate_ids": [
+        "CAND-0064"
+      ],
+      "active_candidate_ids": [
+        "CAND-0064"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "Language of contract documents",
+          "text": "4) The language of the contract documents is the language of the Bid and Acceptance Form submitted."
+        }
+      ],
+      "relationships": [],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0032",
+      "requirement": "Any amendment or variation of the contract documents must be made in accordance with the General Conditions.",
+      "category": "legal_regulatory",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0067"
+      ],
+      "active_candidate_ids": [
+        "CAND-0067"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "Contract documents – amendments and variations",
+          "text": "(g) Any amendment or variation of the contract documents that is made in accordance with the General Conditions."
+        }
+      ],
+      "relationships": [],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0033",
+      "requirement": "Review and comply with the clauses and conditions in Part 2 of the solicitation.",
+      "category": "legal_regulatory",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0068",
+        "CAND-0095",
+        "CAND-0104"
+      ],
+      "active_candidate_ids": [
+        "CAND-0068",
+        "CAND-0095",
+        "CAND-0104"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 1, rows 1-10",
+          "text": "\"Part See Part 2 for Partie 2 pour Clauses\""
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "Issuing Office - Bureau de distribution",
+          "text": "Part See Part 2 for Partie 2 pour Clauses"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "Part 1 of 2",
+          "text": "Part - Partie 1 of - de 2 See Part 2 for Clauses and Conditions\nVoir Partie 2 pour Clauses et Conditions"
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0068",
+          "right_candidate_id": "CAND-0095",
+          "relationship": "SAME_REQUIREMENT",
+          "reason": "Both direct review of Part 2 clauses and conditions."
+        },
+        {
+          "left_candidate_id": "CAND-0068",
+          "right_candidate_id": "CAND-0104",
+          "relationship": "SAME_REQUIREMENT",
+          "reason": "Both direct review of Part 2 clauses and conditions."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0034",
+      "requirement": "Bidders must comply with the Code of Conduct for Procurement, including responding honestly, fairly, and comprehensively; accurately representing their capacity; bidding and contracting only when intending to fulfill all obligations; not paying prohibited contingency fees; and not engaging in corruption, collusion, bid-rigging, or other anti-competitive procurement activity.",
+      "category": "legal_regulatory",
+      "extraction_status": "FOUND",
+      "candidate_ids": [
+        "CAND-0069",
+        "CAND-0070",
+        "CAND-0071",
+        "CAND-0156"
+      ],
+      "active_candidate_ids": [
+        "CAND-0069",
+        "CAND-0070",
+        "CAND-0071",
+        "CAND-0156"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI11 CODE OF CONDUCT AND CERTIFICATIONS, subsection 1",
+          "text": "Bidders must comply with the Code of Conduct for Procurement."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI11 CODE OF CONDUCT AND CERTIFICATIONS, subsection 1(b)",
+          "text": "To ensure fairness, openness and transparency in the procurement process, the following activities are prohibited: ... (b) corruption, collusion, bid-rigging or any other anti-competitive activity in the procurement process."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI11 CODE OF CONDUCT AND CERTIFICATIONS, subsection 1(a)",
+          "text": "To ensure fairness, openness and transparency in the procurement process, the following activities are prohibited: (a) payment of a contingency fee to a person to whom the Lobbying Act (1985, c. 44 (4th Supp.)) applies;"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI11 CODE OF CONDUCT AND CERTIFICATIONS, subsection 1",
+          "text": "bidders must respond to bid solicitations in an honest, fair and comprehensive manner, accurately reflect their capacity to satisfy the requirements stipulated in the bid solicitation and resulting contract, submit bids and enter into contracts only if they will fulfill all obligations of the Contract."
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0069",
+          "right_candidate_id": "CAND-0070",
+          "relationship": "SUPPLEMENTS",
+          "reason": "This supplies a specific prohibited activity under the Code."
+        },
+        {
+          "left_candidate_id": "CAND-0069",
+          "right_candidate_id": "CAND-0071",
+          "relationship": "SUPPLEMENTS",
+          "reason": "This supplies the prohibited contingency-fee activity."
+        },
+        {
+          "left_candidate_id": "CAND-0069",
+          "right_candidate_id": "CAND-0156",
+          "relationship": "SUPPLEMENTS",
+          "reason": "This supplies the required standards for preparing and submitting bids."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0035",
+      "requirement": "Submission of a bid acknowledges that the Bidder has read and agrees to be bound by the Invitation to Tender, Special and General Instructions, identified contract clauses and conditions, Drawings and Specifications, the Bid and Acceptance Form and appendices, and amendments issued before closing.",
+      "category": "legal_regulatory",
+      "extraction_status": "FOUND",
+      "candidate_ids": [
+        "CAND-0072",
+        "CAND-0076",
+        "CAND-0128",
+        "CAND-0136"
+      ],
+      "active_candidate_ids": [
+        "CAND-0072",
+        "CAND-0076",
+        "CAND-0128",
+        "CAND-0136"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI01 BID DOCUMENTS, paragraph 1",
+          "text": "Submission of a bid constitutes acknowledgement that the Bidder has read and agrees to be bound by these documents."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI01 BID DOCUMENTS, paragraph 1(g)",
+          "text": "(g) Any amendment issued prior to solicitation closing. Submission of a bid constitutes acknowledgement that the Bidder has read and agrees to be bound by these documents."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI01 BID DOCUMENTS, paragraph 1",
+          "text": "The following are the bid documents: (a) Invitation to Tender - Page 1; (b) Special Instructions to Bidders; (c) General Instructions to Bidders R2710T (2011-05-16); (d) Clauses & Conditions identified in 'Contract Documents'; (e) Drawings and Specifications; (f) Bid and Acceptance Form and related Appendice(s); and (g) Any amendment issued prior to solicitation closing."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI01 Bid Documents",
+          "text": "SI01 Bid Documents"
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0072",
+          "right_candidate_id": "CAND-0076",
+          "relationship": "SUPPLEMENTS",
+          "reason": "This specifically confirms that pre-closing amendments are binding."
+        },
+        {
+          "left_candidate_id": "CAND-0072",
+          "right_candidate_id": "CAND-0128",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The latter enumerates the bid documents covered by the acknowledgement."
+        },
+        {
+          "left_candidate_id": "CAND-0072",
+          "right_candidate_id": "CAND-0136",
+          "relationship": "SAME_REQUIREMENT",
+          "reason": "SI01 is the cited source of the bid-document requirement."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0036",
+      "requirement": "Canada's legal rights and rights under GI12 of R2710T are not limited by SI07.",
+      "category": "legal_regulatory",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0075"
+      ],
+      "active_candidate_ids": [
+        "CAND-0075"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI07 BID VALIDITY PERIOD, paragraph 4",
+          "text": "The provisions expressed herein do not in any manner limit Canada's rights in law or under GI12 of R2710T 'General Instructions to Bidders '."
+        }
+      ],
+      "relationships": [],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0037",
+      "requirement": "Comply with applicable laws under GI15.",
+      "category": "legal_regulatory",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0077"
+      ],
+      "active_candidate_ids": [
+        "CAND-0077"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "GI15 Compliance With Applicable Laws",
+          "text": "GI15 Compliance With Applicable Laws"
+        }
+      ],
+      "relationships": [],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0038",
+      "requirement": "Comply with GC1, General Provisions, R2810D dated 2011-05-16.",
+      "category": "legal_regulatory",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0078",
+        "CAND-0110"
+      ],
+      "active_candidate_ids": [
+        "CAND-0078",
+        "CAND-0110"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "CONTRACT DOCUMENTS (CD), item 5(d)",
+          "text": "GC1 | General Provisions | R2810D | (2011-05-16);"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 2, rows 1-11",
+          "text": "GC1 | General Provisions | R2810D | (2011-05-16);"
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0078",
+          "right_candidate_id": "CAND-0110",
+          "relationship": "SAME_REQUIREMENT",
+          "reason": "Both identify the same GC1/R2810D clause."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0039",
+      "requirement": "Comply with GC2, Administration of the Contract, R2820D dated 2011-05-16.",
+      "category": "legal_regulatory",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0079",
+        "CAND-0096"
+      ],
+      "active_candidate_ids": [
+        "CAND-0079",
+        "CAND-0096"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "CONTRACT DOCUMENTS (CD), item 5(d)",
+          "text": "GC2 | Administration of the Contract | R2820D | (2011-05-16);"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 2, rows 1-11",
+          "text": "GC2 | Administration of the Contract | R2820D | (2011-05-16);"
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0079",
+          "right_candidate_id": "CAND-0096",
+          "relationship": "SAME_REQUIREMENT",
+          "reason": "Both identify the same GC2/R2820D clause."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0040",
+      "requirement": "Comply with GC6, Delays and Changes in the Work, R2860D dated 2008-05-12.",
+      "category": "legal_regulatory",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0080",
+        "CAND-0111"
+      ],
+      "active_candidate_ids": [
+        "CAND-0080",
+        "CAND-0111"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "CONTRACT DOCUMENTS (CD), item 5(d)",
+          "text": "GC6 | Delays and Changes in the Work | R2860D | (2008-05-12);"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 2, rows 1-11",
+          "text": "GC6 | Delays and Changes in the Work | R2860D | (2008-05-12);"
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0080",
+          "right_candidate_id": "CAND-0111",
+          "relationship": "SAME_REQUIREMENT",
+          "reason": "Both identify the same GC6/R2860D clause."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0041",
+      "requirement": "Comply with GC7, Default, Suspension or Termination of Contract, R2870D dated 2008-05-12.",
+      "category": "legal_regulatory",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0081",
+        "CAND-0105"
+      ],
+      "active_candidate_ids": [
+        "CAND-0081",
+        "CAND-0105"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "CONTRACT DOCUMENTS (CD), item 5(d)",
+          "text": "GC7 | Default, Suspension or Termination of Contract | R2870D | (2008-05-12);"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 2, rows 1-11",
+          "text": "GC7 | Default, Suspension or Termination of Contract | R2870D | (2008-05-12);"
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0081",
+          "right_candidate_id": "CAND-0105",
+          "relationship": "SAME_REQUIREMENT",
+          "reason": "Both identify the same GC7/R2870D clause."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0042",
+      "requirement": "Comply with GC8, Dispute Resolution, R2880D dated 2008-12-12.",
+      "category": "legal_regulatory",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0082",
+        "CAND-0106"
+      ],
+      "active_candidate_ids": [
+        "CAND-0082",
+        "CAND-0106"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "CONTRACT DOCUMENTS (CD), item 5(d)",
+          "text": "GC8 | Dispute Resolution | R2880D | (2008-12-12);"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 2, rows 1-11",
+          "text": "GC8 | Dispute Resolution | R2880D | (2008-12-12);"
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0082",
+          "right_candidate_id": "CAND-0106",
+          "relationship": "SAME_REQUIREMENT",
+          "reason": "Both identify the same GC8/R2880D clause."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0043",
+      "requirement": "Comply with the conflict-of-interest and unfair-advantage provisions in GI18.",
+      "category": "legal_regulatory",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0083"
+      ],
+      "active_candidate_ids": [
+        "CAND-0083"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "GI18 Conflict of Interest-Unfair Advantage",
+          "text": "GI18 Conflict of Interest-Unfair Advantage"
+        }
+      ],
+      "relationships": [],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0044",
+      "requirement": "Comply with the Procurement Business Number provisions in GI14.",
+      "category": "legal_regulatory",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0084"
+      ],
+      "active_candidate_ids": [
+        "CAND-0084"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "GI14 Procurement Business Number",
+          "text": "GI14 Procurement Business Number"
+        }
+      ],
+      "relationships": [],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0045",
+      "requirement": "Comply with the bidder identity and legal-capacity requirements in GI03.",
+      "category": "legal_regulatory",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0085"
+      ],
+      "active_candidate_ids": [
+        "CAND-0085"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "GI03 Identity or Legal Capacity of the Bidder",
+          "text": "GI03 Identity or Legal Capacity of the Bidder"
+        }
+      ],
+      "relationships": [],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0046",
+      "requirement": "Comply with General Instructions to Bidders R2710T dated 2011-05-16, incorporated from the SACC Manual, subject to stated replacements elsewhere in the solicitation.",
+      "category": "legal_regulatory",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0086",
+        "CAND-0115"
+      ],
+      "active_candidate_ids": [
+        "CAND-0086",
+        "CAND-0115"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI01 BID DOCUMENTS, paragraphs 1(c) and 2",
+          "text": "General Instructions to Bidders R2710T (2011-05-16); General Instructions to Bidders is incorporated by reference and is set out in the Standard Acquisition Clauses and Conditions (SACC) Manual, issued by Public Works and Government Services Canada (PWGSC). The SACC Manual is available on the PWGSC Web site: http://ccua-sacc.tpsgc-pwgsc.gc.ca/pub/acho-eng.jsp"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "GENERAL INSTRUCTIONS TO BIDDERS (GI) - R2710T (2011-05-16)",
+          "text": "The following GI's are included by reference and are available at the following Web Site http://ccua-sacc.tpsgc-pwgsc.gc.ca/pub/rese-eng.jsp (to proceed with a 'search' insert R2710T in the ID box)"
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0086",
+          "right_candidate_id": "CAND-0115",
+          "relationship": "SAME_REQUIREMENT",
+          "reason": "Both state that R2710T is incorporated by reference and available through SACC."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0047",
+      "requirement": "Comply with the instructions contained elsewhere in the solicitation.",
+      "category": "legal_regulatory",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0087"
+      ],
+      "active_candidate_ids": [
+        "CAND-0087"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "Issuing Office - Bureau de distribution",
+          "text": "Instructions:  See Herein\nInstructions:  Voir aux présentes"
+        }
+      ],
+      "relationships": [],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": true,
+      "ambiguity_reason": "The extract does not identify the particular instructions.",
+      "contradiction_detected": false,
+      "requires_human_review": true,
+      "review_reason": "Identify all instructions incorporated by the 'See Herein' reference."
+    },
+    {
+      "requirement_id": "REQ-0048",
+      "requirement": "Comply with the Supplementary Conditions incorporated into the contract documents.",
+      "category": "legal_regulatory",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0088",
+        "CAND-0116"
+      ],
+      "active_candidate_ids": [
+        "CAND-0088",
+        "CAND-0116"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "CONTRACT DOCUMENTS (CD), item 5(d)",
+          "text": "Supplementary Conditions | Supplementary Conditions"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 2, rows 1-11",
+          "text": "Supplementary Conditions | Supplementary Conditions | |"
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0088",
+          "right_candidate_id": "CAND-0116",
+          "relationship": "SAME_REQUIREMENT",
+          "reason": "Both identify the Supplementary Conditions as contract documents."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": true,
+      "ambiguity_reason": "The extracted table does not identify a document number, date, or substantive terms.",
+      "contradiction_detected": false,
+      "requires_human_review": true,
+      "review_reason": "Locate and review the complete Supplementary Conditions."
+    },
+    {
+      "requirement_id": "REQ-0049",
+      "requirement": "Documents identified by title, number, and date are incorporated by reference from the SACC Manual; use the cited SACC website and clause ID to retrieve them.",
+      "category": "legal_regulatory",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0089",
+        "CAND-0098",
+        "CAND-0129"
+      ],
+      "active_candidate_ids": [
+        "CAND-0089",
+        "CAND-0098",
+        "CAND-0129"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "CLAUSES REFERRED TO BY NUMBER (I.E. R2890D) CAN BE FOUND AT THE FOLLOWING WEB SITE",
+          "text": "CLAUSES REFERRED TO BY NUMBER (I.E. R2890D) CAN BE FOUND AT THE FOLLOWING WEB SITE\nHttp://ccua-sacc.tpsgc-pwgsc.gc.ca/pub/acho-eng.jsp (to proceed with a search select 'Search SACC' and insert clause reference number in ID box)"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI10 WEB SITES",
+          "text": "SACC Manual http://ccua-sacc.tpsgc-pwgsc.gc.ca/pub/acho-eng.jsp"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "Incorporation by reference",
+          "text": "2) The documents identified by title, number and date above are incorporated by reference and are set out in the Standard Acquisition Clauses and Conditions (SACC) Manual, issued by Public Works and Government Services Canada (PWGSC). The SACC Manual is available on the PWGSC Web site: http://ccua-sacc.tpsgc-pwgsc.gc.ca/pub/acho-eng.jsp"
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0129",
+          "right_candidate_id": "CAND-0089",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The website instructions explain how to retrieve incorporated numbered clauses."
+        },
+        {
+          "left_candidate_id": "CAND-0129",
+          "right_candidate_id": "CAND-0098",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The SACC website reference identifies the source of the incorporated clauses."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0050",
+      "requirement": "During any resulting contract, the Contractor and its parents, subsidiaries, and affiliates must remain free of the charges or convictions addressed by the Code provisions; otherwise Canada may terminate the Contract for default.",
+      "category": "legal_regulatory",
+      "extraction_status": "FOUND",
+      "candidate_ids": [
+        "CAND-0090",
+        "CAND-0124"
+      ],
+      "active_candidate_ids": [
+        "CAND-0090",
+        "CAND-0124"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI11 CODE OF CONDUCT AND CERTIFICATIONS, subsection 7",
+          "text": "The Bidder or any of the Bidder's parent, subsidiaries or other affiliates must remain free and clear of any charges or convictions contemplated in subsections 1 and 3 during the period of any resulting contract arising from this bid solicitation ."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SC03 CODE OF CONDUCT AND CERTIFICATIONS, subsection 6",
+          "text": "If the Contractor or any of the Contractor's parent, subsidiaries or other affiliates does not remain free and clear of any charges or convictions mentioned at subsections 2 and 3 during the period of the Contract, Canada reserves the right, pursuant to the default provision of the Contract, to terminate the Contract for default."
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0090",
+          "right_candidate_id": "CAND-0124",
+          "relationship": "SAME_REQUIREMENT",
+          "reason": "Both impose the continuing charge-and-conviction eligibility condition during the resulting contract."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0051",
+      "requirement": "R2710T GI12, Acceptance of Bid, is deleted and replaced by SI12, Rejection of Bid; apply the SI12 replacement provisions.",
+      "category": "legal_regulatory",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0092",
+        "CAND-0109"
+      ],
+      "active_candidate_ids": [
+        "CAND-0092",
+        "CAND-0109"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "IMPORTANT NOTICE TO BIDDERS",
+          "text": "GENERAL INSTRUCTIONS TO BIDDERS CLAUSE R2710T SECTION GI12 'ACCEPTANCE OF BID' IS DELETED AND REPLACED BY 'REJECTION OF BID' INCLUDED IN THIS DOCUMENT."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "GI12 Acceptance of Bid",
+          "text": "GI12 Acceptance of Bid Replaced, see SI12"
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0092",
+          "right_candidate_id": "CAND-0109",
+          "relationship": "SAME_REQUIREMENT",
+          "reason": "Both state that GI12 is replaced by SI12."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": true,
+      "review_reason": "Retain and apply the express replacement of GI12."
+    },
+    {
+      "requirement_id": "REQ-0052",
+      "requirement": "An amendment incorporated before bid acceptance must be incorporated by mutual agreement between Canada and the Contractor.",
+      "category": "legal_regulatory",
+      "extraction_status": "FOUND",
+      "candidate_ids": [
+        "CAND-0097"
+      ],
+      "active_candidate_ids": [
+        "CAND-0097"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "Contract documents – amendments and variations",
+          "text": "(f) Any amendment incorporated by mutual agreement between Canada and the Contractor before acceptance of the bid;"
+        }
+      ],
+      "relationships": [],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0053",
+      "requirement": "Review and comply with the offer requirements in BA03.",
+      "category": "legal_regulatory",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0099"
+      ],
+      "active_candidate_ids": [
+        "CAND-0099"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "BA03 The Offer",
+          "text": "BA03 The Offer"
+        }
+      ],
+      "relationships": [],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": true,
+      "ambiguity_reason": "The section reference does not reproduce all operative BA03 terms.",
+      "contradiction_detected": false,
+      "requires_human_review": true,
+      "review_reason": "Review BA03 in full."
+    },
+    {
+      "requirement_id": "REQ-0054",
+      "requirement": "Upon Canada's acceptance of the Contractor's offer, a binding Contract is formed, consisting of the contract documents identified in the Contract Documents section.",
+      "category": "legal_regulatory",
+      "extraction_status": "FOUND",
+      "candidate_ids": [
+        "CAND-0100",
+        "CAND-0123",
+        "CAND-0133"
+      ],
+      "active_candidate_ids": [
+        "CAND-0100",
+        "CAND-0123",
+        "CAND-0133"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "BA05 Acceptance and Contract",
+          "text": "BA05 Acceptance and Contract"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "BA05 ACCEPTANCE AND CONTRACT",
+          "text": "The documents forming the Contract shall be the contract documents identified in Contract Documents (CD)."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "BA05 ACCEPTANCE AND CONTRACT",
+          "text": "Upon acceptance of the Contractor's offer by Canada, a binding Contract shall be formed between Canada and the Contractor."
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0100",
+          "right_candidate_id": "CAND-0133",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The operative BA05 text states when the contract is formed."
+        },
+        {
+          "left_candidate_id": "CAND-0133",
+          "right_candidate_id": "CAND-0123",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The latter identifies the documents forming the resulting contract."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0055",
+      "requirement": "Determine and comply with any applicable Canadian economic sanctions identified through the cited external source.",
+      "category": "legal_regulatory",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0102"
+      ],
+      "active_candidate_ids": [
+        "CAND-0102"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI10 WEB SITES",
+          "text": "Canadian economic sanctions http://www.international.gc.ca/sanctions/index.aspx?lang=eng"
+        }
+      ],
+      "relationships": [],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": true,
+      "ambiguity_reason": "The evidence provides only a website and does not establish which sanctions apply.",
+      "contradiction_detected": false,
+      "requires_human_review": true,
+      "review_reason": "Assess sanctions applicability using the referenced source."
+    },
+    {
+      "requirement_id": "REQ-0056",
+      "requirement": "If applicable, comply with the floating-plant registry and pre-qualification requirements in GI07.",
+      "category": "legal_regulatory",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0103"
+      ],
+      "active_candidate_ids": [
+        "CAND-0103"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "GI07 Registry and Pre-qualification of Floating Plant",
+          "text": "GI07 Registry and Pre-qualification of Floating Plant"
+        }
+      ],
+      "relationships": [],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": true,
+      "ambiguity_reason": "The supplied content does not establish whether floating plant is involved.",
+      "contradiction_detected": false,
+      "requires_human_review": true,
+      "review_reason": "Determine whether GI07 applies to the Work."
+    },
+    {
+      "requirement_id": "REQ-0057",
+      "requirement": "Comply with incorporated Fair Wages and Hours of Labour clause R2940D dated 2010-01-11 and the referenced Schedules of Wage Rates for Federal Construction Contracts.",
+      "category": "legal_regulatory",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0107",
+        "CAND-0130",
+        "CAND-0132"
+      ],
+      "active_candidate_ids": [
+        "CAND-0107",
+        "CAND-0130",
+        "CAND-0132"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI10 WEB SITES",
+          "text": "Schedules of Wage Rates for Federal Construction Contracts  \nhttp://www.rhdcc-hrsdc.gc.ca/eng/labour/employment_standards/contracts/schedule/index.shtml"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "Referenced contract documents",
+          "text": "Fair Wages and Hours of Labour - Labour Conditions R2940D (2010-01-11);"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "Schedules of Wage Rates for Federal Construction Contracts",
+          "text": "Schedules of Wage Rates for Federal Construction Contracts; 3) Schedules of Wage Rates for Federal Construction Contracts is included by reference and may be accessed from the Web site: http://www.rhdcc-hrsdc.gc.ca/eng/labour/employment_standards/contracts/schedule/index.shtml."
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0132",
+          "right_candidate_id": "CAND-0107",
+          "relationship": "SAME_REQUIREMENT",
+          "reason": "Both identify the federal construction wage-rate schedules."
+        },
+        {
+          "left_candidate_id": "CAND-0130",
+          "right_candidate_id": "CAND-0132",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The wage schedules supplement the incorporated labour conditions."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0058",
+      "requirement": "Review the performance-evaluation provisions in GI17 and determine the applicability and completion requirements of Contractor Performance Evaluation Report form PWGSC-TPSGC 2913.",
+      "category": "legal_regulatory",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0113",
+        "CAND-0114"
+      ],
+      "active_candidate_ids": [
+        "CAND-0113",
+        "CAND-0114"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI10 WEB SITES",
+          "text": "Contractor Performance Evaluation Report (Form PWGSC-TPSGC 2913)  \nhttp://www.tpsgc-pwgsc.gc.ca/app-acq/forms/documents/2913.pdf"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "GI17 Performance Evaluation",
+          "text": "GI17 Performance Evaluation"
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0114",
+          "right_candidate_id": "CAND-0113",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The referenced form may implement the GI17 performance-evaluation process."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": true,
+      "ambiguity_reason": "The evidence does not state who completes the form, when it applies, or its effects.",
+      "contradiction_detected": false,
+      "requires_human_review": true,
+      "review_reason": "Review GI17 and form 2913."
+    },
+    {
+      "requirement_id": "REQ-0059",
+      "requirement": "The Bidder offers to perform and complete the listed goods, services, and construction in accordance with all tender terms, incorporated references, attachments, and Bid Documents, at the stated prices.",
+      "category": "legal_regulatory",
+      "extraction_status": "FOUND",
+      "candidate_ids": [
+        "CAND-0121",
+        "CAND-0131",
+        "CAND-0184"
+      ],
+      "active_candidate_ids": [
+        "CAND-0121",
+        "CAND-0131",
+        "CAND-0184"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "BA03 THE OFFER",
+          "text": "The Bidder offers to Her Majesty the Queen in right of Canada to perform and complete the Work for the above named project in accordance with the Bid Documents"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "INVITATION TO TENDER APPEL D'OFFRES",
+          "text": "We hereby offer to sell to Her Majesty the Queen in right of Canada, in accordance with the terms and conditions set out herein, referred to herein or attached hereto, the goods, services, and construction listed herein and on any attached sheets at the price(s) set out therefor."
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0121",
+          "right_candidate_id": "CAND-0131",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The latter confirms that the offer is subject to all stated, referenced, and attached terms."
+        },
+        {
+          "left_candidate_id": "CAND-0121",
+          "right_candidate_id": "CAND-0184",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The latter requires the offer to state prices for the listed scope."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0060",
+      "requirement": "The Contractor must comply with and be bound by the Code of Conduct for Procurement and the additional terms in SC03.",
+      "category": "legal_regulatory",
+      "extraction_status": "FOUND",
+      "candidate_ids": [
+        "CAND-0122",
+        "CAND-0125",
+        "CAND-0126"
+      ],
+      "active_candidate_ids": [
+        "CAND-0122",
+        "CAND-0125",
+        "CAND-0126"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SC03 Code of Conduct and Certifications",
+          "text": "SC03 Code of Conduct and Certifications"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SC03 CODE OF CONDUCT AND CERTIFICATIONS, subsection 1",
+          "text": "The Contractor agrees to comply with the Code of Conduct for Procurement and to be bound by its terms."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SC03 CODE OF CONDUCT AND CERTIFICATIONS, subsection 1",
+          "text": "Furthermore, in addition to the Code of Conduct for Procurement, the Contractor must comply with the terms set out in this section."
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0122",
+          "right_candidate_id": "CAND-0125",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The operative clause states the Contractor's duty under the referenced Code."
+        },
+        {
+          "left_candidate_id": "CAND-0125",
+          "right_candidate_id": "CAND-0126",
+          "relationship": "SUPPLEMENTS",
+          "reason": "SC03 imposes additional terms beyond the Code."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0061",
+      "requirement": "Comply with GI08 requirements for listing subcontractors and suppliers.",
+      "category": "required_documents",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0134"
+      ],
+      "active_candidate_ids": [
+        "CAND-0134"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "GI08 Listing of Subcontractors and Suppliers",
+          "text": "GI08 Listing of Subcontractors and Suppliers"
+        }
+      ],
+      "relationships": [],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0062",
+      "requirement": "Duly complete the Bid and Acceptance Form and all attached appendices; the completed form and appendices form part of the contract documents.",
+      "category": "required_documents",
+      "extraction_status": "FOUND",
+      "candidate_ids": [
+        "CAND-0137",
+        "CAND-0138",
+        "CAND-0140"
+      ],
+      "active_candidate_ids": [
+        "CAND-0137",
+        "CAND-0138",
+        "CAND-0140"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI01 BID DOCUMENTS, paragraph 1(f)",
+          "text": "(f) Bid and Acceptance Form and related Appendice(s)"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "BID AND ACCEPTANCE FORM (BA)",
+          "text": "## BID AND ACCEPTANCE FORM (BA)  \nBA01 Identification BA02 Business Name and Address of Bidder BA03 The Offer BA04 Bid Validity  Period BA05 Acceptance and Contract BA06 Construction Time BA07 Bid Security BA08 Signature"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "CONTRACT DOCUMENTS (CD), item 3(b)",
+          "text": "(b) Duly completed Bid and Acceptance Form and any Appendices attached thereto;"
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0140",
+          "right_candidate_id": "CAND-0137",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The operative completion requirement resolves the form identified as a bid document."
+        },
+        {
+          "left_candidate_id": "CAND-0140",
+          "right_candidate_id": "CAND-0138",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The BA section listing identifies the component clauses of the required form."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0063",
+      "requirement": "Complete the bidder-identification fields, including the vendor or firm's legal/business name, address, telephone number, fax number, and Procurement Business Number, as applicable under BA01 and BA02.",
+      "category": "submission",
+      "extraction_status": "FOUND",
+      "candidate_ids": [
+        "CAND-0139",
+        "CAND-0167",
+        "CAND-0177",
+        "CAND-0178",
+        "CAND-0179"
+      ],
+      "active_candidate_ids": [
+        "CAND-0139",
+        "CAND-0167",
+        "CAND-0177",
+        "CAND-0178",
+        "CAND-0179"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "Issuing Office - Bureau de distribution",
+          "text": "Vendor/Firm Name and Address\nRaison sociale et adresse du fournisseur/de l'entrepreneur\nTelephone No. - N° de téléphone\nFacsimile No. - N° de télécopieur"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "BA02 BUSINESS NAME AND ADDRESS OF BIDDER",
+          "text": "## BA02 BUSINESS NAME AND ADDRESS OF BIDDER\nName:    ____________________________________________________________________________________________\nAddress: __________________________________________________________________________________________\n____________________________________________________________________________________________\nTelephone: ________________________  Fax:________________________\nPBN:\n____________________"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "BA01 Identification",
+          "text": "BA01 Identification"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "BA02 Business Name and Address of Bidder",
+          "text": "BA02 Business Name and Address of Bidder"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "INVITATION TO TENDER APPEL D'OFFRES",
+          "text": "Vendor/Firm Name and Address Raison sociale et adresse du fournisseur/de l'entrepreneur"
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0167",
+          "right_candidate_id": "CAND-0139",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The general form fields overlap and add vendor contact information."
+        },
+        {
+          "left_candidate_id": "CAND-0167",
+          "right_candidate_id": "CAND-0177",
+          "relationship": "SUPPLEMENTS",
+          "reason": "BA01 supplies the related bidder-identification requirement."
+        },
+        {
+          "left_candidate_id": "CAND-0167",
+          "right_candidate_id": "CAND-0178",
+          "relationship": "SAME_REQUIREMENT",
+          "reason": "Both concern completion of BA02 business-name and address information."
+        },
+        {
+          "left_candidate_id": "CAND-0167",
+          "right_candidate_id": "CAND-0179",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The invitation field confirms the vendor name and address information."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": true,
+      "ambiguity_reason": "Some extracts show fields without an express completion instruction, and BA01 details are not reproduced.",
+      "contradiction_detected": false,
+      "requires_human_review": true,
+      "review_reason": "Confirm all required BA01/BA02 fields on the complete form."
+    },
+    {
+      "requirement_id": "REQ-0064",
+      "requirement": "No security requirement applies to this procurement or project. SC01 and the Industrial Security Services website are referenced, but the operative SC01 text states that there is no security requirement.",
+      "category": "security",
+      "extraction_status": "NOT_REQUIRED",
+      "candidate_ids": [
+        "CAND-0143",
+        "CAND-0144",
+        "CAND-0145",
+        "CAND-0146"
+      ],
+      "active_candidate_ids": [
+        "CAND-0143",
+        "CAND-0144",
+        "CAND-0145",
+        "CAND-0146"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "IMPORTANT NOTICE TO BIDDERS",
+          "text": "THIS DOCUMENT CONTAINS NO SECURITY REQUIREMENT"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SC01 SECURITY REQUIREMENT FOR CANADIAN CONTRACTORS",
+          "text": "This project contains no security requirement."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI10 WEB SITES",
+          "text": "PWGSC, Industrial Security Services Http://ssi-iss.tpsgc-pwgsc.gc.ca/index-eng.html"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SC01 Security Access Requirements for Canadian Contractors",
+          "text": "SC01 Security  Access Requirements for Canadian Contractors"
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0143",
+          "right_candidate_id": "CAND-0144",
+          "relationship": "SAME_REQUIREMENT",
+          "reason": "Both expressly state that no security requirement applies."
+        },
+        {
+          "left_candidate_id": "CAND-0144",
+          "right_candidate_id": "CAND-0145",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The generic security website is related context but does not impose a requirement."
+        },
+        {
+          "left_candidate_id": "CAND-0144",
+          "right_candidate_id": "CAND-0146",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The SC01 heading reference points to the clause containing the no-security statement."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": true,
+      "ambiguity_reason": "Generic security references could be mistaken for applicable requirements, although the operative text says none apply.",
+      "contradiction_detected": false,
+      "requires_human_review": true,
+      "review_reason": "Confirm that the generic website and heading do not introduce requirements beyond the express no-security clauses."
+    },
+    {
+      "requirement_id": "REQ-0065",
+      "requirement": "Complete BA08 by providing the typed or printed name and title of the person authorized to sign for the Bidder, that person's signature, and the date.",
+      "category": "signatures",
+      "extraction_status": "FOUND",
+      "candidate_ids": [
+        "CAND-0147",
+        "CAND-0148",
+        "CAND-0150"
+      ],
+      "active_candidate_ids": [
+        "CAND-0147",
+        "CAND-0148",
+        "CAND-0150"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "BA08 SIGNATURE",
+          "text": "Name and title of person authorized to sign on behalf of Bidder (Type or print)\nSignature Date"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "BA08 Signature",
+          "text": "BA08 Signature"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "Issuing Office - Bureau de distribution",
+          "text": "Name and title of person authorized to sign on behalf of Vendor/Firm (type or print)\nNom et titre de la personne autorisée à signer au nom du fournisseur/ de l'entrepreneur (taper ou écrire en caractères d'imprimerie)\nSignature Date"
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0147",
+          "right_candidate_id": "CAND-0148",
+          "relationship": "SAME_REQUIREMENT",
+          "reason": "BA08 is the signature requirement detailed by CAND-0147."
+        },
+        {
+          "left_candidate_id": "CAND-0147",
+          "right_candidate_id": "CAND-0150",
+          "relationship": "SAME_REQUIREMENT",
+          "reason": "Both identify the authorized signer's name, title, signature, and date fields."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0066",
+      "requirement": "The Contract Page forms part of the contract documents when signed by Canada.",
+      "category": "signatures",
+      "extraction_status": "FOUND",
+      "candidate_ids": [
+        "CAND-0149"
+      ],
+      "active_candidate_ids": [
+        "CAND-0149"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "CONTRACT DOCUMENTS (CD), item 2(a)",
+          "text": "(a) Contract Page when signed by Canada;"
+        }
+      ],
+      "relationships": [],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0067",
+      "requirement": "No site visit is required or scheduled for this project.",
+      "category": "site_meeting",
+      "extraction_status": "NOT_REQUIRED",
+      "candidate_ids": [
+        "CAND-0151",
+        "CAND-0152"
+      ],
+      "active_candidate_ids": [
+        "CAND-0151",
+        "CAND-0152"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI03 SITE VISIT",
+          "text": "There will be no site visit for this project."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI03 Site Visit",
+          "text": "SI03 Site Visit"
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0151",
+          "right_candidate_id": "CAND-0152",
+          "relationship": "SAME_REQUIREMENT",
+          "reason": "The operative SI03 text resolves the heading-only reference by stating there is no site visit."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0068",
+      "requirement": "Submit bid enquiries and related solicitation communications in writing, as early as possible, only to the Contracting Officer named on the Invitation to Tender, identified as Denis Leporé. Except for alternative-material requests under GI16, enquiries should be received no later than seven calendar days before closing; later enquiries may not be answered, and misdirected communications may render the bid non-responsive.",
+      "category": "submission",
+      "extraction_status": "FOUND",
+      "candidate_ids": [
+        "CAND-0153",
+        "CAND-0161",
+        "CAND-0169",
+        "CAND-0170",
+        "CAND-0171"
+      ],
+      "active_candidate_ids": [
+        "CAND-0153",
+        "CAND-0161",
+        "CAND-0169",
+        "CAND-0170",
+        "CAND-0171"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI02 ENQUIRIES DURING THE SOLICITATION PERIOD, paragraph 3",
+          "text": "All enquiries and other communications related to this bid sent throughout the solicitation period are to be directed ONLY to the Contracting Officer named on the Invitation to Tender - Page 1. Failure to comply with this requirement may result in the bid being declared non-responsive ."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI02 ENQUIRIES DURING THE SOLICITATION PERIOD, paragraph 1",
+          "text": "Enquiries regarding this bid must be submitted in writing to the Contracting Officer named on the Invitation to Tender - Page 1 as early as possible within the solicitation period."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "Issuing Office - Bureau de distribution",
+          "text": "Address Enquiries to: - Adresser toutes questions à:\nLeporé, Denis"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI02 ENQUIRIES DURING THE SOLICITATION PERIOD, paragraph 1",
+          "text": "Except for the approval of alternative materials as described in GI16 of R2710T 'General Instructions to Bidders', enquiries should be received no later than seven (7) calendar days prior to the date set for solicitation closing to allow sufficient time to provide a response. Enquiries received after that time may not result in an answer being provided."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI02 Enquiries During the Solicitation Period",
+          "text": "SI02 Enquiries During the Solicitation Period"
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0161",
+          "right_candidate_id": "CAND-0153",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The latter adds the exclusive-contact and non-responsiveness condition."
+        },
+        {
+          "left_candidate_id": "CAND-0161",
+          "right_candidate_id": "CAND-0169",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The contact field identifies Denis Leporé."
+        },
+        {
+          "left_candidate_id": "CAND-0161",
+          "right_candidate_id": "CAND-0170",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The latter supplies the recommended seven-day timing and exception."
+        },
+        {
+          "left_candidate_id": "CAND-0171",
+          "right_candidate_id": "CAND-0161",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The operative SI02 text states the written-enquiry procedure."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0069",
+      "requirement": "Revise bids only in accordance with GI11 and SI04. Revisions may be sent by letter or facsimile to (514) 496-3822 and must be received before the solicitation closing date and time.",
+      "category": "submission",
+      "extraction_status": "FOUND",
+      "candidate_ids": [
+        "CAND-0154",
+        "CAND-0155",
+        "CAND-0159",
+        "CAND-0165",
+        "CAND-0172"
+      ],
+      "active_candidate_ids": [
+        "CAND-0154",
+        "CAND-0155",
+        "CAND-0159",
+        "CAND-0165",
+        "CAND-0172"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI04 REVISION OF BID",
+          "text": "A bid may be revised by letter or facsimile in accordance with GI11 of R2710T 'General Instructions to Bidders'. The facsimile number for receipt of revisions is (514) 496-3822."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI04 REVISION OF BID",
+          "text": "A bid may be revised by letter or facsimile in accordance with GI11 of R2710T 'General Instructions to Bidders'."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "GI11 Revision of Bid",
+          "text": "GI11 Revision of Bid"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "Contract documents – amendments and bid revisions",
+          "text": "(e) Any amendment issued or any allowable bid revision received before the date and time set for solicitation closing;"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI04 Revision of Bid",
+          "text": "SI04 Revision of Bid"
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0154",
+          "right_candidate_id": "CAND-0155",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The operative revision method invokes GI11's detailed requirements."
+        },
+        {
+          "left_candidate_id": "CAND-0154",
+          "right_candidate_id": "CAND-0165",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The latter supplies the pre-closing receipt deadline."
+        },
+        {
+          "left_candidate_id": "CAND-0154",
+          "right_candidate_id": "CAND-0172",
+          "relationship": "SAME_REQUIREMENT",
+          "reason": "SI04 is the provision detailed by CAND-0154."
+        },
+        {
+          "left_candidate_id": "CAND-0155",
+          "right_candidate_id": "CAND-0159",
+          "relationship": "SAME_REQUIREMENT",
+          "reason": "Both require compliance with GI11 for revisions."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0070",
+      "requirement": "Comply with the bid-submission requirements in GI10.",
+      "category": "submission",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0157"
+      ],
+      "active_candidate_ids": [
+        "CAND-0157"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "GI10 Submission of Bid",
+          "text": "GI10 Submission of Bid"
+        }
+      ],
+      "relationships": [],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0071",
+      "requirement": "Comply with the bid-completion requirements in GI02.",
+      "category": "submission",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0158"
+      ],
+      "active_candidate_ids": [
+        "CAND-0158"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "GI02 Completion of Bid",
+          "text": "GI02 Completion of Bid"
+        }
+      ],
+      "relationships": [],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0072",
+      "requirement": "Submit the bid to the designated PWGSC bid-receiving office at Place Bonaventure, southeast portal, 800 de La Gauchetière Street West, 7th floor, Montréal, Quebec H5A 1L6, by 2:00 PM EDT on June 19, 2012. The package contains incompatible statements concerning facsimile submission: SI09 says bids sent by facsimile or email are not accepted, while the return-address block lists (514) 496-3822 as a fax number for bids.",
+      "category": "submission",
+      "extraction_status": "FOUND",
+      "candidate_ids": [
+        "CAND-0160",
+        "CAND-0164",
+        "CAND-0166",
+        "CAND-0173",
+        "CAND-0183"
+      ],
+      "active_candidate_ids": [
+        "CAND-0160",
+        "CAND-0164",
+        "CAND-0166",
+        "CAND-0173",
+        "CAND-0183"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI09 TRANSMISSION OF THE BID BY FACSIMILE OR EMAIL",
+          "text": "Bids transmitted by facsimile or email are not accepted."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "RETOURNER LES SOUMISSIONS À:",
+          "text": "RETOURNER LES SOUMISSIONS À: Travaux publics et Services gouvernementaux Canada Place Bonaventure, portail Sud-Est 800, rue de La Gauchetière Ouest 7 ième étage Montréal Québec H5A 1L6 FAX pour soumissions: (514) 496-3822"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI05 BID RESULTS",
+          "text": "A public bid opening will be held in the office designated on the Front Page 'Invitation to Tender' for the receipt of bids shortly after the time set for solicitation closing."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI09 Transmission of the Bid by Facsimile or Email",
+          "text": "SI09 Transmission of the Bid by Facsimile or Email"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "Issuing Office - Bureau de distribution",
+          "text": "Solicitation Closes - L'invitation prend fin Time Zone\nat - à\n02:00 PM\n2012-06-19 on - le\n... Fuseau horaire Heure Avancée de l'Est HAE"
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0160",
+          "right_candidate_id": "CAND-0164",
+          "relationship": "CONTRADICTS",
+          "reason": "SI09 prohibits facsimile bids, but the return block expressly labels (514) 496-3822 as a fax number for bids."
+        },
+        {
+          "left_candidate_id": "CAND-0160",
+          "right_candidate_id": "CAND-0173",
+          "relationship": "SAME_REQUIREMENT",
+          "reason": "The operative SI09 text resolves the section reference as prohibiting fax and email bids."
+        },
+        {
+          "left_candidate_id": "CAND-0164",
+          "right_candidate_id": "CAND-0166",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The return block supplies the bid-receiving office referenced by the bid-opening provision."
+        },
+        {
+          "left_candidate_id": "CAND-0166",
+          "right_candidate_id": "CAND-0183",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The closing-date field supplies the deadline referenced by the receiving-office provision."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": true,
+      "ambiguity_reason": "The accepted submission method is unresolved because the package both prohibits facsimile bids and identifies a fax number for bids.",
+      "contradiction_detected": true,
+      "contradiction_reason": "SI09 states that facsimile and email bids are not accepted, whereas the return-address section explicitly provides a fax number for bids.",
+      "requires_human_review": true,
+      "review_reason": "Obtain authoritative clarification of permitted bid-submission methods; do not infer that the fax number overrides SI09."
+    },
+    {
+      "requirement_id": "REQ-0073",
+      "requirement": "Review the Contracts Canada/Buy and Sell website for any solicitation or submission information applicable to this procurement.",
+      "category": "submission",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0168"
+      ],
+      "active_candidate_ids": [
+        "CAND-0168"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI10 WEB SITES",
+          "text": "Contracts Canada (Buy and Sell) https://www.achatsetventes-buyandsell.gc.ca/eng/welcome"
+        }
+      ],
+      "relationships": [],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": true,
+      "ambiguity_reason": "The website reference does not identify a specific operative requirement.",
+      "contradiction_detected": false,
+      "requires_human_review": true,
+      "review_reason": "Determine whether the cited website contains solicitation-specific instructions."
+    },
+    {
+      "requirement_id": "REQ-0074",
+      "requirement": "If Canada proposes a bid-validity extension in writing, each Bidder may accept or reject it, but acceptance must be in writing. If not all bidders accept, Canada may continue evaluating only accepting bids or cancel the invitation.",
+      "category": "submission",
+      "extraction_status": "FOUND",
+      "candidate_ids": [
+        "CAND-0174",
+        "CAND-0187"
+      ],
+      "active_candidate_ids": [
+        "CAND-0174",
+        "CAND-0187"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI07 BID VALIDITY PERIOD, paragraph 3(a)",
+          "text": "If the extension referred to in paragraph 1) of SI07 is not accepted in writing by all those who submitted bids then Canada shall, at its sole discretion, either (a) continue to evaluate the bids of those who have accepted the proposed extension and seek the necessary approvals; or (b) cancel the invitation to tender."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI07 BID VALIDITY PERIOD, paragraphs 1–2",
+          "text": "Upon notification in writing from Canada, Bidders shall have the option to either accept or reject the proposed extension. If the extension referred to in paragraph 1) of SI07 is accepted, in writing, by all those who submitted bids"
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0187",
+          "right_candidate_id": "CAND-0174",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The latter states the consequence when unanimous written acceptance is not obtained."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0075",
+      "requirement": "The bid must remain valid and must not be withdrawn for 30 days after the solicitation closing date, as prescribed by BA04 and referenced in SI07.",
+      "category": "submission",
+      "extraction_status": "FOUND",
+      "candidate_ids": [
+        "CAND-0175",
+        "CAND-0176",
+        "CAND-0181",
+        "CAND-0182"
+      ],
+      "active_candidate_ids": [
+        "CAND-0175",
+        "CAND-0176",
+        "CAND-0181",
+        "CAND-0182"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI07 Bid Validity Period",
+          "text": "SI07 Bid Validity Period"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "BA04 Bid Validity Period",
+          "text": "BA04 Bid Validity  Period"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "BA04 BID VALIDITY PERIOD",
+          "text": "The bid shall not be withdrawn for a period of 30 days following the date of solicitation closing."
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI07 BID VALIDITY PERIOD, paragraph 1",
+          "text": "Canada reserves the right to seek an extension to the bid validity period prescribed in BA04 of the Bid and Acceptance Form."
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0181",
+          "right_candidate_id": "CAND-0175",
+          "relationship": "SAME_REQUIREMENT",
+          "reason": "The operative BA04 text resolves the SI07 heading reference."
+        },
+        {
+          "left_candidate_id": "CAND-0181",
+          "right_candidate_id": "CAND-0176",
+          "relationship": "SAME_REQUIREMENT",
+          "reason": "The operative BA04 text supplies the duration omitted from the heading."
+        },
+        {
+          "left_candidate_id": "CAND-0181",
+          "right_candidate_id": "CAND-0182",
+          "relationship": "SUPPLEMENTS",
+          "reason": "SI07 confirms that BA04 prescribes the validity period."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0076",
+      "requirement": "Complete the Delivery Offered field with the bidder's offered delivery terms or schedule, if required by the form.",
+      "category": "submission",
+      "extraction_status": "FOUND",
+      "candidate_ids": [
+        "CAND-0180"
+      ],
+      "active_candidate_ids": [
+        "CAND-0180"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "Issuing Office - Bureau de distribution",
+          "text": "Delivery Required - Livraison exigée Delivery Offered - Livraison proposée"
+        }
+      ],
+      "relationships": [],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": true,
+      "ambiguity_reason": "The field is shown, but no express completion instruction or required content is supplied.",
+      "contradiction_detected": false,
+      "requires_human_review": true,
+      "review_reason": "Confirm whether and how the Delivery Offered field must be completed."
+    },
+    {
+      "requirement_id": "REQ-0077",
+      "requirement": "Comply with GC3, Execution and Control of the Work, R2830D dated 2010-01-11.",
+      "category": "technical",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0188",
+        "CAND-0200"
+      ],
+      "active_candidate_ids": [
+        "CAND-0188",
+        "CAND-0200"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "CONTRACT DOCUMENTS (CD), item 5(d)",
+          "text": "GC3 | Execution and Control of the Work | R2830D | (2010-01-11);"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 2, rows 1-11",
+          "text": "GC3 | Execution and Control of the Work | R2830D | (2010-01-11);"
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0188",
+          "right_candidate_id": "CAND-0200",
+          "relationship": "SAME_REQUIREMENT",
+          "reason": "Both identify the same GC3/R2830D clause."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0078",
+      "requirement": "Comply with GC4, Protective Measures, R2840D dated 2008-05-12.",
+      "category": "technical",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0189",
+        "CAND-0216"
+      ],
+      "active_candidate_ids": [
+        "CAND-0189",
+        "CAND-0216"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "CONTRACT DOCUMENTS (CD), item 5(d)",
+          "text": "GC4 | Protective Measures | R2840D | (2008-05-12);"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 2, rows 1-11",
+          "text": "GC4 | Protective Measures | R2840D | (2008-05-12);"
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0189",
+          "right_candidate_id": "CAND-0216",
+          "relationship": "SAME_REQUIREMENT",
+          "reason": "Both identify the same GC4/R2840D clause."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0079",
+      "requirement": "If proposing alternative materials, obtain approval in accordance with GI16 of R2710T.",
+      "category": "technical",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0190",
+        "CAND-0197"
+      ],
+      "active_candidate_ids": [
+        "CAND-0190",
+        "CAND-0197"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "GI16 Approval of Alternative Materials",
+          "text": "GI16 Approval of Alternative Materials"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI02 ENQUIRIES DURING THE SOLICITATION PERIOD, paragraph 1",
+          "text": "Except for the approval of alternative materials as described in GI16 of R2710T 'General Instructions to Bidders'"
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0190",
+          "right_candidate_id": "CAND-0197",
+          "relationship": "SAME_REQUIREMENT",
+          "reason": "Both refer to GI16 approval requirements for alternative materials."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0080",
+      "requirement": "Comply with the construction-document requirements in SI08.",
+      "category": "technical",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0198"
+      ],
+      "active_candidate_ids": [
+        "CAND-0198"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "SI08 Construction Documents",
+          "text": "SI08 Construction Documents"
+        }
+      ],
+      "relationships": [],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": true,
+      "ambiguity_reason": "The heading does not state the documents or duties covered by SI08.",
+      "contradiction_detected": false,
+      "requires_human_review": true,
+      "review_reason": "Review SI08 in full."
+    },
+    {
+      "requirement_id": "REQ-0081",
+      "requirement": "The construction destination is the Laval penitentiary complex, training-centre sector, Laval, Quebec; destination code EF997 is associated with the Laval paving project.",
+      "category": "technical",
+      "extraction_status": "FOUND",
+      "candidate_ids": [
+        "CAND-0199",
+        "CAND-0236"
+      ],
+      "active_candidate_ids": [
+        "CAND-0199",
+        "CAND-0236"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 1, rows 1-10",
+          "text": "\"Delivery Req. Livraison Req.\"; \"Dest. Code Dest. publics et gouvernementaux Canada\" ... \"EF997\"; \"Laval - Pavage\""
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "Issuing Office - Bureau de distribution",
+          "text": "Destination - of Goods, Services, and Construction: Destination - des biens, services et construction:\nTPSGC - SCC\nComplexe pénitencier de Laval Secteur du centre de formation Laval (Québec)"
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0199",
+          "right_candidate_id": "CAND-0236",
+          "relationship": "SUPPLEMENTS",
+          "reason": "The complete destination text clarifies the abbreviated destination code and Laval project reference."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0082",
+      "requirement": "The Contractor must perform and complete the Work within seven weeks from notification of acceptance of the offer.",
+      "category": "technical",
+      "extraction_status": "FOUND",
+      "candidate_ids": [
+        "CAND-0217",
+        "CAND-0234"
+      ],
+      "active_candidate_ids": [
+        "CAND-0217",
+        "CAND-0234"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "BA06 Construction Time",
+          "text": "BA06 Construction Time"
+        },
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "BA06 CONSTRUCTION TIME",
+          "text": "The Contractor shall perform and complete the Work within seven (7) weeks from the date of notification of acceptance of the offer."
+        }
+      ],
+      "relationships": [
+        {
+          "left_candidate_id": "CAND-0217",
+          "right_candidate_id": "CAND-0234",
+          "relationship": "SAME_REQUIREMENT",
+          "reason": "The operative BA06 text supplies the seven-week construction period omitted from the heading."
+        }
+      ],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    },
+    {
+      "requirement_id": "REQ-0083",
+      "requirement": "The identified construction service concerns pavement rehabilitation at Complexe Laval – Collège du personnel.",
+      "category": "technical",
+      "extraction_status": "FOUND",
+      "candidate_ids": [
+        "CAND-0218"
+      ],
+      "active_candidate_ids": [
+        "CAND-0218"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 1, rows 1-10",
+          "text": "\"Description Public Works and Government Services Canada\" ... \"Laval - Pavage\" | \"Demande de service de\" | \"construction Réfection du pavage\" | \"Complexe Laval - Collège du personnel\""
+        }
+      ],
+      "relationships": [],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": true,
+      "ambiguity_reason": "The extract identifies the project generally but does not itself define the complete technical scope.",
+      "contradiction_detected": false,
+      "requires_human_review": true,
+      "review_reason": "Use the drawings, specifications, and priced items to determine the complete scope."
+    },
+    {
+      "requirement_id": "REQ-0084",
+      "requirement": "Review the line item shown with unit of issue LOT and quantity 1000 and determine the corresponding delivery obligation.",
+      "category": "technical",
+      "extraction_status": "FOUND",
+      "candidate_ids": [
+        "CAND-0219"
+      ],
+      "active_candidate_ids": [
+        "CAND-0219"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "tender.PDF — Table 1, rows 1-10",
+          "text": "\"N° U. of I. U. de D.\" ... \"LOT\"; \"Qty Qté\" ... \"1000\""
+        }
+      ],
+      "relationships": [],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": true,
+      "ambiguity_reason": "The extract does not establish what the quantity 1000 measures or requires.",
+      "contradiction_detected": false,
+      "requires_human_review": true,
+      "review_reason": "Inspect the complete source table to resolve the unit and quantity."
+    },
+    {
+      "requirement_id": "REQ-0085",
+      "requirement": "Comply with the Drawings and Specifications incorporated as contract documents.",
+      "category": "technical",
+      "extraction_status": "EXTERNAL_REFERENCE",
+      "candidate_ids": [
+        "CAND-0235"
+      ],
+      "active_candidate_ids": [
+        "CAND-0235"
+      ],
+      "superseded_candidate_ids": [],
+      "evidence": [
+        {
+          "document_id": "DOC-001A95E0020F",
+          "document_name": "tender.PDF",
+          "section": "CONTRACT DOCUMENTS (CD), item 4(c)",
+          "text": "(c) Drawings and Specifications;"
+        }
+      ],
+      "relationships": [],
+      "external_references": [],
+      "amendment_detected": false,
+      "version_status": "UNCHANGED",
+      "is_active": true,
+      "ambiguity_detected": false,
+      "contradiction_detected": false,
+      "requires_human_review": false
+    }
+  ]
+}

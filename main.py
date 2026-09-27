@@ -15,7 +15,7 @@ import operator
 load_dotenv()
 
 llm = ChatOpenAI(
-    model="gpt-5.6-luna"
+    model="gpt-5-mini"
 )
 
 

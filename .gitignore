@@ -8,3 +8,17 @@ wheels/
 
 # Virtual environments
 .venv
+
+# Local demo configuration, generated artifacts, and test caches
+.env
+.env.*
+!.env.dashboard.example
+!dashboard/.env.example
+.uv-cache/
+.test-tmp/
+.pytest_cache/
+.ruff_cache/
+dashboard/node_modules/
+dashboard/.next/
+dashboard/playwright-report/
+dashboard/test-results/

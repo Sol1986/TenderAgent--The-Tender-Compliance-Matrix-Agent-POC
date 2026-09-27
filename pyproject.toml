@@ -5,6 +5,10 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "fastapi>=0.141.1",
+    "uvicorn>=0.53.0",
+    "pandas>=3.0.5",
+    "tabulate>=0.10.0",
     "docling>=2.128.0",
     "gradio>=6.27.0",
     "langchain-openai>=1.6.2",
@@ -15,3 +19,21 @@ dependencies = [
     "pypdf>=6.19.0",
     "python-dotenv>=1.2.3",
 ]
+
+[dependency-groups]
+dev = ["pytest>=8.0", "ruff>=0.12", "httpx>=0.28"]
+notebook = ["ipykernel>=7.3.0", "ipython>=9.17.1", "nest-asyncio2>=1.7.2"]
+
+[tool.uv]
+default-groups = ["dev", "notebook"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+markers = [
+    "real_parser: opt-in Docling conversion with deterministic model substitutes",
+    "live_provider: opt-in real parser and paid model execution",
+]
+
+[tool.ruff]
+extend-exclude = [".uv-cache", ".test-tmp"]

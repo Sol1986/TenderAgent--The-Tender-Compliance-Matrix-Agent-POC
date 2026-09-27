@@ -1,0 +1,33 @@
+import { expect, test } from "@playwright/test";
+test("sample tender through live review", async ({ page, request }) => {
+  test.skip(process.env.DEMO_TEST_LIVE_PROVIDER !== "1", "Opt in to real parser and paid model execution.");
+  const posts: string[] = [];
+  page.on("request", req => { if (req.method() === "POST" && req.url().endsWith("/api/runs")) posts.push(req.url()); });
+  await page.goto("/");
+  await page.getByRole("button", { name: "Analyze Tender", exact: true }).click();
+  await expect(page).toHaveURL(/run=/);
+  const runId = new URL(page.url()).searchParams.get("run");
+  await expect(page.getByRole("button", { name: "Analysis in progress" })).toBeDisabled();
+  await expect(page.locator(".timeline-item")).not.toHaveCount(0);
+  await page.getByRole("link", { name: "Worker activity", exact: true }).click();
+  await expect(page.locator(".run-meta")).toContainText("Run");
+  await page.reload();
+  await expect(page.locator(".run-meta")).toContainText("Run");
+  await expect(page.getByRole("button", { name: "Analyze again" })).toBeEnabled({ timeout: 540000 });
+  const response = await request.get(`${process.env.DEMO_API_URL || "http://127.0.0.1:8000"}/api/runs/${runId}`);
+  expect(response.ok()).toBeTruthy();
+  const snapshot = await response.json();
+  expect(snapshot.status).toBe("completed");
+  await expect(page.getByRole("tab", { name: "Decision Support", exact: true })).toHaveAttribute("aria-selected", "true");
+  await expect(page.locator(".executive-report")).toContainText(snapshot.output.decision_support_report.executive_summary);
+  await page.getByRole("tab", { name: "Tender Analysis", exact: true }).click();
+  const panel = page.getByRole("tabpanel");
+  await panel.getByText("Source & evidence", { exact: true }).first().click();
+  await expect(panel.getByText("Extracted evidence", { exact: true }).first()).toBeVisible();
+  await page.getByRole("tab", { name: "Compliance Matrix", exact: true }).click();
+  await expect(page.getByRole("table")).toBeVisible();
+  const total = snapshot.output.tender_analysis.categories.reduce((sum: number, category: {requirements: unknown[]}) => sum + category.requirements.length, 0);
+  await expect(page.getByRole("table").getByRole("row")).toHaveCount(total + 1);
+  expect(posts).toHaveLength(1);
+});
+

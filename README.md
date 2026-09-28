@@ -1,4 +1,4 @@
-# AI Bid Decision Agent
+# Compliance Matrix AI Agent
 
 This agent analyzes a complete solicitation package and produces one reconciled
 compliance report. Extraction is deliberately recall-first: uncertain but

@@ -5,7 +5,7 @@ from types import SimpleNamespace
 
 from pypdf import PdfReader
 
-from backend import demo_upload
+from backend import demo_upload_UI_frontend
 
 
 def test_upload_batch_runs_once_and_returns_isolated_artifacts(
@@ -16,8 +16,8 @@ def test_upload_batch_runs_once_and_returns_isolated_artifacts(
     second = tmp_path / "annex.PDF"
     first.write_bytes(b"%PDF-1.7\nmain")
     second.write_bytes(b"%PDF-1.7\nannex")
-    monkeypatch.setattr(demo_upload, "RUNS_ROOT", tmp_path / "runs")
-    monkeypatch.setattr(demo_upload, "ChatOpenAI", lambda model: model)
+    monkeypatch.setattr(demo_upload_UI_frontend, "RUNS_ROOT", tmp_path / "runs")
+    monkeypatch.setattr(demo_upload_UI_frontend, "ChatOpenAI", lambda model: model)
     monkeypatch.setenv("OPENAI_MODEL", "demo-model")
     monkeypatch.setenv("OPENAI_API_KEY", "test-key")
     calls: list[dict] = []
@@ -46,10 +46,10 @@ def test_upload_batch_runs_once_and_returns_isolated_artifacts(
         )
 
     monkeypatch.setattr(
-        demo_upload, "run_compliance_solicitation_package", fake_pipeline
+        demo_upload_UI_frontend, "run_compliance_solicitation_package", fake_pipeline
     )
     status, excel, json_report, pdf, data, overview, matrix, refs = (
-        demo_upload.analyze_uploads([str(first), str(second)])
+        demo_upload_UI_frontend.analyze_uploads([str(first), str(second)])
     )
 
     assert len(calls) == 1

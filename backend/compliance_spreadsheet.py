@@ -14,7 +14,7 @@ from openpyxl.styles import Alignment, Font, PatternFill
 from openpyxl.worksheet.worksheet import Worksheet
 
 if TYPE_CHECKING:
-    from main import ComplianceReport, RequirementItem, UnresolvedIssue
+    from backend.main import ComplianceReport, RequirementItem, UnresolvedIssue
 
 HEADER_FILL = PatternFill("solid", fgColor="1F4E78")
 HEADER_FONT = Font(color="FFFFFF", bold=True)

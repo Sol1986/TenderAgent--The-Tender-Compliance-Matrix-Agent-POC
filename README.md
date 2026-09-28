@@ -9,6 +9,49 @@ references, preserve contradictions, and flag unresolved items for human review.
 The JSON report is the authoritative output. The Excel workbook is a concise,
 traceable view of that validated report for proposal teams.
 
+## Project layout
+
+The agent and its entry points live in `backend/`. The dashboard frontend and
+its FastAPI adapter live together in `dashboard/`:
+
+| Folder | Contents |
+| --- | --- |
+| `backend/` | Agent, compliance modules, command-line and upload entry points |
+| `dashboard/` | Next.js frontend and `api/` FastAPI adapter |
+| `evaluation/` | Evaluators, LangSmith inspection tools, cost report, and `fixtures/` data |
+| `scripts/` | Table export example |
+| `notebooks/` | Original exploratory `agent.ipynb` notebook |
+| `docs/` | Dashboard guide, project notes, original prompt, and images |
+| `docs/plans/` | Dashboard and upgrade plans |
+| `tender_package/` | Input solicitation PDFs |
+| `outputs/` | Generated reports and upload-demo runs |
+| `tables/` | Existing extracted table artifacts |
+| `tests/` | Unit and integration tests |
+| `skills/` | Project-specific agent instructions |
+
+Keep `AGENTS.md`, `old_plan.md`, dependency files, and environment configuration at
+the root. Older planning documents retain historical file names; use this layout
+for current locations. The original prompt is now [docs/prompt.md](docs/prompt.md).
+
+Run evaluation scripts from the project root so their relative fixture paths remain
+valid, for example:
+
+```powershell
+uv run python evaluation/evaluate_requirements.py
+uv run python evaluation/evaluate_precision.py
+```
+
+These evaluation commands use the configured model provider. The LangSmith
+inspection scripts and their run/dataset settings are also in `evaluation/`.
+`scripts/export_tables.py` remains an example with an external sample PDF path
+that must be configured before use.
+
+When using `notebooks/agent.ipynb`, set the notebook working directory to the
+project root. Its original `tender.pdf` / `tender.PDF` references still need to
+point to an available PDF; current package PDFs live in `tender_package/`.
+The notebook's `tender.md` reference is relative to the project root and may
+create that file when its conversion cell runs.
+
 ## Architecture
 
 ```mermaid
@@ -72,13 +115,13 @@ deterministic filename order. It does not scan subfolders.
 Run the complete pipeline:
 
 ```powershell
-uv run python run_package.py
+uv run python -m backend.run_package
 ```
 
 Optional paths and concurrency controls are available:
 
 ```powershell
-uv run python run_package.py --package "C:\path\to\package" --json-output "outputs\compliance_report.json" --xlsx-output "outputs\compliance_matrix.xlsx" --document-workers 4 --graph-concurrency 4
+uv run python -m backend.run_package --package "C:\path\to\package" --json-output "outputs\compliance_report.json" --xlsx-output "outputs\compliance_matrix.xlsx" --document-workers 4 --graph-concurrency 4
 ```
 
 The default output files are:
@@ -96,7 +139,7 @@ requirements, and the absolute artifact paths.
 For a client demonstration, launch the simple browser interface:
 
 ```powershell
-uv run demo_upload.py
+uv run python -m backend.demo_upload
 ```
 
 Upload one or more PDFs from the same solicitation package, then select
@@ -216,7 +259,7 @@ The package integration suite verifies:
 - contradictory requirement timing across separate PDFs.
 
 The existing single-document dashboard can still be run using
-`DASHBOARD_DEMO.md`. Its process-local run history is separate from the package
+[docs/DASHBOARD_DEMO.md](docs/DASHBOARD_DEMO.md). Its process-local run history is separate from the package
 CLI and is lost when the server restarts.
 
 ## Project results and business case

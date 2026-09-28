@@ -5,7 +5,7 @@ from types import SimpleNamespace
 
 from pypdf import PdfReader
 
-import demo_upload
+from backend import demo_upload
 
 
 def test_upload_batch_runs_once_and_returns_isolated_artifacts(

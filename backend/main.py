@@ -20,7 +20,7 @@ from langgraph.types import Send
 from langsmith import traceable
 from pydantic import BaseModel, ConfigDict, Field
 
-from solicitation_package import (
+from backend.solicitation_package import (
     InputDocument,
     SolicitationDocument,
     attach_document_identity,
@@ -29,7 +29,7 @@ from solicitation_package import (
     stable_document_id,
 )
 
-PROJECT_ROOT = Path(__file__).resolve().parent
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_TENDER_PACKAGE_PATH = PROJECT_ROOT / "tender_package"
 DEFAULT_OUTPUT_DIRECTORY = PROJECT_ROOT / "outputs"
 DEFAULT_COMPLIANCE_REPORT_PATH = DEFAULT_OUTPUT_DIRECTORY / "compliance_report.json"
@@ -3116,7 +3116,7 @@ def export_compliance_matrix_workbook(
 ) -> Path:
     """Validate the authoritative report and create its user-facing workbook."""
     validate_compliance_report(report)
-    from compliance_spreadsheet import export_compliance_workbook
+    from backend.compliance_spreadsheet import export_compliance_workbook
 
     return export_compliance_workbook(report, output_path)
 

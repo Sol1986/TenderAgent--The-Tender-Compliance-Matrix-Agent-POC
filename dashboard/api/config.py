@@ -6,13 +6,13 @@ from pathlib import Path
 from dotenv import load_dotenv
 from pydantic import BaseModel, Field, field_validator
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 
 
 class Settings(BaseModel):
     """Bound this sample demonstration's work and in-memory retention."""
 
-    sample_path: Path = ROOT / "tender.PDF"
+    sample_path: Path = ROOT / "tender_package" / "tender.PDF"
     model: str = "gpt-5.6-luna"
     cors_origins: list[str] = ["http://localhost:3000"]
     retention_seconds: int = Field(default=3600, ge=1)

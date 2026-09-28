@@ -8,9 +8,9 @@ from typing import Any
 import pytest
 from fastapi.testclient import TestClient
 
-from demo_api.app import create_app
-from demo_api.config import Settings
-from main import run_single_document_analysis
+from backend.main import run_single_document_analysis
+from dashboard.api.app import create_app
+from dashboard.api.config import Settings
 
 
 def await_terminal(client: TestClient, run_id: str) -> dict[str, Any]:

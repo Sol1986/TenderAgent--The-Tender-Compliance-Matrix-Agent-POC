@@ -11,12 +11,12 @@ load_dotenv(override=True)
 # Load data
 # --------------------------------------------------
 
-with Path("eval_fixtures/gold_requirements.json").open(
+with Path("evaluation/fixtures/gold_requirements.json").open(
     encoding="utf-8"
 ) as f:
     gold_data = json.load(f)
 
-with Path("eval_fixtures/output_3_requirements.json").open(
+with Path("evaluation/fixtures/output_3_requirements.json").open(
     encoding="utf-8"
 ) as f:
     prediction_data = json.load(f)
@@ -326,7 +326,7 @@ evaluation = {
 
 
 output_path = Path(
-    "eval_fixtures/output_3_precision_evaluation.json"
+    "evaluation/fixtures/output_3_precision_evaluation.json"
 )
 
 with output_path.open(

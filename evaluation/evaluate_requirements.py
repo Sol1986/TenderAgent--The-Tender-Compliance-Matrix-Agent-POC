@@ -11,12 +11,12 @@ load_dotenv(override=True)
 # Load data
 # --------------------------------------------------
 
-with Path("eval_fixtures/gold_requirements.json").open(
+with Path("evaluation/fixtures/gold_requirements.json").open(
     encoding="utf-8"
 ) as f:
     gold = json.load(f)["requirements"]
 
-with Path("eval_fixtures/output_3_requirements.json").open(
+with Path("evaluation/fixtures/output_3_requirements.json").open(
     encoding="utf-8"
 ) as f:
     predictions = json.load(f)["requirements"]
@@ -176,7 +176,7 @@ evaluation = {
     "matches": [m.model_dump() for m in result.matches],
 }
 
-output_path = Path("eval_fixtures/output_3_evaluation.json")
+output_path = Path("evaluation/fixtures/output_3_evaluation.json")
 
 with output_path.open("w", encoding="utf-8") as f:
     json.dump(

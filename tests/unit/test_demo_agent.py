@@ -1,6 +1,5 @@
 """Regression coverage for the active import-safe agent and demo adapter."""
 
-import hashlib
 import subprocess
 import sys
 from pathlib import Path
@@ -9,7 +8,7 @@ from typing import Any
 import pytest
 from langchain_core.documents import Document
 
-from main import (
+from backend.main import (
     InputDocument,
     Requirement,
     SolicitationDocument,
@@ -53,13 +52,13 @@ def table_input(table_data: str = "Minimum two certified personnel.") -> dict[st
 def test_import_does_not_parse_or_construct_provider() -> None:
     """Importing without credentials must not write artifacts or configure a model."""
     path = Path("tender.md")
-    before = hashlib.sha256(path.read_bytes()).hexdigest()
+    before = path.read_bytes() if path.is_file() else None
     result = subprocess.run(
         [
             sys.executable,
             "-c",
             (
-                "import os; os.environ.pop('OPENAI_API_KEY', None); import main; "
+                "import os; os.environ.pop('OPENAI_API_KEY', None); from backend import main; "
                 "assert main.extractor is None; assert main.reducer_llm is None"
             ),
         ],
@@ -68,7 +67,7 @@ def test_import_does_not_parse_or_construct_provider() -> None:
         check=False,
     )
     assert result.returncode == 0, result.stderr
-    assert hashlib.sha256(path.read_bytes()).hexdigest() == before
+    assert (path.read_bytes() if path.is_file() else None) == before
 
 
 @pytest.mark.parametrize("worker", ["chunk", "table"])

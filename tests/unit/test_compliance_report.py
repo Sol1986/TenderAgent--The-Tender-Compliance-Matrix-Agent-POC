@@ -8,8 +8,8 @@ import pytest
 from openpyxl import load_workbook
 from pydantic import ValidationError
 
-import main
-from main import (
+from backend import main
+from backend.main import (
     DEFAULT_COMPLIANCE_MATRIX_PATH,
     DEFAULT_COMPLIANCE_REPORT_PATH,
     ComplianceReportDraft,
@@ -26,7 +26,7 @@ from main import (
     project_compliance_matrix,
     save_compliance_report,
 )
-from solicitation_package import SolicitationDocument
+from backend.solicitation_package import SolicitationDocument
 
 
 class ReportModel:

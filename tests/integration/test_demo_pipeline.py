@@ -6,7 +6,7 @@ from typing import Any
 
 import pytest
 
-from main import run_single_document_analysis, validate_analysis
+from backend.main import run_single_document_analysis, validate_analysis
 
 
 @pytest.mark.real_parser
@@ -22,7 +22,9 @@ def test_real_sample_parser_to_graph(fake_model: Any) -> None:
         """Collect runtime boundaries to verify the map/reduce join."""
         events.append((kind, fields))
 
-    result = run_single_document_analysis(Path("tender.PDF"), fake_model, observe)
+    result = run_single_document_analysis(
+        Path("tender_package/tender.PDF"), fake_model, observe
+    )
     prepared = next(fields for kind, fields in events if kind == "inputs.prepared")
     assert prepared["data"]["text_chunks"] > 0
     assert prepared["data"]["tables"] > 0
@@ -53,7 +55,7 @@ def test_live_sample_outputs() -> None:
     """Run an explicitly requested live-provider rehearsal without synthetic output."""
     from langchain_openai import ChatOpenAI
 
-    from demo_api.config import Settings
+    from dashboard.api.config import Settings
 
     settings = Settings.from_env()
     model = ChatOpenAI(

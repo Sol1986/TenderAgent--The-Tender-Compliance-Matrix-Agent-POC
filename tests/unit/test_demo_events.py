@@ -2,10 +2,10 @@
 
 import asyncio
 
-from demo_api.config import Settings
-from demo_api.events import stream_events
-from demo_api.models import ErrorInfo
-from demo_api.store import RunStore
+from dashboard.api.config import Settings
+from dashboard.api.events import stream_events
+from dashboard.api.models import ErrorInfo
+from dashboard.api.store import RunStore
 
 
 def test_heartbeat_then_terminal_closes() -> None:

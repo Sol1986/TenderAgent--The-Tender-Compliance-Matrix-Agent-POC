@@ -7,7 +7,7 @@ from typing import Any
 
 from pydantic import ValidationError
 
-from main import run_single_document_analysis
+from backend.main import run_single_document_analysis
 
 from .config import Settings
 from .models import ErrorInfo, RunSnapshot

@@ -36,7 +36,7 @@ print("\nFirst gold requirement:")
 print(gold_requirements[0])
 
 # Save locally
-output_path = Path("eval_fixtures/gold_requirements.json")
+output_path = Path("evaluation/fixtures/gold_requirements.json")
 output_path.parent.mkdir(exist_ok=True)
 
 with output_path.open("w", encoding="utf-8") as f:

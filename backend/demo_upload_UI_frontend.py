@@ -13,7 +13,7 @@ import gradio as gr
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 
-from compliance_review import (
+from backend.compliance_review import (
     REVIEW_CSS,
     STAGES,
     build_review_data,
@@ -23,9 +23,9 @@ from compliance_review import (
     render_overview,
     render_references,
 )
-from main import run_compliance_solicitation_package
+from backend.main import run_compliance_solicitation_package
 
-PROJECT_ROOT = Path(__file__).resolve().parent
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
 RUNS_ROOT = PROJECT_ROOT / "outputs" / "demo_runs"
 logger = logging.getLogger(__name__)
 

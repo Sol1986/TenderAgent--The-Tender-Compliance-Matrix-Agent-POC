@@ -10,7 +10,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 
-from main import (
+from backend.main import (
     DEFAULT_COMPLIANCE_MATRIX_PATH,
     DEFAULT_COMPLIANCE_REPORT_PATH,
     DEFAULT_TENDER_PACKAGE_PATH,
@@ -66,7 +66,7 @@ def build_parser() -> argparse.ArgumentParser:
 
 def main(argv: Sequence[str] | None = None) -> int:
     """Load local configuration, run the package, and print artifact locations."""
-    load_dotenv(Path(__file__).resolve().parent / ".env", override=False)
+    load_dotenv(Path(__file__).resolve().parents[1] / ".env", override=False)
     parser = build_parser()
     args = parser.parse_args(argv)
     model_name = args.model or os.getenv("OPENAI_MODEL")

@@ -2,7 +2,7 @@
 
 from langsmith.run_helpers import is_traceable_function
 
-from main import (
+from backend.main import (
     build_compliance_report,
     discover_package_documents,
     export_compliance_matrix_workbook,

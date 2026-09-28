@@ -22,7 +22,7 @@ print(requirements[0])
 
 
 
-output_path = Path("eval_fixtures/output_3_requirements.json")
+output_path = Path("evaluation/fixtures/output_3_requirements.json")
 output_path.parent.mkdir(exist_ok=True)
 
 with output_path.open("w", encoding="utf-8") as f:

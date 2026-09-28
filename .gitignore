@@ -19,9 +19,15 @@ wheels/
 .test-tmp/
 .pytest_cache/
 .ruff_cache/
+.python-version
 dashboard/node_modules/
 dashboard/.next/
 dashboard/playwright-report/
 dashboard/test-results/
 outputs/
 tender_package/*.pdf
+tables/
+tender_package/
+
+notebooks/
+docs/

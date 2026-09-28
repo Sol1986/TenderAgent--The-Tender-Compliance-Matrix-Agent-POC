@@ -9,7 +9,7 @@
 # - Install Docling and `pandas`.
 #
 # How to run
-# - From the repo root: `python docs/examples/export_tables.py`.
+# - From the project root: `uv run python scripts/export_tables.py`.
 # - Outputs are written to `scratch/`.
 #
 # Input document
@@ -42,7 +42,7 @@ CI_PAGE_RANGE = (3, 4)
 def main():
     logging.basicConfig(level=logging.INFO)
 
-    data_folder = Path(__file__).parent / "../../tests/data"
+    data_folder = Path(__file__).resolve().parents[1] / "../../tests/data"
     input_doc_path = data_folder / "pdf/sources/2206.01062.pdf"
     output_dir = Path("scratch")
 

@@ -9,13 +9,13 @@ from typing import Any
 
 import pandas as pd
 
-from main import (
+from backend.main import (
     ChunkFindings,
     Requirement,
     prepare_document,
     run_solicitation_package,
 )
-from solicitation_package import discover_solicitation_documents
+from backend.solicitation_package import discover_solicitation_documents
 
 
 class FakeTable:
@@ -87,7 +87,7 @@ def test_import_is_free_of_parsing_and_provider_configuration() -> None:
             sys.executable,
             "-c",
             (
-                "import os; os.environ.pop('OPENAI_API_KEY', None); import main; "
+                "import os; os.environ.pop('OPENAI_API_KEY', None); from backend import main; "
                 "assert main.extractor is None"
             ),
         ],

@@ -5,9 +5,9 @@ from typing import Any
 
 import pytest
 
-from demo_api.config import Settings
-from demo_api.errors import DemoError
-from demo_api.store import RunStore
+from dashboard.api.config import Settings
+from dashboard.api.errors import DemoError
+from dashboard.api.store import RunStore
 
 
 def test_admission_idempotency_and_retention(outputs: dict[str, Any]) -> None:
@@ -78,7 +78,7 @@ def test_concurrent_updates_are_ordered_and_counted_once(
 
 def test_replay_cursor_and_partial_result(outputs: dict[str, Any]) -> None:
     """Retain validated consolidation if the final report fails."""
-    from demo_api.models import ErrorInfo
+    from dashboard.api.models import ErrorInfo
 
     store = RunStore(Settings())
     run_id = store.create("one")[0].run_id

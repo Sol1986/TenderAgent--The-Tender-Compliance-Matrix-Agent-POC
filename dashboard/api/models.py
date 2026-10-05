@@ -4,17 +4,14 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from backend.main import DecisionSupportReport, TenderAnalysis
-
 RunStatus = Literal["queued", "running", "completed", "failed"]
 TaskStatus = Literal["pending", "running", "completed", "failed", "skipped"]
 Stage = Literal[
-    "parse_document",
-    "prepare_inputs",
-    "analyze_chunk",
-    "analyze_table",
-    "reduce_findings",
-    "generate_report",
+    "extract",
+    "reconcile",
+    "resolve",
+    "classify",
+    "export",
 ]
 STAGES = list(Stage.__args__)
 EventType = Literal[
@@ -66,22 +63,18 @@ class TaskSnapshot(BaseModel):
 
 
 class Metrics(BaseModel):
-    """Raw extraction counts are separate from final consolidated requirements."""
+    """Observed document and requirement counts for the live presentation."""
 
-    total_chunks: int | None = None
-    text_chunks: int | None = None
-    tables: int | None = None
-    filtered_chunks: int | None = None
+    documents_total: int | None = None
     completed_workers: int = 0
     raw_findings: int = 0
     final_requirements: int | None = None
 
 
 class RunOutput(BaseModel):
-    """Preserve a valid analysis if subsequent report generation fails."""
+    """The sole client-facing deliverable is the Excel workbook."""
 
-    tender_analysis: TenderAnalysis | None = None
-    decision_support_report: DecisionSupportReport | None = None
+    excel_url: str | None = None
 
 
 class RunSnapshot(BaseModel):

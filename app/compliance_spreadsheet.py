@@ -18,22 +18,23 @@ if TYPE_CHECKING:
 
 HEADER_FILL = PatternFill("solid", fgColor="1F4E78")
 HEADER_FONT = Font(color="FFFFFF", bold=True)
-REVIEW_FILL = PatternFill("solid", fgColor="FFF2CC")
-DISQUALIFYING_FILL = PatternFill("solid", fgColor="F4CCCC")
-REVIEW_AND_DISQUALIFYING_FILL = PatternFill("solid", fgColor="F4B183")
+MATRIX_HEADER_FILL = PatternFill("solid", fgColor="D9D9D9")
 
 MATRIX_HEADERS = (
     "Item",
-    "Requirement",
-    "Category",
+    "Requirement (from RFP)",
+    "Sec.",
     "M/R",
-    "Section",
-    "Page",
-    "Source Document",
-    "Required At",
-    "Severity",
-    "Human Review",
-    "Issue",
+    "Resp.",
+    "Status",
+    "Pg",
+    "Comments",
+)
+MATRIX_HEADER_ROW = 4
+MATRIX_FIRST_DATA_ROW = 5
+INTERNAL_RECONCILIATION_NOTE = (
+    "Automated package reconciliation failed validation, so this candidate "
+    "set was retained conservatively for human review."
 )
 
 DETAIL_HEADERS = (
@@ -124,19 +125,100 @@ def active_requirements(report: ComplianceReport) -> list[RequirementItem]:
     ]
 
 
+def matrix_requirements(report: ComplianceReport) -> list[RequirementItem]:
+    """Only actionable obligations can truthfully receive M/R labels."""
+    return [
+        item
+        for item in active_requirements(report)
+        if item.requirement.requirement_type != "INFORMATIONAL"
+        and item.requirement.extraction_status != "NOT_REQUIRED"
+    ]
+
+
+def client_issue_text(value: str | None) -> str:
+    """Hide internal reconciliation fallback wording in client-facing cells."""
+    return (value or "").replace(INTERNAL_RECONCILIATION_NOTE, "").strip(" ;")
+
+
 def issue_text(
     requirement: RequirementItem,
     linked_issues: Sequence[UnresolvedIssue],
 ) -> str:
-    """Build a concise, source-derived issue label for the primary matrix."""
+    """Keep actionable issues in Comments without internal fallback boilerplate."""
     return unique_text(
-        [
+        client_issue_text(value)
+        for value in [
             requirement.analysis.ambiguity_reason,
             requirement.analysis.contradiction_reason,
-            *(issue.title for issue in linked_issues),
+            *(
+                issue.title
+                for issue in linked_issues
+                if issue.description != INTERNAL_RECONCILIATION_NOTE
+            ),
             requirement.analysis.review_reason,
         ]
+        if value
     )
+
+
+def matrix_source(item: RequirementItem) -> tuple[str, int | None, list[str]]:
+    """Prefer evidence with both source coordinates; flag any missing location."""
+    primary = max(
+        item.sources.evidence,
+        key=lambda evidence: (
+            bool(evidence.section and evidence.page),
+            bool(evidence.page),
+        ),
+    )
+    section = primary.section or item.requirement.section or ""
+    if section.lower().startswith("section "):
+        section = section[8:]
+    page = primary.page or item.requirement.page
+    missing = []
+    if not section:
+        missing.append("Source section not identified")
+    if page is None:
+        missing.append("Source page not identified")
+    return section, page, missing
+
+
+def write_matrix_sheet(worksheet: Worksheet, report: ComplianceReport) -> None:
+    """Match Kestrel's eight-column, fourth-row-header client template."""
+    title_parts = [
+        part for part in (report.solicitation_number, report.solicitation_title) if part
+    ]
+    worksheet["A1"] = "COMPLIANCE MATRIX" + (
+        " - " + " - ".join(title_parts) if title_parts else ""
+    )
+    worksheet["A1"].font = Font(bold=True, size=14)
+    worksheet["A2"] = "Resp. and Status to be completed by the bid team."
+    worksheet["A2"].font = Font(italic=True)
+    for index, header in enumerate(MATRIX_HEADERS, 1):
+        cell = worksheet.cell(MATRIX_HEADER_ROW, index, header)
+        cell.fill = MATRIX_HEADER_FILL
+        cell.font = Font(bold=True)
+        cell.alignment = Alignment(vertical="top", wrap_text=True)
+
+    for row in matrix_rows(report):
+        worksheet.append([safe_excel_value(value) for value in row])
+
+    for column, width in {
+        "A": 7,
+        "B": 58,
+        "C": 28,
+        "D": 14,
+        "E": 9,
+        "F": 14,
+        "G": 8,
+        "H": 45,
+    }.items():
+        worksheet.column_dimensions[column].width = width
+    for row in worksheet.iter_rows(min_row=MATRIX_FIRST_DATA_ROW):
+        for index, cell in enumerate(row, 1):
+            cell.alignment = Alignment(vertical="top", wrap_text=index in {2, 3, 8})
+    worksheet.freeze_panes = "A5"
+    worksheet.auto_filter.ref = f"A4:H{max(MATRIX_HEADER_ROW, worksheet.max_row)}"
+    worksheet.sheet_view.showGridLines = False
 
 
 def write_sheet(
@@ -172,28 +254,31 @@ def write_sheet(
 
 
 def matrix_rows(report: ComplianceReport) -> list[tuple[Any, ...]]:
-    """Create one concise row per active reconciled requirement."""
+    """Create one Kestrel-format row per active actionable requirement."""
     issues_by_requirement: dict[str, list[UnresolvedIssue]] = {}
     for issue in report.unresolved_issues:
         for requirement_id in issue.affected_requirement_ids:
             issues_by_requirement.setdefault(requirement_id, []).append(issue)
 
     rows: list[tuple[Any, ...]] = []
-    for item_number, item in enumerate(active_requirements(report), 1):
-        primary = item.sources.evidence[0]
+    for item_number, item in enumerate(matrix_requirements(report), 1):
+        section, page, source_warnings = matrix_source(item)
+        comments = [issue_text(item, issues_by_requirement.get(item.item_id, []))]
+        if item.requirement.requirement_type == "CONDITIONAL":
+            comments.append("Conditional requirement; confirm applicability.")
+        comments.extend(source_warnings)
         rows.append(
             (
                 item_number,
                 item.requirement.text,
-                display_enum(item.requirement.category),
-                display_enum(item.requirement.requirement_type),
-                primary.section or "",
-                primary.page,
-                primary.document_name,
-                display_enum(item.requirement.required_at),
-                display_enum(item.requirement.compliance_severity),
-                "Yes" if item.analysis.requires_human_review else "No",
-                issue_text(item, issues_by_requirement.get(item.item_id, [])),
+                section,
+                "Mandatory"
+                if item.requirement.requirement_type == "MANDATORY"
+                else "Required",
+                "",
+                "",
+                page,
+                unique_text(comments),
             )
         )
     return rows
@@ -231,10 +316,10 @@ def detail_rows(report: ComplianceReport) -> list[tuple[Any, ...]]:
                     "Yes" if item.analysis.amendment_detected else "No",
                     item.analysis.amendment_details or "",
                     "Yes" if item.analysis.ambiguity_detected else "No",
-                    item.analysis.ambiguity_reason or "",
+                    client_issue_text(item.analysis.ambiguity_reason),
                     "Yes" if item.analysis.contradiction_detected else "No",
                     item.analysis.contradiction_reason or "",
-                    item.analysis.review_reason or "",
+                    client_issue_text(item.analysis.review_reason),
                 )
             )
     return rows
@@ -261,6 +346,8 @@ def issue_rows(report: ComplianceReport) -> list[tuple[Any, ...]]:
     }
     rows: list[tuple[Any, ...]] = []
     for issue in report.unresolved_issues:
+        if issue.description == INTERNAL_RECONCILIATION_NOTE:
+            continue
         requirement_ids = issue.affected_requirement_ids or [""]
         source = documents.get(issue.source_document_id or "")
         for requirement_id in requirement_ids:
@@ -270,7 +357,7 @@ def issue_rows(report: ComplianceReport) -> list[tuple[Any, ...]]:
                     requirement_id,
                     display_enum(issue.issue_type),
                     display_enum(issue.severity),
-                    issue.description,
+                    client_issue_text(issue.description),
                     source.filename if source is not None else "",
                     issue.source_section or "",
                     issue.source_page,
@@ -288,7 +375,7 @@ def issue_rows(report: ComplianceReport) -> list[tuple[Any, ...]]:
                 item.item_id,
                 "Unclear Timing",
                 display_enum(item.requirement.compliance_severity),
-                item.analysis.review_reason
+                client_issue_text(item.analysis.review_reason)
                 or "The package does not clearly establish the compliance timing.",
                 primary.document_name,
                 primary.section or "",
@@ -322,23 +409,6 @@ def document_rows(report: ComplianceReport) -> list[tuple[Any, ...]]:
     ]
 
 
-def apply_matrix_highlights(worksheet: Worksheet) -> None:
-    """Use restrained row fills for human-review and disqualifying requirements."""
-    for row in worksheet.iter_rows(min_row=2, max_col=len(MATRIX_HEADERS)):
-        severity = row[8].value
-        human_review = row[9].value
-        if severity == "Disqualifying" and human_review == "Yes":
-            fill = REVIEW_AND_DISQUALIFYING_FILL
-        elif severity == "Disqualifying":
-            fill = DISQUALIFYING_FILL
-        elif human_review == "Yes":
-            fill = REVIEW_FILL
-        else:
-            continue
-        for cell in row:
-            cell.fill = fill
-
-
 def verify_workbook(path: Path) -> None:
     """Reopen the file and verify sheets, filters, frozen rows, and formula safety."""
     expected_sheets = [
@@ -352,7 +422,11 @@ def verify_workbook(path: Path) -> None:
         if workbook.sheetnames != expected_sheets:
             raise ValueError("Compliance workbook sheet structure is invalid")
         for worksheet in workbook.worksheets:
-            if worksheet.freeze_panes != "A2" or not worksheet.auto_filter.ref:
+            expected_freeze = "A5" if worksheet.title == "Compliance Matrix" else "A2"
+            if (
+                worksheet.freeze_panes != expected_freeze
+                or not worksheet.auto_filter.ref
+            ):
                 raise ValueError(
                     f"Worksheet formatting is incomplete: {worksheet.title}"
                 )
@@ -380,26 +454,7 @@ def export_compliance_workbook(
     issues = workbook.create_sheet("Issues - Human Review")
     documents = workbook.create_sheet("Document Register")
 
-    write_sheet(
-        matrix,
-        MATRIX_HEADERS,
-        matrix_rows(report),
-        {
-            "A": 8,
-            "B": 55,
-            "C": 22,
-            "D": 16,
-            "E": 18,
-            "F": 8,
-            "G": 30,
-            "H": 20,
-            "I": 16,
-            "J": 15,
-            "K": 45,
-        },
-        {2, 11},
-    )
-    apply_matrix_highlights(matrix)
+    write_matrix_sheet(matrix, report)
     write_sheet(
         details,
         DETAIL_HEADERS,

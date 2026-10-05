@@ -2,12 +2,11 @@
 
 from dataclasses import dataclass, field
 from datetime import UTC, datetime
+from pathlib import Path
 from threading import RLock
 from time import monotonic
 from typing import Any
 from uuid import uuid4
-
-from backend.main import DecisionSupportReport, TenderAnalysis, validate_analysis
 
 from .config import Settings
 from .errors import DemoError
@@ -29,6 +28,7 @@ class Record:
     start: float | None = None
     finished: float | None = None
     task_starts: dict[str, float] = field(default_factory=dict)
+    workbook_path: Path | None = None
 
 
 class RunStore:
@@ -125,10 +125,8 @@ class RunStore:
             if key
             in {
                 "findings_count",
-                "total_chunks",
-                "text_chunks",
-                "tables",
-                "filtered_chunks",
+                "documents_total",
+                "requirements_count",
                 "code",
             }
         }
@@ -174,14 +172,6 @@ class RunStore:
                     if worker_id
                     else stage
                 )
-                if worker_id and kind == "worker.started" and stage.status == "pending":
-                    self._start_task(record, stage)
-                    self._append(
-                        record,
-                        "stage.started",
-                        stage=stage.stage,
-                        summary=f"{stage.label}: started.",
-                    )
                 if kind.endswith("started"):
                     self._start_task(record, task)
                 else:
@@ -192,25 +182,11 @@ class RunStore:
                     task.findings_count = fields["data"]["findings_count"]
                     snap.metrics.completed_workers += 1
                     snap.metrics.raw_findings += task.findings_count
-                if output := fields.get("output"):
-                    self._save_output(record, output)
+                if kind == "stage.completed" and fields.get("stage") == "classify":
+                    snap.metrics.final_requirements = fields.get("data", {}).get(
+                        "requirements_count"
+                    )
                 self._append(record, kind, **fields)
-                if worker_id:
-                    siblings = [
-                        item for item in snap.workers if item.stage == stage.stage
-                    ]
-                    if all(item.status == "completed" for item in siblings):
-                        stage.status, stage.finished_at = "completed", utc_now()
-                        stage.duration_ms = int(
-                            (monotonic() - record.task_starts[stage.id]) * 1000
-                        )
-                        self._append(
-                            record,
-                            "stage.completed",
-                            stage=stage.stage,
-                            duration_ms=stage.duration_ms,
-                            summary=f"{stage.label}: completed.",
-                        )
                 return
             self._append(record, kind, **fields)
 
@@ -219,20 +195,22 @@ class RunStore:
         task.status, task.started_at = "running", utc_now()
         record.task_starts[task.id] = monotonic()
 
-    def _save_output(self, record: Record, output: dict[str, Any]) -> None:
-        """Validate intermediate results before retaining them for failure recovery."""
-        if "final_analysis" in output:
-            analysis = validate_analysis(
-                TenderAnalysis.model_validate(output["final_analysis"])
-            )
-            record.snapshot.output.tender_analysis = analysis
-            record.snapshot.metrics.final_requirements = sum(
-                len(c.requirements) for c in analysis.categories
-            )
-        if "decision_report" in output:
-            record.snapshot.output.decision_support_report = (
-                DecisionSupportReport.model_validate(output["decision_report"])
-            )
+    def download_path(self, run_id: str) -> Path:
+        """Expose only the workbook produced for this completed run."""
+        with self.lock:
+            record = self._get(run_id)
+            path = record.workbook_path
+            if (
+                record.snapshot.status != "completed"
+                or path is None
+                or not path.is_file()
+            ):
+                raise DemoError(
+                    "WORKBOOK_UNAVAILABLE",
+                    "The Excel matrix is not ready for download.",
+                    404,
+                )
+            return path
 
     def finish(
         self,
@@ -247,12 +225,19 @@ class RunStore:
             if snap.status in {"completed", "failed"}:
                 return
             if error is None:
-                self._save_output(record, output or {})
-                if (
-                    not snap.output.tender_analysis
-                    or not snap.output.decision_support_report
-                ):
-                    raise ValueError("The graph did not return both outputs.")
+                path = Path((output or {}).get("workbook_path", "")).resolve()
+                expected = (
+                    self.settings.output_root / run_id / "compliance_matrix.xlsx"
+                ).resolve()
+                if path != expected or not path.is_file():
+                    raise ValueError(
+                        "The run did not create its Excel compliance matrix."
+                    )
+                record.workbook_path = path
+                snap.output.excel_url = f"/api/runs/{run_id}/compliance-matrix.xlsx"
+                snap.metrics.final_requirements = (output or {}).get(
+                    "requirements_count"
+                )
             snap.error = error
             snap.status = "failed" if error else "completed"
             record.finished = monotonic()
@@ -275,7 +260,7 @@ class RunStore:
                 duration_ms=snap.duration_ms,
                 summary=error.message
                 if error
-                else "Tender analysis and decision-support report are ready.",
+                else "Excel compliance matrix is ready to download.",
                 data={"code": error.code} if error else {},
             )
             self.active = None

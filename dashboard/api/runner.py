@@ -7,7 +7,8 @@ from typing import Any
 
 from pydantic import ValidationError
 
-from backend.main import run_single_document_analysis
+from backend.compliance_spreadsheet import matrix_requirements
+from backend.main import run_compliance_solicitation_package
 
 from .config import Settings
 from .models import ErrorInfo, RunSnapshot
@@ -26,6 +27,7 @@ class RunExecutor:
         self.settings, self.store = settings, store
         self.pipeline = pipeline or self._live_pipeline
         self.pool = ThreadPoolExecutor(max_workers=1, thread_name_prefix="tender-demo")
+        self._current_run_id: str | None = None
 
     def _live_pipeline(self, observe: Callable[..., None]) -> dict[str, Any]:
         """Construct the provider only inside an accepted run."""
@@ -36,14 +38,23 @@ class RunExecutor:
             timeout=self.settings.llm_timeout_seconds,
             max_retries=self.settings.llm_max_retries,
         )
-        return run_single_document_analysis(
-            self.settings.sample_path,
-            model,
-            observe,
-            max_concurrency=self.settings.graph_concurrency,
-            max_workers=self.settings.max_workers,
-            max_input_characters=self.settings.max_input_characters,
+        run_id = self._current_run_id
+        if run_id is None:
+            raise RuntimeError("A run ID is required for workbook isolation.")
+        run_directory = self.settings.output_root / run_id
+        report = run_compliance_solicitation_package(
+            model=model,
+            package_path=self.settings.sample_path,
+            output_path=run_directory / "compliance_report.json",
+            spreadsheet_output_path=run_directory / "compliance_matrix.xlsx",
+            max_document_workers=self.settings.graph_concurrency,
+            graph_max_concurrency=self.settings.graph_concurrency,
+            observe=observe,
         )
+        return {
+            "workbook_path": str(run_directory / "compliance_matrix.xlsx"),
+            "requirements_count": len(matrix_requirements(report)),
+        }
 
     def start(self, key: str) -> RunSnapshot:
         """Reserve capacity atomically, then schedule once without waiting."""
@@ -70,6 +81,7 @@ class RunExecutor:
 
         observe("run.started", summary="Tender run started.")
         try:
+            self._current_run_id = run_id
             output = self.pipeline(observe)
             self.store.finish(run_id, output=output)
         except Exception as exc:  # noqa: BLE001 -- centralized worker failure boundary
@@ -77,18 +89,15 @@ class RunExecutor:
             active = next(
                 (stage.id for stage in stages if stage.status == "running"), None
             )
-            if active in {
-                "parse_document",
-                "prepare_inputs",
-            }:
-                code, message = (
-                    "DOCUMENT_PROCESSING_FAILED",
-                    "The sample could not be fully prepared. Check the parser and sample document.",
-                )
-            elif isinstance(exc, OpenAIError):
+            if isinstance(exc, OpenAIError):
                 code, message = (
                     "PROVIDER_FAILED",
                     "The model provider could not complete the run. Check server-side model access and configuration.",
+                )
+            elif active == "extract":
+                code, message = (
+                    "DOCUMENT_PROCESSING_FAILED",
+                    "The sample package could not be fully prepared. Check the parser and source PDFs.",
                 )
             elif isinstance(exc, (ValidationError, ValueError)):
                 code, message = (
@@ -104,6 +113,8 @@ class RunExecutor:
                 "run=%s code=%s failure_type=%s", run_id, code, type(exc).__name__
             )
             self.store.finish(run_id, error=ErrorInfo(code=code, message=message))
+        finally:
+            self._current_run_id = None
 
     def close(self) -> None:
         """Wait for in-flight work; browser disconnect is not cancellation."""

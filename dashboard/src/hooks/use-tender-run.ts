@@ -30,7 +30,6 @@ export function useTenderRun() {
   const startLock = useRef(false);
   const mounted = useRef(false);
   const startController = useRef<AbortController | null>(null);
-  const freshRun = useRef<string | null>(null);
 
   useEffect(() => {
     mounted.current = true;
@@ -90,8 +89,9 @@ export function useTenderRun() {
       try {
         const snapshot = await refresh();
         if (!snapshot || controller.signal.aborted || terminal) return;
-        source = new EventSource(eventUrl(runId!, freshRun.current === runId ? 0 : snapshot.last_event_id));
-        freshRun.current = null;
+        // Replay this run's small event history so a refreshed client demo
+        // still shows the steps already completed. The reducer deduplicates IDs.
+        source = new EventSource(eventUrl(runId!, 0));
         source.onopen = () => { if (!controller.signal.aborted && !terminal) { setConnection("live"); setProblem(null); } };
         for (const kind of eventTypes) {
           source.addEventListener(kind, (message: MessageEvent) => {
@@ -102,7 +102,7 @@ export function useTenderRun() {
             dispatch({ type: "event", event: parsed.data });
             const finished = kind === "run.completed" || kind === "run.failed";
             if (finished) { terminal = true; source?.close(); setConnection("connected"); }
-            if (finished || (kind === "stage.completed" && ["prepare_inputs", "reduce_findings"].includes(parsed.data.stage || ""))) {
+            if (finished || kind === "worker.completed" || kind === "worker.failed") {
               void refresh().catch(error => { if (!controller.signal.aborted) setProblem(error as ApiError); });
             }
           });
@@ -155,7 +155,6 @@ export function useTenderRun() {
       const accepted = await startRun(attempt.inputId, attempt.key, controller.signal);
       if (!mounted.current || controller.signal.aborted) return;
       rememberPending(null); setPending(null);
-      freshRun.current = accepted.run_id;
       dispatch({ type: "reset" }); setRunId(accepted.run_id); setConnection("checking");
       const url = new URL(window.location.href); url.searchParams.set("run", accepted.run_id);
       window.history.replaceState({}, "", url);

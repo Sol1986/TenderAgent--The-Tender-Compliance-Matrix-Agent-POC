@@ -71,8 +71,10 @@ def test_import_does_not_parse_or_construct_provider() -> None:
 
 
 @pytest.mark.parametrize("worker", ["chunk", "table"])
-def test_workers_receive_recall_policy(fake_model: Any, worker: str) -> None:
-    """Check the real prompts for the deliberate recall-first extraction policy."""
+def test_workers_receive_client_scope_and_recall_policy(
+    fake_model: Any, worker: str
+) -> None:
+    """Give both workers a focused scope with room for supported positives."""
     evidence = "Award subject to clearance; minimum two certified personnel."
     configure_model(fake_model)
     if worker == "chunk":
@@ -94,10 +96,16 @@ def test_workers_receive_recall_policy(fake_model: Any, worker: str) -> None:
     schema, prompt = fake_model.calls[-1]
     assert schema == "ChunkFindings"
     assert evidence in prompt
-    assert "extract it as a candidate rather than omit it" in prompt
-    assert "NOT keyword matching" in prompt
+    assert "professional authorization, licenses" in prompt
+    assert "company experience, comparable projects" in prompt
+    assert "any other source-supported bidder qualification" in prompt
+    assert "Do not turn routine contract administration" in prompt
+    if worker == "table":
+        assert "do not emit each price line" in prompt
+    assert "extract it as a candidate" in prompt
+    assert "not keyword matching" in prompt
     assert "verbatim supporting evidence" in prompt
-    assert 'prefix requirement with "Review needed:"' in prompt
+    assert '"Review needed:"' in prompt
 
 
 def test_reconciliation_and_report_keep_review_boundary(
@@ -117,7 +125,8 @@ def test_reconciliation_and_report_keep_review_boundary(
     assert finding.evidence in prompt and finding.source_section in prompt
     assert "Merge only true duplicates" in prompt
     assert "a later date alone" in prompt
-    assert "Uncertainty alone never justifies omission" in prompt
+    assert "Uncertainty within scope" in prompt
+    assert "Exclude out-of-scope" in prompt
     assert "Do not promote an uncertain candidate" in prompt
 
     generate_report({"final_analysis": outputs["final_analysis"]})

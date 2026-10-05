@@ -1,13 +1,34 @@
 # Compliance Matrix AI Agent
 
 This agent analyzes a complete solicitation package and produces one reconciled
-compliance report. Extraction is deliberately recall-first: uncertain but
-source-supported obligations remain candidates. Later stages merge duplicates,
+compliance report. Extraction favors recall within the client's bid-readiness
+scope: uncertain but source-supported checks remain candidates. Later stages merge duplicates,
 connect supporting clauses, apply explicit amendments, match incorporated
 references, preserve contradictions, and flag unresolved items for human review.
 
 The JSON report is the authoritative output. The Excel workbook is a concise,
 traceable view of that validated report for proposal teams.
+
+## Client matrix scope
+
+The matrix is for bidder eligibility, responsive submission, and specified
+capability or coverage prerequisites. It looks for professional authorization,
+certifications and quality systems; insurance and bonding; deadlines, submission
+method, validity, signatures, and declarations; personnel qualifications,
+clearances, language capability, and resumes; project experience; and required
+proposal formats, forms, plans, disclosures, and relevant bid instructions.
+These are kinds of checks, not fixed wording, amounts, or an 18-row target.
+
+The agent should also retain a plausible new check with the same bid-readiness
+purpose when the tender supports it, marking uncertain applicability for human
+review. Routine payment terms, change-order clauses, generic performance duties,
+reference lists, and individual unit-price rows are outside the matrix unless
+they impose a distinct check within this scope. A referenced document is attached
+to the applicable check; its mere listing is not a separate requirement.
+
+Model output still requires evidence review. The saved reports and measured
+extraction metrics below were produced before this scope change; they do not
+verify the new policy's recall or row count.
 
 ## Project layout
 
@@ -29,9 +50,9 @@ its FastAPI adapter live together in `dashboard/`:
 | `tests/` | Unit and integration tests |
 | `skills/` | Project-specific agent instructions |
 
-Keep `AGENTS.md`, `old_plan.md`, dependency files, and environment configuration at
-the root. Older planning documents retain historical file names; use this layout
-for current locations. The original prompt is now [docs/prompt.md](docs/prompt.md).
+Keep `AGENTS.md`, dependency files, and environment configuration at the root.
+Older planning documents retain historical file names; use this layout for
+current locations. The original prompt is now [docs/prompt.md](docs/prompt.md).
 
 Run evaluation scripts from the project root so their relative fixture paths remain
 valid, for example:
@@ -228,7 +249,14 @@ complete validated schema.
 
 The Excel workbook contains four worksheets:
 
-1. **Compliance Matrix** — one row per active final reconciled requirement.
+1. **Compliance Matrix** — Kestrel's eight-column layout: Item, Requirement
+   (from RFP), Sec., M/R, Resp., Status, Pg, and Comments. It includes active
+   actionable obligations; Resp. and Status are left blank for the bid team.
+   M/R is always Mandatory or Required. Conditional duties appear as Required
+   with an applicability note in Comments. Source issues and missing section or
+   page coordinates are also shown in Comments rather than guessed. New runs
+   recover page numbers from table provenance or a unique PDF evidence match;
+   any page that cannot be verified remains blank and is flagged in Comments.
 2. **Requirement Details** — repeated evidence rows using stable requirement IDs.
 3. **Issues - Human Review** — unresolved or material issues. Excel worksheet
    names cannot contain `/`, so this is the workbook-safe form of
@@ -236,9 +264,9 @@ The Excel workbook contains four worksheets:
 4. **Document Register** — every PDF, its inferred type, status, and requirement
    count.
 
-Rows requiring human review and disqualifying requirements use restrained,
-distinct fills. Text fields wrap, headers are frozen and filterable, and source
-text is neutralized before writing so it cannot become an Excel formula.
+The client matrix follows Kestrel's simple grey-header format. Text fields
+wrap, headers are frozen and filterable, and source text is neutralized before
+writing so it cannot become an Excel formula.
 
 ## Validation
 
@@ -258,9 +286,10 @@ The package integration suite verifies:
 - two missing referenced documents that remain visible for review; and
 - contradictory requirement timing across separate PDFs.
 
-The existing single-document dashboard can still be run using
-[docs/DASHBOARD_DEMO.md](docs/DASHBOARD_DEMO.md). Its process-local run history is separate from the package
-CLI and is lost when the server restarts.
+The [live dashboard](docs/DASHBOARD_DEMO.md) runs the sample solicitation
+package, shows observed processing stages and document activity, and offers the
+Excel compliance matrix for download after completion. Its process-local run
+history is separate from the package CLI and is lost when the server restarts.
 
 ## Project results and business case
 

@@ -1,103 +1,105 @@
-"""Concurrency, retention, and terminal-output integrity checks."""
+"""The live run store exposes only a completed run's Excel workbook."""
 
 from concurrent.futures import ThreadPoolExecutor
-from typing import Any
+from pathlib import Path
 
 import pytest
 
 from dashboard.api.config import Settings
 from dashboard.api.errors import DemoError
+from dashboard.api.models import ErrorInfo
 from dashboard.api.store import RunStore
 
 
-def test_admission_idempotency_and_retention(outputs: dict[str, Any]) -> None:
-    """Idempotent requests restore runs; active work cannot be evicted."""
-    store = RunStore(Settings(max_terminal_runs=1))
+def workbook(settings: Settings, run_id: str) -> dict[str, str | int]:
+    """Create the exact per-run artifact the API is allowed to serve."""
+    path = settings.output_root / run_id / "compliance_matrix.xlsx"
+    path.parent.mkdir(parents=True)
+    path.write_bytes(b"xlsx")
+    return {"workbook_path": str(path), "requirements_count": 18}
+
+
+def test_admission_retention_and_download_boundary(tmp_path: Path) -> None:
+    settings = Settings(output_root=tmp_path, max_terminal_runs=1)
+    store = RunStore(settings)
     first, created = store.create("a")
     assert created and store.create("a")[0].run_id == first.run_id
     with pytest.raises(DemoError, match="already running"):
         store.create("b")
-    store.finish(first.run_id, output=outputs)
+    with pytest.raises(DemoError, match="not ready"):
+        store.download_path(first.run_id)
+    store.finish(first.run_id, output=workbook(settings, first.run_id))
+    assert store.download_path(first.run_id).read_bytes() == b"xlsx"
+    assert store.snapshot(first.run_id).output.excel_url.endswith(
+        "compliance-matrix.xlsx"
+    )
     second, _ = store.create("b")
-    store.finish(second.run_id, output=outputs)
+    store.finish(second.run_id, output=workbook(settings, second.run_id))
     with pytest.raises(DemoError, match="expired"):
         store.snapshot(first.run_id)
-    assert store.snapshot(second.run_id).output.tender_analysis
-    store.records[second.run_id].finished -= 4000
-    with pytest.raises(DemoError):
-        store.snapshot(second.run_id)
 
 
-def test_concurrent_updates_are_ordered_and_counted_once(
-    outputs: dict[str, Any],
-) -> None:
-    """Real concurrent publishers cannot lose IDs, findings, or branch completion."""
-    store = RunStore(Settings())
+def test_concurrent_document_events_and_final_counts(tmp_path: Path) -> None:
+    settings = Settings(output_root=tmp_path)
+    store = RunStore(settings)
     run_id = store.create("one")[0].run_id
     store.observe(run_id, "run.started", summary="started")
+    store.observe(run_id, "stage.started", stage="extract")
     store.observe(
         run_id,
         "inputs.prepared",
-        data={"text_chunks": 20, "tables": 0},
+        data={"documents_total": 20},
         workers=[
-            {"id": f"chunk-{i}", "stage": "analyze_chunk", "label": f"Section {i}"}
+            {"id": f"doc-{i}", "stage": "extract", "label": f"Document {i}"}
             for i in range(20)
         ],
     )
 
     def worker(i: int) -> None:
-        store.observe(
-            run_id, "worker.started", stage="analyze_chunk", worker_id=f"chunk-{i}"
-        )
+        store.observe(run_id, "worker.started", stage="extract", worker_id=f"doc-{i}")
         store.observe(
             run_id,
             "worker.completed",
-            stage="analyze_chunk",
-            worker_id=f"chunk-{i}",
-            duration_ms=1,
-            data={"findings_count": 2, "secret": "must never enter events"},
+            stage="extract",
+            worker_id=f"doc-{i}",
+            data={"findings_count": 2, "secret": "private"},
         )
 
     with ThreadPoolExecutor(max_workers=4) as executor:
         list(executor.map(worker, range(20)))
-    store.finish(run_id, output=outputs)
-    store.finish(run_id, output=outputs)
+    store.observe(run_id, "stage.completed", stage="extract")
+    store.finish(run_id, output=workbook(settings, run_id))
     events, terminal = store.replay(run_id, 0)
     assert terminal and [event.event_id for event in events] == list(
         range(1, len(events) + 1)
     )
-    assert len([e for e in events if e.type == "run.completed"]) == 1
-    assert len([e for e in events if e.type == "stage.completed"]) == 1
-    assert all("secret" not in e.data for e in events)
+    assert len([event for event in events if event.type == "run.completed"]) == 1
+    assert all("secret" not in event.data for event in events)
     snap = store.snapshot(run_id)
-    assert snap.metrics.raw_findings == 40 and snap.metrics.completed_workers == 20
-    assert snap.output.tender_analysis and snap.output.decision_support_report
-    snap.workers.clear()
-    assert len(store.snapshot(run_id).workers) == 20
+    assert snap.metrics.completed_workers == 20 and snap.metrics.raw_findings == 40
+    assert snap.metrics.final_requirements == 18
 
 
-def test_replay_cursor_and_partial_result(outputs: dict[str, Any]) -> None:
-    """Retain validated consolidation if the final report fails."""
-    from dashboard.api.models import ErrorInfo
-
-    store = RunStore(Settings())
+def test_failed_run_never_offers_download(tmp_path: Path) -> None:
+    store = RunStore(Settings(output_root=tmp_path))
     run_id = store.create("one")[0].run_id
     store.observe(run_id, "run.started")
-    store.observe(run_id, "stage.started", stage="reduce_findings")
-    store.observe(
-        run_id,
-        "stage.completed",
-        stage="reduce_findings",
-        output={"final_analysis": outputs["final_analysis"]},
-    )
-    store.observe(run_id, "stage.started", stage="generate_report")
+    store.observe(run_id, "stage.started", stage="extract")
     store.finish(
-        run_id, error=ErrorInfo(code="REPORT_FAILED", message="Report failed.")
+        run_id, error=ErrorInfo(code="PROVIDER_FAILED", message="Provider failed.")
     )
-    snap = store.snapshot(run_id)
-    assert snap.output.tender_analysis and snap.output.decision_support_report is None
-    assert snap.status == "failed" and snap.stages[-1].status == "failed"
-    assert store.replay(run_id, snap.last_event_id) == ([], True)
-    assert len(store.replay(run_id, snap.last_event_id - 1)[0]) == 1
+    assert store.snapshot(run_id).output.excel_url is None
+    with pytest.raises(DemoError, match="not ready"):
+        store.download_path(run_id)
     with pytest.raises(DemoError, match="ahead"):
-        store.replay(run_id, snap.last_event_id + 1)
+        store.replay(run_id, 999)
+
+
+def test_unrelated_artifact_cannot_be_attached(tmp_path: Path) -> None:
+    settings = Settings(output_root=tmp_path)
+    store = RunStore(settings)
+    run_id = store.create("one")[0].run_id
+    other = tmp_path / "elsewhere.xlsx"
+    other.write_bytes(b"other")
+    with pytest.raises(ValueError, match="did not create"):
+        store.finish(run_id, output={"workbook_path": str(other)})

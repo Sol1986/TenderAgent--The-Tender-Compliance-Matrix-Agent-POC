@@ -43,11 +43,8 @@ export function projectRun(state: RunState): RunSnapshot | null {
       view.workers = view.workers.map(task => task.id === event.worker_id ? updateTask(task, event) : task);
       if (event.type === "worker.completed") { view.metrics.completed_workers++; view.metrics.raw_findings += event.data.findings_count as number; }
     }
-    if (event.type === "stage.completed" && event.stage === "prepare_inputs") {
-      for (const key of ["total_chunks", "text_chunks", "tables", "filtered_chunks"] as const) {
-        if (typeof event.data[key] === "number") view.metrics[key] = event.data[key];
-      }
-    }
+    if (event.type === "stage.completed" && event.stage === "classify" && typeof event.data.requirements_count === "number") view.metrics.final_requirements = event.data.requirements_count;
+    if (event.type === "worker.completed") view.metrics.documents_total ??= view.workers.length;
     if (event.type === "run.warning") view.warnings.push({ code: String(event.data.code || "WARNING"), message: event.summary });
     if (event.type === "run.completed" || event.type === "run.failed") {
       view.status = event.type === "run.completed" ? "completed" : "failed";

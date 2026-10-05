@@ -137,9 +137,13 @@ def test_exact_duplicates_merge_and_aggregate_trusted_evidence() -> None:
         ]
     )
 
-    result = reconcile_package(make_extraction(candidates), ReconciliationModel(draft))
+    model = ReconciliationModel(draft)
+    result = reconcile_package(make_extraction(candidates), model)
 
     assert len(result.reconciled_requirements) == 1
+    assert "CLIENT COMPLIANCE MATRIX SCOPE" in model.prompt
+    assert "one group for each distinct client-scope check" in model.prompt
+    assert "A citation or detail of one check is not a new duty" in model.prompt
     requirement = result.reconciled_requirements[0]
     assert requirement.requirement_id == "REQ-0001"
     assert requirement.candidate_ids == ["CAND-0001", "CAND-0002"]

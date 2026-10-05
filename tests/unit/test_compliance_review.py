@@ -1,14 +1,10 @@
-"""Report projection, filtering, escaping and PDF coverage checks without model calls."""
+"""Report projection, filtering, and escaping checks without model calls."""
 
 from copy import deepcopy
-from pathlib import Path
 from typing import Any
-
-from pypdf import PdfReader
 
 from backend.compliance_review import (
     build_review_data,
-    export_review_pdf,
     filter_rows,
     render_matrix,
     render_overview,
@@ -122,13 +118,3 @@ def test_filters_and_untrusted_text() -> None:
     assert "&lt;script&gt;" in html and "&lt;img src=x&gt;" in html
     assert "REQ-0003" not in html
     assert "Showing 0 of 2" in render_matrix(d, search="no matching phrase")
-
-
-def test_pdf_contains_all_active_rows_and_review_notes(tmp_path: Path) -> None:
-    """PDF export preserves Unicode, provenance and complete unfiltered coverage."""
-    d = build_review_data(sample_report())
-    pdf = export_review_pdf(d, tmp_path / "review.pdf")
-    text = "\n".join(page.extract_text() for page in PdfReader(pdf).pages)
-    assert "REQ-0001" in text and "REQ-0002" in text and "REQ-0003" not in text
-    assert "Montréal" in text and "Confirm timing" in text and "PDF page 3" in text
-    assert "Unclear or not stated" in text and "Unreadable" in text

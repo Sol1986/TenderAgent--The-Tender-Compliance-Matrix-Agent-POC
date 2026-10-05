@@ -9,6 +9,11 @@ from openpyxl import load_workbook
 from pydantic import ValidationError
 
 from backend import main
+from backend.compliance_spreadsheet import (
+    export_compliance_workbook,
+    issue_text,
+    matrix_rows,
+)
 from backend.main import (
     DEFAULT_COMPLIANCE_MATRIX_PATH,
     DEFAULT_COMPLIANCE_REPORT_PATH,
@@ -252,6 +257,62 @@ def test_final_report_counts_only_active_requirements_and_projects_matrix() -> N
     assert "bid/no-bid verdict" in model.prompt
 
 
+def test_client_matrix_keeps_only_obligations_and_flags_missing_source() -> None:
+    """Avoid falsely labeling context as Required or inventing source coordinates."""
+    resolution, draft = report_resolution()
+    report = build_compliance_report(resolution, ReportModel(draft))
+    report.requirements[0].requirement.requirement_type = "INFORMATIONAL"
+    conditional = report.requirements[1]
+    conditional.requirement.requirement_type = "CONDITIONAL"
+    conditional.requirement.section = None
+    conditional.requirement.page = None
+    conditional.sources.evidence[0].section = None
+    conditional.sources.evidence[0].page = None
+
+    rows = matrix_rows(report)
+
+    assert len(rows) == 1
+    assert rows[0][3] == "Required"
+    assert rows[0][2] == ""
+    assert rows[0][6] is None
+    assert "Conditional requirement" in rows[0][7]
+    assert "Source section not identified" in rows[0][7]
+    assert "Source page not identified" in rows[0][7]
+
+
+def test_matrix_comments_hide_internal_reconciliation_note(tmp_path: Path) -> None:
+    """Keep useful review guidance without exposing fallback implementation text."""
+    resolution, draft = report_resolution()
+    report = build_compliance_report(resolution, ReportModel(draft))
+    item = report.requirements[1]
+    internal_note = (
+        "Automated package reconciliation failed validation, so this candidate "
+        "set was retained conservatively for human review."
+    )
+    item.analysis.ambiguity_reason = internal_note
+    item.analysis.review_reason = f"{internal_note}; Confirm the controlling timing."
+    report.unresolved_issues[0].description = internal_note
+
+    comment = issue_text(item, [])
+
+    assert internal_note not in comment
+    assert comment == "Confirm the controlling timing."
+    assert report.requirements[1].analysis.ambiguity_reason == internal_note
+
+    workbook_path = export_compliance_workbook(report, tmp_path / "matrix.xlsx")
+    workbook = load_workbook(workbook_path, read_only=True, data_only=True)
+    try:
+        assert all(
+            internal_note not in cell.value
+            for sheet in workbook
+            for row in sheet
+            for cell in row
+            if isinstance(cell.value, str)
+        )
+    finally:
+        workbook.close()
+
+
 @pytest.mark.parametrize("mode", ["missing", "duplicate", "unknown"])
 def test_enrichment_must_cover_every_requirement_exactly_once(mode: str) -> None:
     """The model cannot drop, duplicate, or add final requirements."""
@@ -343,7 +404,9 @@ def test_final_report_retries_only_missing_enrichments() -> None:
                         raise AssertionError(f"Unexpected schema invocation: {schema}")
                     model.calls += 1
                     if model.calls == 1:
-                        return ComplianceReportDraft(requirements=complete.requirements[:2])
+                        return ComplianceReportDraft(
+                            requirements=complete.requirements[:2]
+                        )
                     assert "REQ-0003" in prompt
                     assert '"requirement_id":"REQ-0001"' not in prompt
                     return ComplianceReportDraft(requirements=complete.requirements[2:])
@@ -511,28 +574,32 @@ def test_compliance_workbook_contains_package_matrix_and_supporting_sheets(
             "Document Register",
         ]
         matrix = workbook["Compliance Matrix"]
-        assert matrix.freeze_panes == "A2"
-        assert matrix.auto_filter.ref == "A1:K3"
-        assert [cell.value for cell in matrix[1]] == [
+        assert matrix.freeze_panes == "A5"
+        assert matrix.auto_filter.ref == "A4:H6"
+        assert [cell.value for cell in matrix[4]] == [
             "Item",
-            "Requirement",
-            "Category",
+            "Requirement (from RFP)",
+            "Sec.",
             "M/R",
-            "Section",
-            "Page",
-            "Source Document",
-            "Required At",
-            "Severity",
-            "Human Review",
-            "Issue",
+            "Resp.",
+            "Status",
+            "Pg",
+            "Comments",
         ]
-        assert matrix.max_row == 3
-        assert matrix["A2"].value == 1
-        assert matrix["A3"].value == 2
-        assert matrix["I2"].value == "Disqualifying"
-        assert matrix["J3"].value == "Yes"
-        assert matrix["A2"].fill.fgColor.rgb == "00F4CCCC"
-        assert matrix["A3"].fill.fgColor.rgb == "00FFF2CC"
+        assert matrix.max_row == 6
+        assert matrix["A5"].value == 1
+        assert matrix["A6"].value == 2
+        assert matrix["C5"].value == "1"
+        assert matrix["G5"].value == 1
+        assert matrix["C6"].value == "2"
+        assert matrix["G6"].value == 2
+        assert [matrix[f"D{row}"].value for row in (5, 6)] == [
+            "Mandatory",
+            "Required",
+        ]
+        assert all(matrix[f"E{row}"].value is None for row in (5, 6))
+        assert all(matrix[f"F{row}"].value is None for row in (5, 6))
+        assert "timing" in matrix["H6"].value.casefold()
 
         details = workbook["Requirement Details"]
         assert details.max_row == 4
@@ -587,20 +654,32 @@ def test_full_runner_saves_authoritative_json_and_workbook(
     workbook_path = tmp_path / "outputs" / "compliance_matrix.xlsx"
     monkeypatch.setattr(
         main,
-        "run_resolved_solicitation_package",
+        "run_solicitation_package",
         lambda **_kwargs: resolution,
     )
+    monkeypatch.setattr(main, "reconcile_package", lambda _extraction: resolution)
+    monkeypatch.setattr(main, "resolve_package", lambda _reconciliation: resolution)
     monkeypatch.setattr(main, "build_compliance_report", lambda _resolution: report)
+    events: list[tuple[str, str]] = []
 
     result = main.run_compliance_solicitation_package(
         model=object(),
         output_path=json_path,
         spreadsheet_output_path=workbook_path,
+        observe=lambda kind, **fields: events.append(
+            (kind, fields.get("stage", fields.get("data", {}).get("code", "")))
+        ),
     )
 
     assert result == report
     assert json_path.is_file()
     assert workbook_path.is_file()
+    assert [event for event in events if event[0].startswith("stage.")] == [
+        (kind, stage)
+        for stage in ("extract", "reconcile", "resolve", "classify", "export")
+        for kind in ("stage.started", "stage.completed")
+    ]
+    assert ("run.warning", "DOCUMENTS_FAILED") in events
     assert json.loads(json_path.read_text(encoding="utf-8")) == report.model_dump(
         mode="json"
     )

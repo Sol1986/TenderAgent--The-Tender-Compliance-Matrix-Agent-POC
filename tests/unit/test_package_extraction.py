@@ -5,6 +5,7 @@ import subprocess
 import sys
 from pathlib import Path
 from threading import Barrier, Lock
+from types import SimpleNamespace
 from typing import Any
 
 import pandas as pd
@@ -20,6 +21,9 @@ from backend.solicitation_package import discover_solicitation_documents
 
 class FakeTable:
     """Provide a structured table large enough to exercise row batching."""
+
+    def __init__(self) -> None:
+        self.prov = [SimpleNamespace(page_no=3)]
 
     def export_to_dataframe(self, doc: Any) -> pd.DataFrame:
         """Return stable source values without invoking Docling."""
@@ -119,6 +123,7 @@ def test_prepare_document_preserves_all_text_and_batches_tables(
         input_document.document.document_id
     )
     assert [table["row_count"] for table in prepared.tables] == [2, 1]
+    assert [table["source_page"] for table in prepared.tables] == [3, 3]
     assert all(table["document_name"] == path.name for table in prepared.tables)
 
 
@@ -150,6 +155,7 @@ def test_package_processes_documents_in_parallel_and_collects_candidates(
     ]
     assert [item.text_chunks for item in result.document_results] == [1, 1]
     assert [item.table_batches for item in result.document_results] == [2, 2]
+    assert [item.table_pages for item in result.document_results] == [{1: 3}, {1: 3}]
     assert len(result.candidate_requirements) == 6
     assert [item.candidate_id for item in result.candidate_requirements] == [
         f"CAND-{index:04d}" for index in range(1, 7)

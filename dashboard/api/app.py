@@ -7,7 +7,7 @@ from typing import Annotated
 
 from fastapi import FastAPI, Header, Query
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import StreamingResponse
+from fastapi.responses import FileResponse, StreamingResponse
 
 from .config import Settings
 from .errors import DemoError, install_handlers
@@ -49,17 +49,18 @@ def create_app(
     async def inputs() -> list[dict[str, str | bool | int | None]]:
         """Advertise one configured sample, not arbitrary server files."""
         try:
-            size = (
-                settings.sample_path.stat().st_size
-                if settings.sample_path.is_file()
-                else None
-            )
+            pdfs = [
+                path
+                for path in settings.sample_path.iterdir()
+                if path.is_file() and path.suffix.casefold() == ".pdf"
+            ]
+            size = sum(path.stat().st_size for path in pdfs) if pdfs else None
         except OSError:
             size = None
         return [
             {
                 "id": "sample-tender",
-                "display_name": "Sample tender",
+                "display_name": "Sample tender package",
                 "size_bytes": size,
                 "available": size is not None and size > 0,
             }
@@ -81,9 +82,11 @@ def create_app(
             store.prune()
             if idempotency_key not in store.keys:
                 try:
-                    available = (
-                        settings.sample_path.is_file()
-                        and settings.sample_path.stat().st_size > 0
+                    available = settings.sample_path.is_dir() and any(
+                        path.is_file()
+                        and path.suffix.casefold() == ".pdf"
+                        and path.stat().st_size > 0
+                        for path in settings.sample_path.iterdir()
                     )
                 except OSError:
                     available = False
@@ -105,6 +108,15 @@ def create_app(
     async def snapshot(run_id: str) -> RunSnapshot:
         """Read current outputs and execution state without starting more work."""
         return store.snapshot(run_id)
+
+    @app.get("/api/runs/{run_id}/compliance-matrix.xlsx")
+    async def download_matrix(run_id: str) -> FileResponse:
+        """Download only the validated workbook attached to this completed run."""
+        return FileResponse(
+            store.download_path(run_id),
+            media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            filename="compliance_matrix.xlsx",
+        )
 
     @app.get("/api/runs/{run_id}/events")
     async def events(

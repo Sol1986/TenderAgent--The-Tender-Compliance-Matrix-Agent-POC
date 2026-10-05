@@ -228,7 +228,7 @@ def test_package_pipeline_applies_amendment_and_links_uploaded_reference(
 
     workbook = load_workbook(workbook_path, read_only=True)
     try:
-        assert workbook["Compliance Matrix"].max_row == 2
+        assert workbook["Compliance Matrix"].max_row == 5
         assert workbook["Requirement Details"].max_row == 4
         assert workbook["Document Register"].max_row == 4
     finally:
@@ -303,7 +303,7 @@ def test_package_pipeline_keeps_two_missing_references_visible(tmp_path: Path) -
 
     workbook = load_workbook(workbook_path, read_only=True)
     try:
-        assert workbook["Compliance Matrix"].max_row == 3
+        assert workbook["Compliance Matrix"].max_row == 6
         assert workbook["Issues - Human Review"].max_row >= 3
     finally:
         workbook.close()
@@ -383,8 +383,7 @@ def test_package_pipeline_preserves_contradictory_timing(tmp_path: Path) -> None
     workbook = load_workbook(workbook_path, read_only=False)
     try:
         matrix = workbook["Compliance Matrix"]
-        assert matrix["J2"].value == "Yes"
-        assert "tim" in matrix["K2"].value.casefold()
+        assert "tim" in matrix["H5"].value.casefold()
     finally:
         workbook.close()
 

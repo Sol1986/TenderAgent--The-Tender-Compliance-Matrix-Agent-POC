@@ -164,6 +164,13 @@ Excel compliance matrix for download after completion. Runs are written under
 `outputs/dashboard_runs/` and do not overwrite the CLI's default outputs. Run
 history is held in memory and is lost when the API restarts.
 
+To start a run, select the sample tender package and click **Generate
+compliance matrix**. Counters at the top track PDFs discovered, PDFs processed,
+candidate findings, and matrix requirements. The sidebar links to the live
+workflow, document activity, execution timeline, and Excel download.
+
+![TenderAgent dashboard before a run: package selector with the Generate compliance matrix button, four progress counters, and the agent workflow cards in the Waiting state](docs/images/dashboard-overview.png)
+
 The dashboard's workflow view shows the agent's five phases. Each card is marked
 Waiting, Running, or Completed as the run progresses:
 

@@ -2,7 +2,7 @@
 
 from types import SimpleNamespace
 
-from backend.source_pages import assign_source_pages, locate_page
+from app.source_pages import assign_source_pages, locate_page
 
 
 def test_page_locator_requires_a_unique_supported_match() -> None:
@@ -45,7 +45,7 @@ def test_report_pages_use_table_provenance_and_pdf_text(tmp_path, monkeypatch) -
                 SimpleNamespace(extract_text=lambda: "Unit price table."),
             ]
 
-    monkeypatch.setattr("backend.source_pages.PdfReader", Reader)
+    monkeypatch.setattr("app.source_pages.PdfReader", Reader)
     document = SimpleNamespace(document_id="DOC-000000000001", filename="tender.pdf")
     prose = SimpleNamespace(
         document_id=document.document_id,

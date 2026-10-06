@@ -20,7 +20,7 @@ from langgraph.types import Send
 from langsmith import traceable
 from pydantic import BaseModel, ConfigDict, Field
 
-from backend.solicitation_package import (
+from app.solicitation_package import (
     InputDocument,
     SolicitationDocument,
     attach_document_identity,
@@ -3221,7 +3221,7 @@ def export_compliance_matrix_workbook(
 ) -> Path:
     """Validate the authoritative report and create its user-facing workbook."""
     validate_compliance_report(report)
-    from backend.compliance_spreadsheet import export_compliance_workbook
+    from app.compliance_spreadsheet import export_compliance_workbook
 
     return export_compliance_workbook(report, output_path)
 
@@ -3335,7 +3335,7 @@ def run_compliance_solicitation_package(
         summary="Classifying source-backed requirements for the compliance matrix.",
     )
     report = build_compliance_report(resolution)
-    from backend.compliance_spreadsheet import matrix_requirements
+    from app.compliance_spreadsheet import matrix_requirements
 
     notify(
         "stage.completed",
@@ -3343,7 +3343,7 @@ def run_compliance_solicitation_package(
         summary="Compliance requirements classified.",
         data={"requirements_count": len(matrix_requirements(report))},
     )
-    from backend.source_pages import assign_source_pages
+    from app.source_pages import assign_source_pages
 
     notify(
         "stage.started",

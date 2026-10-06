@@ -26,45 +26,32 @@ reference lists, and individual unit-price rows are outside the matrix unless
 they impose a distinct check within this scope. A referenced document is attached
 to the applicable check; its mere listing is not a separate requirement.
 
-Model output still requires evidence review. The saved reports and measured
-extraction metrics below were produced before this scope change; they do not
-verify the new policy's recall or row count.
+Model output still requires evidence review. The pipeline benchmark below was
+produced before this scope change. The extraction-quality evaluation was scored
+against a ground truth built on the client's target requirement types.
 
 ## Project layout
 
-The agent and its entry points live in `backend/`. The dashboard frontend and
-its FastAPI adapter live together in `dashboard/`:
+The agent and its command-line entry point live in `app/`. The dashboard
+frontend and its FastAPI adapter live together in `dashboard/`:
 
 | Folder | Contents |
 | --- | --- |
-| `backend/` | Agent, compliance modules, command-line and upload entry points |
+| `app/` | Agent graph, package discovery, compliance report and Excel modules, CLI entry point |
+| `app/scripts/` | Docling table export example |
 | `dashboard/` | Next.js frontend and `api/` FastAPI adapter |
-| `evaluation/` | Evaluators, LangSmith inspection tools, cost report, and `fixtures/` data |
-| `scripts/` | Table export example |
+| `evals/` | `source-of-truth.json`: ground truth, item-level matches, and scores |
 | `notebooks/` | Original exploratory `agent.ipynb` notebook |
-| `docs/` | Dashboard guide, project notes, original prompt, and images |
-| `docs/plans/` | Dashboard and upgrade plans |
+| `docs/images/` | Workflow diagrams used in this README |
 | `tender_package/` | Input solicitation PDFs |
-| `outputs/` | Generated reports and upload-demo runs |
+| `outputs/` | Generated reports and dashboard runs |
 | `tables/` | Existing extracted table artifacts |
 | `tests/` | Unit and integration tests |
 | `skills/` | Project-specific agent instructions |
 
 Keep `AGENTS.md`, dependency files, and environment configuration at the root.
-Older planning documents retain historical file names; use this layout for
-current locations. The original prompt is now [docs/prompt.md](docs/prompt.md).
 
-Run evaluation scripts from the project root so their relative fixture paths remain
-valid, for example:
-
-```powershell
-uv run python evaluation/evaluate_requirements.py
-uv run python evaluation/evaluate_precision.py
-```
-
-These evaluation commands use the configured model provider. The LangSmith
-inspection scripts and their run/dataset settings are also in `evaluation/`.
-`scripts/export_tables.py` remains an example with an external sample PDF path
+`app/scripts/export_tables.py` is an example with an external sample PDF path
 that must be configured before use.
 
 When using `notebooks/agent.ipynb`, set the notebook working directory to the
@@ -127,7 +114,7 @@ may incur usage charges.
 Put every solicitation PDF in:
 
 ```text
-C:\Users\Admin\Desktop\AI bid decision Agent\tender_package
+tender_package/
 ```
 
 The runner reads visible PDF files from the top level of that folder in
@@ -136,13 +123,13 @@ deterministic filename order. It does not scan subfolders.
 Run the complete pipeline:
 
 ```powershell
-uv run python -m backend.run_package
+uv run python -m app.run_package
 ```
 
 Optional paths and concurrency controls are available:
 
 ```powershell
-uv run python -m backend.run_package --package "C:\path\to\package" --json-output "outputs\compliance_report.json" --xlsx-output "outputs\compliance_matrix.xlsx" --document-workers 4 --graph-concurrency 4
+uv run python -m app.run_package --package "C:\path\to\package" --json-output "outputs\compliance_report.json" --xlsx-output "outputs\compliance_matrix.xlsx" --document-workers 4 --graph-concurrency 4
 ```
 
 The default output files are:
@@ -155,19 +142,47 @@ outputs/compliance_matrix.xlsx
 The command prints processed and failed document counts, the number of final
 requirements, and the absolute artifact paths.
 
-## Local upload demo
+## Live dashboard
 
-For a client demonstration, launch the simple browser interface:
+For a client demonstration, start the API and the frontend in two terminals:
 
 ```powershell
-uv run python -m backend.demo_upload
+uv run uvicorn dashboard.api.app:app --port 8000
 ```
 
-Upload one or more PDFs from the same solicitation package, then select
-**Generate compliance matrix**. The page provides download links for one Excel
-matrix and its authoritative JSON report. Each upload batch has its own output
-folder under `outputs/demo_runs/`; it does not overwrite the CLI's default
-outputs. The demo runs locally and uses the model configured in `.env`.
+```powershell
+cd dashboard
+npm install
+npm run dev
+```
+
+Open <http://localhost:3000>. The dashboard runs the sample solicitation
+package, shows observed processing stages and document activity, and offers the
+Excel compliance matrix for download after completion. Runs are written under
+`outputs/dashboard_runs/` and do not overwrite the CLI's default outputs. Run
+history is held in memory and is lost when the API restarts.
+
+The dashboard's workflow view shows the agent's five phases. Each card is marked
+Waiting, Running, or Completed as the run progresses:
+
+1. **Extract requirements:** read each PDF and capture candidate requirements
+   with source evidence.
+2. **Reconcile duplicates:** compare candidates across documents so the same
+   obligation is not counted twice.
+3. **Resolve references:** check amendments and references to see which wording
+   applies to the package.
+4. **Classify obligations:** decide which source-backed items belong in the
+   client compliance matrix.
+5. **Build Excel matrix:** add source references and write the downloadable
+   Excel file.
+
+![Dashboard agent workflow: Extract requirements, Reconcile duplicates, Resolve references, Classify obligations, and Build Excel matrix, all marked Completed](docs/images/dashboard-agent-workflow.png)
+
+The frontend calls `http://127.0.0.1:8000` by default; set
+`NEXT_PUBLIC_API_BASE_URL` in `dashboard/.env.local` to use another address.
+API settings such as the model, CORS origin, and concurrency default to the
+values in `dashboard/api/config.py` and can be overridden with environment
+variables.
 
 ## Output structure
 
@@ -249,7 +264,7 @@ complete validated schema.
 
 The Excel workbook contains four worksheets:
 
-1. **Compliance Matrix** — Kestrel's eight-column layout: Item, Requirement
+1. **Compliance Matrix** — the Firm's eight-column layout: Item, Requirement
    (from RFP), Sec., M/R, Resp., Status, Pg, and Comments. It includes active
    actionable obligations; Resp. and Status are left blank for the bid team.
    M/R is always Mandatory or Required. Conditional duties appear as Required
@@ -264,7 +279,7 @@ The Excel workbook contains four worksheets:
 4. **Document Register** — every PDF, its inferred type, status, and requirement
    count.
 
-The client matrix follows Kestrel's simple grey-header format. Text fields
+The client matrix follows the Firm's simple grey-header format. Text fields
 wrap, headers are frozen and filterable, and source text is neutralized before
 writing so it cannot become an Excel formula.
 
@@ -286,19 +301,13 @@ The package integration suite verifies:
 - two missing referenced documents that remain visible for review; and
 - contradictory requirement timing across separate PDFs.
 
-The [live dashboard](docs/DASHBOARD_DEMO.md) runs the sample solicitation
-package, shows observed processing stages and document activity, and offers the
-Excel compliance matrix for download after completion. Its process-local run
-history is separate from the package CLI and is lost when the server restarts.
-
 ## Project results and business case
 
 The following 2025 tender-volume, loss, staffing, and cost figures were supplied
 for this project; they have not been independently audited here. The pipeline
 timings and token costs below describe **one supplied benchmark run**, not an
-average across tenders. The extraction-quality comparison was checked against
-`outputs/compliance_report.json` and `outputs/golden_requirements.json` for that
-one tender.
+average across tenders. The extraction-quality scores are recorded in
+`evals/source-of-truth.json` for one tender.
 
 ### 2025 bid activity and current effort
 
@@ -376,22 +385,37 @@ the scenario below budgets $3 per tender to allow for variation.
 
 ### Extraction quality on the test tender
 
-The reference set has 47 core obligations. Matching allowed one report row to
-cover several gold requirements only when each obligation was stated. Rows
-labelled Informational were excluded from the actionable precision denominator.
+The agent's output for `tender.PDF` (solicitation EF997-130359/A) was compared
+with a ground truth of 16 requirements covering the client's target requirement
+types. The full item-by-item comparison is in `evals/source-of-truth.json`.
 
-| Metric | Calculation | Result |
-|---|---:|---:|
-| Recall | 47 matched gold requirements / 47 | **100%** |
-| Precision against the core gold set | 29 matching report rows / 71 actionable report rows | **40.8%** |
-| F1 | Harmonic mean of precision and recall | **58.0%** |
+We scored it on three standard measures:
 
-The 100% recall result applies only to this tender. Of the 42 actionable rows
-without a core-gold match, 37 are external-reference rows. Some name genuine
-incorporated documents whose detailed obligations were not available in the
-supplied PDF. Therefore, 40.8% is **core-gold alignment precision**, not an
-estimate that 59.2% of report rows are fabricated. Reference handling and
-duplicate or contextual rows need review before using the matrix operationally.
+- **Recall** is the share of ground-truth requirements the agent found. It
+  answers "did it miss anything?"
+- **Precision** is the share of the agent's output that matched a ground-truth
+  requirement. It answers "how much of what it returned was useful?"
+- **F1** combines the two into one score that is pulled toward the weaker of
+  them, so an agent only scores well if it is both complete and focused.
+
+**Recall: 100%** (16 of 16 ground-truth requirements found)
+
+**Precision: 59.1%** (26 of 44 agent items matched the ground truth)
+
+**F1: 0.74**
+
+The agent found all 16 requirements, so a bid team relying on it would not have
+missed a compliance obligation in this tender. Two of the 16 were only partly
+captured: the insurance item omits that the contractor bears deductibles, and
+the bid security item omits Bid Bond form 504 and Treasury Board Appendix L.
+
+The other 18 agent items fell outside the target scope. Examples are SI12
+rejection grounds, clauses named only in the table of contents, and
+informational notes. These rows add review effort but are not missed
+obligations.
+
+These results come from one tender and do not establish performance across
+other solicitations.
 
 ### Illustrative savings scenario
 

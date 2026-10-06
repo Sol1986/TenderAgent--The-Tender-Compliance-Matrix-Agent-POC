@@ -7,8 +7,8 @@ from typing import Any
 
 from pydantic import ValidationError
 
-from backend.compliance_spreadsheet import matrix_requirements
-from backend.main import run_compliance_solicitation_package
+from app.compliance_spreadsheet import matrix_requirements
+from app.main import run_compliance_solicitation_package
 
 from .config import Settings
 from .models import ErrorInfo, RunSnapshot

@@ -10,7 +10,7 @@ from pypdf import PdfReader
 from pypdf.errors import PdfReadError
 
 if TYPE_CHECKING:
-    from backend.main import ComplianceReport, DocumentExtractionResult
+    from app.main import ComplianceReport, DocumentExtractionResult
 
 
 def tokens(value: str) -> list[str]:

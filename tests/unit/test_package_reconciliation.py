@@ -4,7 +4,7 @@ from typing import Any
 
 import pytest
 
-from backend.main import (
+from app.main import (
     DocumentExtractionResult,
     FindingRelationshipDecision,
     GroundedCandidate,
@@ -14,7 +14,7 @@ from backend.main import (
     Requirement,
     reconcile_package,
 )
-from backend.solicitation_package import SolicitationDocument
+from app.solicitation_package import SolicitationDocument
 
 
 class ReconciliationModel:

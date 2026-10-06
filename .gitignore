@@ -28,6 +28,7 @@ tender_package/
 evaluation/
 
 notebooks/
-docs/
+docs/*
+!docs/images/
 AGENTS.md
 Makefile

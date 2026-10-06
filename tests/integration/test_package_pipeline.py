@@ -8,7 +8,7 @@ from typing import Any
 
 from openpyxl import load_workbook
 
-from backend.main import (
+from app.main import (
     AmendmentResolutionDraft,
     ChunkFindings,
     ComplianceReport,

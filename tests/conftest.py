@@ -7,7 +7,7 @@ from typing import Any, get_args
 import pandas as pd
 import pytest
 
-from backend.main import (
+from app.main import (
     ChunkFindings,
     DecisionSupportReport,
     FinalRequirementItem,

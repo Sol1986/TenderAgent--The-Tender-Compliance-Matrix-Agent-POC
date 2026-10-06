@@ -6,7 +6,7 @@ from typing import Any
 
 import pytest
 
-from backend.main import run_single_document_analysis, validate_analysis
+from app.main import run_single_document_analysis, validate_analysis
 
 
 @pytest.mark.real_parser

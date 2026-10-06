@@ -4,7 +4,7 @@ from typing import Any
 
 import pytest
 
-from backend.main import (
+from app.main import (
     AmendmentResolutionDraft,
     DocumentExtractionResult,
     Evidence,
@@ -17,7 +17,7 @@ from backend.main import (
     Requirement,
     resolve_package,
 )
-from backend.solicitation_package import SolicitationDocument
+from app.solicitation_package import SolicitationDocument
 
 
 class ResolutionModel:

@@ -3,7 +3,7 @@
 from pathlib import Path
 from types import SimpleNamespace
 
-from backend import UI_frontend
+from app import UI_frontend
 
 
 def test_upload_batch_runs_once_and_returns_isolated_artifacts(

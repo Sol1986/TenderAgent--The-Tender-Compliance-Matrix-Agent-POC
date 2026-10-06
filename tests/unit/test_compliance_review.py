@@ -3,7 +3,7 @@
 from copy import deepcopy
 from typing import Any
 
-from backend.compliance_review import (
+from app.compliance_review import (
     build_review_data,
     filter_rows,
     render_matrix,

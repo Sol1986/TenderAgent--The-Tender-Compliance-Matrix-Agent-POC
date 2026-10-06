@@ -8,7 +8,7 @@ from typing import Any
 import pytest
 from langchain_core.documents import Document
 
-from backend.main import (
+from app.main import (
     InputDocument,
     Requirement,
     SolicitationDocument,
@@ -58,7 +58,7 @@ def test_import_does_not_parse_or_construct_provider() -> None:
             sys.executable,
             "-c",
             (
-                "import os; os.environ.pop('OPENAI_API_KEY', None); from backend import main; "
+                "import os; os.environ.pop('OPENAI_API_KEY', None); from app import main; "
                 "assert main.extractor is None; assert main.reducer_llm is None"
             ),
         ],

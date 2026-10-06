@@ -6,7 +6,7 @@ import pytest
 from langchain_core.documents import Document
 from pydantic import ValidationError
 
-from backend.solicitation_package import (
+from app.solicitation_package import (
     PackageDiscoveryError,
     SolicitationDocument,
     attach_document_identity,

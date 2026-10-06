@@ -8,7 +8,7 @@ import pytest
 from langchain_openai import ChatOpenAI
 from pydantic import BaseModel
 
-from backend import main
+from app import main
 
 
 def assert_strict_object_schemas(value: Any) -> None:

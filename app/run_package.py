@@ -10,7 +10,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 
-from backend.main import (
+from app.main import (
     DEFAULT_COMPLIANCE_MATRIX_PATH,
     DEFAULT_COMPLIANCE_REPORT_PATH,
     DEFAULT_TENDER_PACKAGE_PATH,

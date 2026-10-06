@@ -129,8 +129,10 @@ uv run python -m app.run_package
 Optional paths and concurrency controls are available:
 
 ```powershell
-uv run python -m app.run_package --package "C:\path\to\package" --json-output "outputs\compliance_report.json" --xlsx-output "outputs\compliance_matrix.xlsx" --document-workers 4 --graph-concurrency 4
+uv run python -m app.run_package --package "C:\path\to\package" --json-output "outputs\compliance_report.json" --xlsx-output "outputs\compliance_matrix.xlsx" --model "your-model-name" --document-workers 4 --graph-concurrency 4
 ```
+
+`--model` overrides `OPENAI_MODEL` from `.env` for that run only.
 
 The default output files are:
 

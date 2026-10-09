@@ -20,11 +20,12 @@ def test_live_runner_produces_one_run_scoped_excel_file(
     monkeypatch.setattr(runner, "matrix_requirements", lambda _report: list(range(18)))
 
     def package_pipeline(**kwargs: Any) -> SimpleNamespace:
-        assert kwargs["package_path"] == settings.sample_path
+        assert kwargs["package_path"].parent.parent == settings.output_root
+        assert (kwargs["package_path"] / "tender.pdf").read_bytes() == b"%PDF-sample"
         kwargs["observe"]("stage.started", stage="extract", summary="Extracting.")
         kwargs["observe"]("stage.completed", stage="extract", summary="Extracted.")
         output = kwargs["spreadsheet_output_path"]
-        output.parent.mkdir(parents=True)
+        output.parent.mkdir(parents=True, exist_ok=True)
         output.write_bytes(b"xlsx")
         return SimpleNamespace()
 

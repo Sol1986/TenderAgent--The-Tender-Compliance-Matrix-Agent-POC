@@ -3,9 +3,11 @@
 import asyncio
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
+from io import BytesIO
 from typing import Annotated
+from urllib.parse import unquote
 
-from fastapi import FastAPI, Header, Query
+from fastapi import FastAPI, Header, Query, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, StreamingResponse
 
@@ -36,7 +38,12 @@ def create_app(
         CORSMiddleware,
         allow_origins=settings.cors_origins,
         allow_methods=["GET", "POST"],
-        allow_headers=["Content-Type", "Idempotency-Key", "Last-Event-ID"],
+        allow_headers=[
+            "Content-Type",
+            "Idempotency-Key",
+            "Last-Event-ID",
+            "X-Tender-Filename",
+        ],
     )
     install_handlers(app)
 
@@ -49,22 +56,85 @@ def create_app(
     async def inputs() -> list[dict[str, str | bool | int | None]]:
         """Advertise one configured sample, not arbitrary server files."""
         try:
-            pdfs = [
-                path
-                for path in settings.sample_path.iterdir()
-                if path.is_file() and path.suffix.casefold() == ".pdf"
-            ]
-            size = sum(path.stat().st_size for path in pdfs) if pdfs else None
+            size = settings.sample_pdf().stat().st_size
         except OSError:
             size = None
         return [
             {
                 "id": "sample-tender",
-                "display_name": "Sample tender package",
+                "display_name": "tender.pdf",
                 "size_bytes": size,
                 "available": size is not None and size > 0,
             }
         ]
+
+    @app.get("/api/tenders/{input_id}/pdf")
+    async def view_tender(input_id: str) -> FileResponse:
+        """View the same allowlisted PDF that will be analyzed."""
+        return FileResponse(
+            store.input_pdf(input_id),
+            media_type="application/pdf",
+            filename="tender.pdf",
+            content_disposition_type="inline",
+            headers={"Cache-Control": "no-store", "X-Content-Type-Options": "nosniff"},
+        )
+
+    @app.post("/api/tenders", status_code=201)
+    async def upload_tender(
+        request: Request,
+        filename: Annotated[str, Header(alias="X-Tender-Filename", max_length=1024)],
+    ) -> dict[str, str]:
+        """Bound upload bytes before validating a readable, unencrypted PDF."""
+        name = unquote(filename).replace("\\", "/").rsplit("/", 1)[-1]
+        name = "".join(char for char in name if char.isprintable())[:180]
+        if (
+            not name.casefold().endswith(".pdf")
+            or request.headers.get("content-type", "").split(";")[0]
+            != "application/pdf"
+        ):
+            raise DemoError("INVALID_PDF", "Upload a PDF file only.", 422)
+        content = bytearray()
+        async for chunk in request.stream():
+            if len(content) + len(chunk) > settings.max_upload_bytes:
+                raise DemoError(
+                    "UPLOAD_TOO_LARGE", "This PDF exceeds the upload size limit.", 413
+                )
+            content.extend(chunk)
+
+        def validate_and_save() -> str:
+            """Keep PDF parsing and disk writes off the event-loop thread."""
+            from pypdf import PdfReader
+            from pypdf.errors import PdfReadError
+
+            if not content.startswith(b"%PDF-"):
+                raise DemoError("INVALID_PDF", "This file is not a readable PDF.", 422)
+            try:
+                reader = PdfReader(BytesIO(content))
+                if reader.is_encrypted:
+                    raise DemoError(
+                        "ENCRYPTED_PDF",
+                        "Upload a PDF without password protection.",
+                        422,
+                    )
+                pages = len(reader.pages)
+            except (PdfReadError, ValueError, TypeError, KeyError, OSError) as exc:
+                raise DemoError(
+                    "INVALID_PDF", "This file is not a readable PDF.", 422
+                ) from exc
+            if not 1 <= pages <= settings.max_upload_pages:
+                raise DemoError(
+                    "PDF_PAGE_LIMIT",
+                    "This PDF exceeds the page limit or has no pages.",
+                    422,
+                )
+            return store.add_upload(bytes(content), name)
+
+        input_id = await asyncio.to_thread(validate_and_save)
+        return {
+            "input_id": input_id,
+            "display_name": name,
+            "view_url": f"/api/tenders/{input_id}/pdf",
+        }
 
     @app.post("/api/runs", status_code=202)
     async def start(
@@ -73,30 +143,14 @@ def create_app(
             str, Header(min_length=1, max_length=128, pattern=r"^[A-Za-z0-9_-]+$")
         ],
     ) -> dict[str, str]:
-        """Validate the allowlisted selection and return before agent work finishes."""
-        if body.input_id != "sample-tender":
-            raise DemoError("INVALID_INPUT", "Select an available sample tender.", 422)
+        """Validate the selection and return before agent work finishes."""
         # Validate only new starts; an idempotent retry can restore a completed
         # run even if the source file has since become unavailable.
         with store.lock:
             store.prune()
             if idempotency_key not in store.keys:
-                try:
-                    available = settings.sample_path.is_dir() and any(
-                        path.is_file()
-                        and path.suffix.casefold() == ".pdf"
-                        and path.stat().st_size > 0
-                        for path in settings.sample_path.iterdir()
-                    )
-                except OSError:
-                    available = False
-                if not available:
-                    raise DemoError(
-                        "INPUT_UNAVAILABLE",
-                        "The configured sample tender is unavailable.",
-                        503,
-                    )
-            snapshot = executor.start(idempotency_key)
+                store.input_pdf(body.input_id)
+            snapshot = executor.start(idempotency_key, body.input_id)
         return {
             "run_id": snapshot.run_id,
             "status": snapshot.status,

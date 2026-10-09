@@ -22,6 +22,22 @@ class Settings(BaseModel):
     graph_concurrency: int = Field(default=4, ge=1, le=32)
     llm_timeout_seconds: float = Field(default=120, gt=0)
     llm_max_retries: int = Field(default=2, ge=0, le=5)
+    max_upload_bytes: int = Field(default=20 * 1024 * 1024, ge=1)
+    max_upload_pages: int = Field(default=300, ge=1)
+    max_uploads: int = Field(default=100, ge=1)
+
+    def sample_pdf(self) -> Path:
+        """Select the exact tender shown in the viewer, regardless of extension case."""
+        if self.sample_path.is_file():
+            return self.sample_path
+        return next(
+            (
+                path
+                for path in self.sample_path.iterdir()
+                if path.is_file() and path.name.casefold() == "tender.pdf"
+            ),
+            self.sample_path / "tender.pdf",
+        )
 
     @field_validator("cors_origins")
     @classmethod
@@ -61,6 +77,9 @@ class Settings(BaseModel):
             "graph_concurrency": "DEMO_GRAPH_CONCURRENCY",
             "llm_timeout_seconds": "DEMO_LLM_TIMEOUT_SECONDS",
             "llm_max_retries": "DEMO_LLM_MAX_RETRIES",
+            "max_upload_bytes": "DEMO_MAX_UPLOAD_BYTES",
+            "max_upload_pages": "DEMO_MAX_UPLOAD_PAGES",
+            "max_uploads": "DEMO_MAX_UPLOADS",
         }
         values = {
             key: os.environ[env] for key, env in mapping.items() if env in os.environ

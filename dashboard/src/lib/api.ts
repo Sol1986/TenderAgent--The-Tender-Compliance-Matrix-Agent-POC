@@ -14,12 +14,12 @@ export function apiBase(): string {
   return url.origin;
 }
 
-async function request<T>(path: string, schema: z.ZodType<T>, options: RequestInit = {}): Promise<T> {
+async function request<T>(path: string, schema: z.ZodType<T>, options: RequestInit = {}, timeoutMs = 12000): Promise<T> {
   const controller = new AbortController();
   const abort = () => controller.abort();
   if (options.signal?.aborted) controller.abort();
   options.signal?.addEventListener("abort", abort, { once: true });
-  const timer = setTimeout(abort, 12000);
+  const timer = setTimeout(abort, timeoutMs);
   try {
     const response = await fetch(`${apiBase()}${path}`, { ...options, cache: "no-store", signal: controller.signal });
     let data: unknown;
@@ -47,3 +47,9 @@ export const startRun = (inputId: string, key: string, signal?: AbortSignal) => 
   method: "POST", signal, headers: { "Content-Type": "application/json", "Idempotency-Key": key }, body: JSON.stringify({ input_id: inputId }),
 });
 export const eventUrl = (id: string, after: number) => `${apiBase()}/api/runs/${encodeURIComponent(id)}/events?after_event_id=${after}`;
+
+/** Send PDF bytes directly; the backend owns validation and generated storage names. */
+export const uploadTender = (file: File, signal?: AbortSignal) => request("/api/tenders", z.object({
+  input_id: z.uuid(), display_name: z.string(), view_url: z.string(),
+}), { method: "POST", signal, headers: { "Content-Type": "application/pdf", "X-Tender-Filename": encodeURIComponent(file.name) }, body: file }, 60000);
+export const tenderUrl = (id: string) => `${apiBase()}/api/tenders/${encodeURIComponent(id)}/pdf`;

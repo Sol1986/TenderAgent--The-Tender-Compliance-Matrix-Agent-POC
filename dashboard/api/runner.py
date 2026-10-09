@@ -1,6 +1,7 @@
 """Bounded execution outside HTTP handlers; reconnecting never starts work."""
 
 import logging
+import shutil
 from collections.abc import Callable
 from concurrent.futures import ThreadPoolExecutor
 from typing import Any
@@ -42,9 +43,13 @@ class RunExecutor:
         if run_id is None:
             raise RuntimeError("A run ID is required for workbook isolation.")
         run_directory = self.settings.output_root / run_id
+        source_pdf = self.store.records[run_id].source_pdf or self.settings.sample_pdf()
+        package_directory = run_directory / "input"
+        package_directory.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(source_pdf, package_directory / "tender.pdf")
         report = run_compliance_solicitation_package(
             model=model,
-            package_path=self.settings.sample_path,
+            package_path=package_directory,
             output_path=run_directory / "compliance_report.json",
             spreadsheet_output_path=run_directory / "compliance_matrix.xlsx",
             max_document_workers=self.settings.graph_concurrency,
@@ -56,9 +61,9 @@ class RunExecutor:
             "requirements_count": len(matrix_requirements(report)),
         }
 
-    def start(self, key: str) -> RunSnapshot:
+    def start(self, key: str, input_id: str = "sample-tender") -> RunSnapshot:
         """Reserve capacity atomically, then schedule once without waiting."""
-        snapshot, created = self.store.create(key)
+        snapshot, created = self.store.create(key, input_id)
         if created:
             try:
                 self.pool.submit(self._execute, snapshot.run_id)
@@ -97,7 +102,7 @@ class RunExecutor:
             elif active == "extract":
                 code, message = (
                     "DOCUMENT_PROCESSING_FAILED",
-                    "The sample package could not be fully prepared. Check the parser and source PDFs.",
+                    "The tender could not be fully prepared. Check the parser and source PDF.",
                 )
             elif isinstance(exc, (ValidationError, ValueError)):
                 code, message = (

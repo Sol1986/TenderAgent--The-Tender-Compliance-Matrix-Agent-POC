@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useReducer, useRef, useState } from "react";
 import { z } from "zod";
-import { ApiError, eventUrl, loadInputs, loadSnapshot, startRun } from "@/lib/api";
+import { ApiError, eventUrl, loadInputs, loadSnapshot, startRun, uploadTender } from "@/lib/api";
 import { eventSchema, eventTypes, isTerminal, type DemoInput } from "@/lib/contracts";
 import { initialRunState, projectRun, runReducer } from "@/lib/run-state";
 
@@ -10,6 +10,9 @@ export type Connection = "checking" | "connected" | "live" | "reconnecting" | "o
 const pendingKey = "tender-demo-pending-start";
 const pendingSchema = z.object({ key: z.string().min(1), inputId: z.string().min(1) });
 type PendingStart = z.infer<typeof pendingSchema>;
+const selectionKey = "tender-selected-upload";
+const selectionSchema = z.object({ id: z.uuid(), display_name: z.string(), size_bytes: z.number() });
+type Selection = z.infer<typeof selectionSchema>;
 
 function rememberPending(value: PendingStart | null): void {
   try { if (value) sessionStorage.setItem(pendingKey, JSON.stringify(value)); else sessionStorage.removeItem(pendingKey); }
@@ -27,13 +30,18 @@ export function useTenderRun() {
   const [pending, setPending] = useState<PendingStart | null>(null);
   const [retry, setRetry] = useState(0);
   const [now, setNow] = useState<number | null>(null);
+  const [selection, setSelection] = useState<Selection | null>(null);
+  const [uploading, setUploading] = useState(false);
+  const [uploadProblem, setUploadProblem] = useState<string | null>(null);
+  const uploadLock = useRef(false);
+  const uploadController = useRef<AbortController | null>(null);
   const startLock = useRef(false);
   const mounted = useRef(false);
   const startController = useRef<AbortController | null>(null);
 
   useEffect(() => {
     mounted.current = true;
-    return () => { mounted.current = false; startController.current?.abort(); };
+    return () => { mounted.current = false; startController.current?.abort(); uploadController.current?.abort(); };
   }, []);
 
   useEffect(() => {
@@ -44,6 +52,8 @@ export function useTenderRun() {
       let saved: PendingStart | null = null;
       try { const parsed = pendingSchema.safeParse(JSON.parse(sessionStorage.getItem(pendingKey) || "null")); saved = parsed.success ? parsed.data : null; }
       catch { /* An unavailable/corrupt local entry cannot authorize a new run. */ }
+      try { const parsed = selectionSchema.safeParse(JSON.parse(sessionStorage.getItem(selectionKey) || "null")); if (parsed.success) setSelection(parsed.data); }
+      catch { /* A selected upload can still be held in memory without storage. */ }
       try {
         const list = await loadInputs(controller.signal);
         if (!controller.signal.aborted) { setInputs(list); setConnection("connected"); }
@@ -146,7 +156,7 @@ export function useTenderRun() {
   const snapshot = useMemo(() => projectRun(state), [state]);
   const active = starting || (!!runId && (!snapshot || !isTerminal(snapshot)));
   const start = useCallback(async (inputId: string) => {
-    if (startLock.current || active) return;
+    if (startLock.current || active || uploadLock.current) return;
     startLock.current = true; setStarting(true); setProblem(null);
     const attempt = pending || { key: crypto.randomUUID(), inputId };
     setPending(attempt); rememberPending(attempt);
@@ -166,6 +176,29 @@ export function useTenderRun() {
     } finally { startLock.current = false; if (mounted.current) setStarting(false); }
   }, [active, pending]);
 
+  /** Register a selected PDF before enabling analysis or its server-side viewer. */
+  const upload = async (file: File): Promise<void> => {
+    if (active || pending || uploadLock.current) return;
+    setUploadProblem(null);
+    if (!file.name.toLowerCase().endsWith(".pdf")) { setUploadProblem("Upload a PDF file only."); return; }
+    uploadLock.current = true; setUploading(true);
+    const controller = new AbortController(); uploadController.current = controller;
+    try {
+      const accepted = await uploadTender(file, controller.signal);
+      if (!mounted.current || controller.signal.aborted) return;
+      const selected = { id: accepted.input_id, display_name: accepted.display_name, size_bytes: file.size };
+      setSelection(selected);
+      try { sessionStorage.setItem(selectionKey, JSON.stringify(selected)); } catch { /* Selection remains usable in memory. */ }
+    } catch (error) {
+      if (mounted.current && !controller.signal.aborted) setUploadProblem((error as ApiError).message);
+    } finally { uploadLock.current = false; if (mounted.current) setUploading(false); }
+  };
+  const useSample = (): void => {
+    if (active || pending || uploadLock.current) return;
+    setSelection(null); setUploadProblem(null);
+    try { sessionStorage.removeItem(selectionKey); } catch { /* In-memory selection is sufficient. */ }
+  };
+
   const reconnect = () => { setProblem(null); setConnection("checking"); setRetry(value => value + 1); };
   const clearRun = () => {
     const url = new URL(window.location.href); url.searchParams.delete("run"); window.history.replaceState({}, "", url);
@@ -173,5 +206,5 @@ export function useTenderRun() {
   };
   const elapsed = snapshot?.duration_ms ?? (now && snapshot?.started_at ? Math.max(0, now - Date.parse(snapshot.started_at)) : null);
   return { snapshot, events: state.events, inputs, runId, connection, problem, starting, active, pending,
-    elapsed, start, reconnect, clearRun };
+    elapsed, start, reconnect, clearRun, selection, uploading, uploadProblem, upload, useSample };
 }

@@ -1,0 +1,31 @@
+import { expect, test } from "@playwright/test";
+
+test("PDF upload and viewer work on desktop and mobile without model calls", async ({ page, request }) => {
+  const calls: string[] = [];
+  page.on("request", req => { if (req.method() === "POST" && req.url().endsWith("/api/runs")) calls.push(req.url()); });
+  await page.goto("/");
+  await expect(page.getByRole("heading", { name: "Compliance matrix", exact: true })).toBeVisible();
+  await expect(page.getByText("About this demo")).toHaveCount(0);
+  await expect(page.getByRole("button", { name: "Analyze", exact: true })).toBeEnabled();
+  const viewer = page.getByRole("link", { name: "View Tender" });
+  expect(await viewer.getAttribute("href")).toContain("sample-tender/pdf");
+  const sample = await request.get((await viewer.getAttribute("href"))!);
+  expect(sample.headers()["content-type"]).toContain("application/pdf");
+  expect((await sample.body()).subarray(0, 5).toString()).toBe("%PDF-");
+  await page.screenshot({ path: "../outputs/dashboard-updated-desktop.png", fullPage: true });
+  await page.getByLabel("Upload tender PDF").setInputFiles("../tender_package/tender.PDF");
+  await expect(page.getByText("Your upload", { exact: true })).toBeVisible();
+  expect(await viewer.getAttribute("href")).not.toContain("sample-tender");
+  const uploaded = await request.get((await viewer.getAttribute("href"))!);
+  expect(await uploaded.body()).toEqual(await sample.body());
+  await page.reload();
+  await expect(page.getByText("Your upload", { exact: true })).toBeVisible();
+  await page.getByRole("button", { name: "Use sample tender" }).click();
+  await expect(viewer).toHaveAttribute("href", /sample-tender\/pdf$/);
+  await page.setViewportSize({ width: 390, height: 844 });
+  await expect(page.getByRole("button", { name: "Upload Tender", exact: true })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Analyze", exact: true })).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBeTruthy();
+  await page.screenshot({ path: "../outputs/dashboard-updated-mobile.png", fullPage: true });
+  expect(calls).toHaveLength(0);
+});

@@ -29,7 +29,7 @@ EventType = Literal[
 
 
 class StartRequest(BaseModel):
-    """Only registered samples can be selected; no client paths or URLs."""
+    """Select the sample or an opaque upload ID; never client paths or URLs."""
 
     model_config = ConfigDict(extra="forbid")
     input_id: str = Field(min_length=1, max_length=80)

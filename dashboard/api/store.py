@@ -10,7 +10,7 @@ from uuid import uuid4
 
 from .config import Settings
 from .errors import DemoError
-from .models import ErrorInfo, RunEvent, RunSnapshot, TaskSnapshot
+from .models import ErrorInfo, InputInfo, RunEvent, RunSnapshot, TaskSnapshot
 
 
 def utc_now() -> str:
@@ -29,6 +29,16 @@ class Record:
     finished: float | None = None
     task_starts: dict[str, float] = field(default_factory=dict)
     workbook_path: Path | None = None
+    source_pdf: Path | None = None
+
+
+@dataclass
+class UploadedTender:
+    """Keep a bounded, temporary PDF selection independent of analysis retries."""
+
+    path: Path
+    display_name: str
+    created: float = field(default_factory=monotonic)
 
 
 class RunStore:
@@ -40,6 +50,7 @@ class RunStore:
         self.records: dict[str, Record] = {}
         self.keys: dict[str, str] = {}
         self.active: str | None = None
+        self.uploads: dict[str, UploadedTender] = {}
 
     def _prune(self) -> None:
         """Evict only terminal, inactive records, including their idempotency keys."""
@@ -59,20 +70,72 @@ class RunStore:
             ):
                 del self.records[record.snapshot.run_id]
                 self.keys.pop(record.key, None)
+        retained = {record.snapshot.input.id for record in self.records.values()}
+        for input_id, upload in list(self.uploads.items()):
+            if (
+                input_id not in retained
+                and monotonic() - upload.created >= self.settings.retention_seconds
+            ):
+                upload.path.unlink(missing_ok=True)
+                del self.uploads[input_id]
+
+    def add_upload(self, content: bytes, display_name: str) -> str:
+        """Store validated bytes under a generated name rather than a client path."""
+        with self.lock:
+            self._prune()
+            if len(self.uploads) >= self.settings.max_uploads:
+                raise DemoError(
+                    "UPLOAD_BUSY", "Upload capacity is full. Try again later.", 429
+                )
+            input_id = str(uuid4())
+            directory = self.settings.output_root / "uploads"
+            directory.mkdir(parents=True, exist_ok=True)
+            path = directory / f"{input_id}.pdf"
+            path.write_bytes(content)
+            self.uploads[input_id] = UploadedTender(path, display_name)
+            return input_id
+
+    def input_pdf(self, input_id: str) -> Path:
+        """Resolve only the configured tender or a retained generated upload ID."""
+        with self.lock:
+            self._prune()
+            if input_id == "sample-tender":
+                try:
+                    path = self.settings.sample_pdf()
+                    if path.is_file() and path.stat().st_size > 0:
+                        return path
+                except OSError:
+                    pass
+                raise DemoError(
+                    "INPUT_UNAVAILABLE", "The sample tender is unavailable.", 503
+                )
+            upload = self.uploads.get(input_id)
+            if upload is None or not upload.path.is_file():
+                raise DemoError(
+                    "INVALID_INPUT", "This upload expired. Upload your PDF again.", 422
+                )
+            return upload.path
 
     def prune(self) -> None:
         """Expire stale keys before deciding whether a start is an idempotent retry."""
         with self.lock:
             self._prune()
 
-    def create(self, key: str) -> tuple[RunSnapshot, bool]:
+    def create(
+        self, key: str, input_id: str = "sample-tender"
+    ) -> tuple[RunSnapshot, bool]:
         """Atomically deduplicate starts before enforcing single-run admission."""
         with self.lock:
             self._prune()
             if key in self.keys:
-                return self.records[self.keys[key]].snapshot.model_copy(
-                    deep=True
-                ), False
+                existing = self.records[self.keys[key]].snapshot
+                if existing.input.id != input_id:
+                    raise DemoError(
+                        "INPUT_CONFLICT",
+                        "This request key belongs to a different tender.",
+                        409,
+                    )
+                return existing.model_copy(deep=True), False
             if self.active:
                 raise DemoError(
                     "RUN_BUSY",
@@ -80,8 +143,12 @@ class RunStore:
                     409,
                 )
             run_id = str(uuid4())
-            snapshot = RunSnapshot(run_id=run_id)
-            self.records[run_id] = Record(snapshot, key)
+            source = self.input_pdf(input_id) if input_id != "sample-tender" else None
+            name = self.uploads[input_id].display_name if source else "tender.pdf"
+            snapshot = RunSnapshot(
+                run_id=run_id, input=InputInfo(id=input_id, display_name=name)
+            )
+            self.records[run_id] = Record(snapshot, key, source_pdf=source)
             self.keys[key] = run_id
             self.active = run_id
             return snapshot.model_copy(deep=True), True
